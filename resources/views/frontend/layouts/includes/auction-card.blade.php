@@ -41,7 +41,11 @@
 
                     <!-- Start: countdown -->
                     <div class="count-down">
-                        <div class="color-999 d-inline-block fz-12">{{'ENDS IN :'}}</div>
+                        @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)->format('M d\\, Y h:i:s')))
+                            <div class="color-999 d-inline-block fz-12">{{'ENDS IN :'}}</div>
+                        @else
+                            <div class="color-999 d-inline-block fz-12">{{'STARTS IN :'}}</div>
+                        @endif
                         <div class="timer d-inline-block">
                             <Timer
                                 starttime="{{\Carbon\Carbon::parse($auction->starting_date)->format('M d\\, Y h:i:s')}}"

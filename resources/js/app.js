@@ -28,7 +28,7 @@ Vue.component("Timer", {
         </div>
     `,
     props: ["starttime", "endtime", "trans"],
-    data: function () {
+    data: function() {
         return {
             timer: "",
             wordString: {},
@@ -41,10 +41,10 @@ Vue.component("Timer", {
             seconds: "",
             message: "",
             statusType: "",
-            statusText: "",
+            statusText: ""
         };
     },
-    created: function () {
+    created: function() {
         this.wordString = JSON.parse(this.trans);
     },
     mounted() {
@@ -57,7 +57,7 @@ Vue.component("Timer", {
         }, 1000);
     },
     methods: {
-        timerCount: function (start, end) {
+        timerCount: function(start, end) {
             // Get todays date and time
             var now = new Date().getTime();
 
@@ -82,8 +82,7 @@ Vue.component("Timer", {
                 this.statusText = this.wordString.status.upcoming;
             }
         },
-        calcTime: function (dist) {
-            debugger;
+        calcTime: function(dist) {
             // Time calculations for days, hours, minutes and seconds
             this.days = Math.floor(dist / (1000 * 60 * 60 * 24));
             this.hours = Math.floor(
@@ -91,6 +90,6 @@ Vue.component("Timer", {
             );
             this.minutes = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
             this.seconds = Math.floor((dist % (1000 * 60)) / 1000);
-        },
-    },
+        }
+    }
 });

@@ -54927,8 +54927,7 @@ Vue.component("Timer", {
       }
     },
     calcTime: function calcTime(dist) {
-      debugger; // Time calculations for days, hours, minutes and seconds
-
+      // Time calculations for days, hours, minutes and seconds
       this.days = Math.floor(dist / (1000 * 60 * 60 * 24));
       this.hours = Math.floor(dist % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
       this.minutes = Math.floor(dist % (1000 * 60 * 60) / (1000 * 60));

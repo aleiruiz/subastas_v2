@@ -133,8 +133,14 @@
 
                     <div class="s-box mb-3">
                         <!-- Start: header -->
+                        
                         <div class="s-box-header">
-                            <span> {{__('Ends')}} </span>
+                            
+                            @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)->format('M d\\, Y h:i:s')))
+                                <span> {{__('Ends')}} </span>
+                            @else
+                                <span> {{__('Starts')}} </span>
+                            @endif
                             {{__('In')}}
                         </div>
                         <!-- End: header -->
@@ -155,7 +161,7 @@
                                                 "status": {
                                                         "expired":"Expired",
                                                         "running":"Running",
-                                                        "upcoming":"Future"
+                                                        "upcoming":"Upcoming"
                                                     }
                                                 }'
                                 ></Timer>
