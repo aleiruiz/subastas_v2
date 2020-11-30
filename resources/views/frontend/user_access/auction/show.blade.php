@@ -142,7 +142,7 @@
                         <div class="count-down">
                             <div class="timer d-inline-block">
                                 <Timer
-                                    starttime="{{\Carbon\Carbon::parse($auction->started_date)->format('M d\\, Y h:i:s')}}"
+                                    starttime="{{\Carbon\Carbon::parse($auction->starting_date)->format('M d\\, Y h:i:s')}}"
                                     endtime="{{\Carbon\Carbon::parse($auction->ending_date)->format('M d\\, Y h:i:s')}}"
                                     trans='{
                                                 "day":"D",

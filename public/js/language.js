@@ -525,7 +525,7 @@ new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/pro-auction/resources/js/language.js */"./resources/js/language.js");
+module.exports = __webpack_require__(/*! D:\wamp\www\subastas_v2\resources\js\language.js */"./resources/js/language.js");
 
 
 /***/ })

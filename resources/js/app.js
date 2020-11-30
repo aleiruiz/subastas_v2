@@ -1,7 +1,7 @@
-require('./bootstrap');
-window.Vue = require('vue');
+require("./bootstrap");
+window.Vue = require("vue");
 
-Vue.component('Timer', {
+Vue.component("Timer", {
     template: `
         <div>
             <div v-if="statusType !== 'expired'">
@@ -27,7 +27,7 @@ Vue.component('Timer', {
             </div>
         </div>
     `,
-    props: ['starttime', 'endtime', 'trans'],
+    props: ["starttime", "endtime", "trans"],
     data: function () {
         return {
             timer: "",
@@ -42,7 +42,6 @@ Vue.component('Timer', {
             message: "",
             statusType: "",
             statusText: "",
-
         };
     },
     created: function () {
@@ -71,14 +70,11 @@ Vue.component('Timer', {
                 this.statusType = "expired";
                 this.statusText = this.wordString.status.expired;
                 clearInterval(this.interval);
-
-
             } else if (distance < 0 && passTime > 0) {
                 this.calcTime(passTime);
                 this.message = this.wordString.running;
                 this.statusType = "running";
                 this.statusText = this.wordString.status.running;
-
             } else if (distance > 0 && passTime > 0) {
                 this.calcTime(distance);
                 this.message = this.wordString.upcoming;
@@ -87,11 +83,14 @@ Vue.component('Timer', {
             }
         },
         calcTime: function (dist) {
+            debugger;
             // Time calculations for days, hours, minutes and seconds
             this.days = Math.floor(dist / (1000 * 60 * 60 * 24));
-            this.hours = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            this.hours = Math.floor(
+                (dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+            );
             this.minutes = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
             this.seconds = Math.floor((dist % (1000 * 60)) / 1000);
-        }
-    }
+        },
+    },
 });
