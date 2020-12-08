@@ -78,6 +78,7 @@ class WalletTransactionController extends Controller
     public function store(WalletTransactionRequest $request, $id)
     {
 
+
         $errorMessage = __('Failed to deposit. Please try again.');
 
         $wallet = app(WalletInterface::class)->findOrFailByConditions(['id' => $id, 'user_id' => auth()->id()], 'currency');
@@ -148,7 +149,7 @@ class WalletTransactionController extends Controller
                 'updated_at' => $date,
                 'created_at' => $date,
                 ];
-            app(NotificationInterface::class)->create();
+            app(NotificationInterface::class)->create($notificationAttributes);
 
             return redirect()->route('deposit.index')->with(SERVICE_RESPONSE_SUCCESS, __('The transaction has been approved by PayPal!'));
         }

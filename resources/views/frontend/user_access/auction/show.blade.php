@@ -203,7 +203,7 @@
                                     <span>
                                         {{__('Total Bids :')}}
                                     </span>
-                                    <span class="badge badge-primary badge-pill">{{$auction->bids->count()}}</span>
+                                    <span class="badge badge-primary badge-pill" id="count-bid">{{$auction->bids->count()}}</span>
                                 </li>
                                 @if($auction->auction_type != AUCTION_TYPE_UNIQUE_BIDDER && $auction->auction_type != AUCTION_TYPE_VICKREY_AUCTION)
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -253,7 +253,7 @@
                                             {{__('Highest Bid Amount:')}}
                                         </span>
                                         <span
-                                            class="badge badge-primary badge-pill"><span class="font-weight-normal"> {{$auction->currency->symbol}}</span> {{$auction->bids->max('amount')}}</span>
+                                            class="badge badge-primary badge-pill" id="max-bid"><span class="font-weight-normal"> {{$auction->currency->symbol}}</span> {{$auction->bids->max('amount')}}</span>
                                     </li>
                                 @endif
                             </ul>
@@ -277,7 +277,7 @@
                                         <span class="font-weight-bold color-666">
                                             {{__('Next Minimum Bid Amount :')}}
                                         </span>
-                                        <span class="badge bg-warning text-white badge-pill"> <span class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span>{{$highestBid->amount + $auction->bid_increment_dif}}</span>
+                                        <span class="badge bg-warning text-white badge-pill" id="minimum-bid"> <span class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span>{{$highestBid->amount + $auction->bid_increment_dif}}</span>
                                     </li>
                                 </ul>
                                 @elseif($auction->auction_type == AUCTION_TYPE_HIGHEST_BIDDER)
@@ -737,6 +737,14 @@
                             '</td>';
 
                         $('#bid > tbody > tr:first').before(row);
+
+                        $('#count-bid').html(response.bid_count);
+
+                        $('#max-bid').html(`<span class="font-weight-normal"> {{$auction->currency->symbol}}</span> ${response.bigger_bid} </span>`);
+
+                        let minimumBid = response.bigger_bid + response.bid_increment_dif;
+
+                        $('#minimum-bid').html(`<span class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> ${minimumBid}</span>`);
 
                     }
                 });

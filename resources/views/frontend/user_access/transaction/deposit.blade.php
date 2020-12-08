@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="card-footer text-muted">
-                            <button value="Submit Design" type="submit" class="btn custom-btn float-right has-spinner my-2" id="two">{{__('Request Deposit')}}</button>
+                            <button value="Submit Design" type="submit" class="btn custom-btn float-right my-2" id="two">{{__('Request Deposit')}}</button>
                         </div>
                     </div>
 
