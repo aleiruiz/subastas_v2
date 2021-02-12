@@ -52,9 +52,11 @@ class BidController extends Controller
         }
 
         $onBiddingUserWallet = app(WalletInterface::class)->getFirstByConditions(['user_id' => auth()->id(), 'currency_id' => $auction->currency_id], 'currency');
-
-        if ($onBiddingUserWallet->currency->is_active != ACTIVE_STATUS_ACTIVE) {
-            return redirect()->back()->with(SERVICE_RESPONSE_ERROR, __('Sorry, The :currency currency is unavailable right now', ['currency' => $onBiddingUserWallet->currency->symbol]));
+        if (empty($onBiddingUserWallet)) {
+            return redirect()->back()->with(SERVICE_RESPONSE_ERROR, __('Sorry, The used currency is unavailable right now'));
+        }
+        if( $onBiddingUserWallet->currency->is_active != ACTIVE_STATUS_ACTIVE){
+             return redirect()->back()->with(SERVICE_RESPONSE_ERROR, __('Sorry, The :currency currency is unavailable right now', ['currency' => $onBiddingUserWallet->currency->symbol]));
         }
 
         if ($onBiddingUserWallet->balance < $request->amount) {

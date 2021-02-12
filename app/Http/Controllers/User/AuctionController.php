@@ -66,7 +66,7 @@ class AuctionController extends Controller
         if ($request->hasfile('images')) {
             $uploadedImage = [];
             foreach ($request->images as $files) {
-                $uploadedImage[] = app(FileUploadService::class)->upload($files, config('commonconfig.auction_image'), 'images', '', $new_name++, 'public', 600, 400);
+                $uploadedImage[] = app(FileUploadService::class)->upload($files, config('commonconfig.auction_image'), bin2hex(random_bytes(10)), '', $new_name++, 'public', 600, 400);
             }
 
             if (!empty($uploadedImage)) {

@@ -1,6 +1,35 @@
 @extends('frontend.layouts.master')
 @section('content')
 
+    <!-- Login Modal -->
+<div class="custom-modal">
+    <div class="modal fade" id="confirmBidModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <img src="{{asset('public/icons/garantia.png')}}" width="100px">
+                    <h5 class="modal-title justify-content-center font-weight-bold" id="exampleModalLongTitle">Garantia: {{ !is_null($auction->currency) ? $auction->currency->symbol : ''}} {{$auction->bid_initial_price * 0.10}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                             Al consignar la garantia <br>
+                            aceptas a conectarte a la sala <br>
+                            "En vivo" y enviar por lo menos una puja valida <br>
+                            durante el proceso en vivo.
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                        <a class="btn btn-success"  id="confirmBid">Aceptar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     <!-- ::::::::::::::::::::::START PAGE HEAD ::::::::::::::::::::::::: -->
     <div class="p-b-100 p-t-80">
         <div class="container">
@@ -33,7 +62,7 @@
 
                                     <div class="property-area text-uppercase">
                                         <i class="fa fa-th-large" aria-hidden="true"></i>
-                                        Reference ID :
+                                        REFERENCIA:
                                         {{$auction->ref_id}}
                                     </div>
 
@@ -42,7 +71,7 @@
                                         <ul class="nav">
                                             <li class="color-999">
                                                 <i class="fa fa-flag"></i>
-                                                By <a
+                                                Subastador <a
                                                     href="{{route('seller-profile.show', $auction->seller_id)}}">{{ !is_null($auction->seller) ? $auction->seller->name : ''}}</a>
                                             </li>
                                             <li class="color-999">
@@ -133,13 +162,17 @@
 
                     <div class="s-box mb-3">
                         <!-- Start: header -->
-                        
+
                         <div class="s-box-header">
-                            
-                            @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)->format('M d\\, Y h:i:s')))
-                                <span> {{__('Ends')}} </span>
+                            <?php
+                            $now = \Carbon\Carbon::now();
+                            $start = \Carbon\Carbon::parse($auction->starting_date);
+                            $end = \Carbon\Carbon::parse($auction->ending_date);
+                             ?>
+                            @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
+                                <span> Termina </span>
                             @else
-                                <span> {{__('Starts')}} </span>
+                                <span> Empieza </span>
                             @endif
                             {{__('In')}}
                         </div>
@@ -148,20 +181,21 @@
                         <div class="count-down">
                             <div class="timer d-inline-block">
                                 <Timer
-                                    starttime="{{\Carbon\Carbon::parse($auction->starting_date)->format('M d\\, Y h:i:s')}}"
-                                    endtime="{{\Carbon\Carbon::parse($auction->ending_date)->format('M d\\, Y h:i:s')}}"
+                                    starttime="{{$start}}"
+                                    endtime="{{$end}}"
+                                    type='auction'
                                     trans='{
                                                 "day":"D",
                                                 "hours":"H",
                                                 "minutes":"M",
                                                 "seconds":"S",
-                                                "expired":"Event has been expired.",
-                                                "running":"Till the end of event.",
-                                                "upcoming":"Till start of event.",
+                                                "expired":"Este evento a expirado.",
+                                                "running":"Este evento esta en progreso.",
+                                                "upcoming":"Este evento aun no a empezado.",
                                                 "status": {
-                                                        "expired":"Expired",
-                                                        "running":"Running",
-                                                        "upcoming":"Upcoming"
+                                                        "expired":"Expirado",
+                                                        "running":"En Progreso",
+                                                        "upcoming":"Ya Viene"
                                                     }
                                                 }'
                                 ></Timer>
@@ -331,7 +365,7 @@
                         @if($auction->status == AUCTION_STATUS_RUNNING)
                             <div class="list-group mt-3">
                                 <div class="list-group-item py-4">
-                                    {{ Form::open(['route'=>['bid.store', $auctionId],'class'=>'form-horizontal cvalidate']) }}
+                                    {{ Form::open(['route'=>['bid.store', $auctionId],'class'=>'form-horizontal cvalidate','id'=>'bidForm']) }}
                                     @method('post')
                                     @basekey
 
@@ -346,9 +380,7 @@
                                     </div>
                                     <!-- End: auction main content -->
 
-                                    <button value="Submit" type="submit"
-                                            class="btn custom-btn w-100 float-right has-spinner"
-                                            id="two">{{__('Bid Your Amount')}}</button>
+                                    <a class="btn custom-btn w-100 float-right has-spinner" id="offer">{{__('Bid Your Amount')}}</a>
 
                                     {{ Form::close() }}
                                 </div>
@@ -625,6 +657,7 @@
     <script src="{{ asset('vendor/jasny-bootstrap/js/jasny-bootstrap.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap4-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script type="text/javascript">
+        
         $(document).ready(function () {
             let user = @json(auth()->user());
             $('.cvalidate').cValidate();
@@ -635,6 +668,14 @@
             $('.toggle').click(function () {
                 $('#target').toggle();
             });
+
+            $('#confirmBid').on('click', function() {
+                $('#bidForm').submit();
+            })
+
+            $('#offer').on('click',function(){
+                $('#confirmBidModal').modal("toggle");
+            })
 
             var sync1 = $("#sync1");
             var sync2 = $("#sync2");
@@ -817,4 +858,3 @@
         }
     </style>
 @endsection
-

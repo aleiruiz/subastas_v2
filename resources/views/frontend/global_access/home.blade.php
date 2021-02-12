@@ -19,32 +19,7 @@
     <script src="{{asset('vendor/owl-carousel/owl.carousel.min.js')}}"></script>
     <script>
         $(document).ready(function () {
-            $('.owl-carousel').owlCarousel({
-                loop:true,
-                margin:0,
-                nav:true,
-                autoplayTimeout: 8000,
-                smartSpeed: 2000,
-                autoplay: true,
-                navText: ['<i class="fa fa-long-arrow-left"></i>',
-                    '<i class="fa fa-long-arrow-right""></i>'],
-                dots:true,
-                responsive:{
-                    0:{
-                        items:1
-                    },
-                    400:{
-                        items:1
-                    },
-
-                    600:{
-                        items:1
-                    },
-                    1000:{
-                        items:1
-                    }
-                }
-            });
+            $('.carousel').carousel();
         });
         new Vue({
             el:'#app'

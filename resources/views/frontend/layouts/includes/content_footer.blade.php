@@ -191,6 +191,11 @@
 <footer>
     <div class="footer">
         <div class="p-y-50">
+            <div class="container col-12">
+                <img class="img-fuild img-footer" src="{{company_logo()}}" alt="">
+            </div>
+        </div>
+        <div class="p-y-50">
             <div class="container">
 
                 <!-- Start: footer middle section -->
@@ -250,7 +255,7 @@
 
                             <!-- Start: get in touch -->
                             <div class="col-lg-3 col-md-12 p-t-50">
-                                <h5 class="text-uppercase font-weight-bold mb-5 text-white">get in touch</h5>
+                                <h5 class="text-uppercase font-weight-bold mb-5 text-white">Contactanos</h5>
 
                                 <div class="get-in-touch">
                                     <ul>

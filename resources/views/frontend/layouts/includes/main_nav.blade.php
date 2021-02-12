@@ -156,11 +156,6 @@
                     <i class="fa fa-envelope-open-o"></i> <span>{{__('Contact Us')}}</span>
                 </a>
             </li>
-            <li class="{{is_current_route('auction-rules.index') ? 'active' : ''}}">
-                <a href="{{route('auction-rules.index')}}">
-                    <i class="fa fa-question-circle-o"></i> <span>{{__('Auction Rules')}}</span>
-                </a>
-            </li>
         </ul>
     </div>
 
@@ -198,7 +193,7 @@
             <!-- End: logo -->
 
             <!-- Start: search area -->
-            <div class="{{Auth::check() ? 'col-lg-7' : 'col-lg-6' }}">
+            <div class="{{Auth::check() ? 'col-lg-5' : 'col-lg-4' }}">
                 <form action="{{route('auction-search.index')}}" method="get">
                     @csrf
                     <div id="search">
@@ -210,21 +205,28 @@
             <!-- End: search area -->
 
             <!-- Start: profile area -->
-            <div class="{{Auth::check() ? 'col-lg-2' : 'col-lg-3' }}">
+            <div class="{{Auth::check() ? 'col-lg-4' : 'col-lg-5' }}">
                 <div class="nav-icons notification-control-main">
                     @if(Auth::guest())
                     <nav class="nav nav-pills d-flex text-center">
                         <a class="flex-fill guest-link text-sm-center nav-link" data-toggle="modal"
                            data-target="#registerModal" href="javascript:">
-                            Register
+                            Registrar
                         </a>
                         <a class="flex-fill guest-link text-sm-center nav-link" data-toggle="modal"
                            data-target="#loginModal" href="javascript;">
-                            Login
+                            Ingresar
                         </a>
                     </nav>
                     @else
                     <nav class="nav nav-pills d-flex">
+                        @if(!is_null(auth()->user()->seller))
+                            <div class="d-inline-block flex-fill ">
+                                <a class="text-sm-center nav-link"  href="{{route('auction.create')}}">
+                                    <i class="fa fa-dot-circle-o"></i> {{__('Create Auction')}}
+                                </a>
+                            </div>
+                        @endif
                         <div class="d-inline-block flex-fill ">
                             <!-- Start: notification area -->
                             <a class="text-sm-center nav-link" data-toggle="dropdown" aria-haspopup="true"
@@ -277,6 +279,12 @@
                                     <i class="fa fa-cogs mr-3"></i>
                                     {{__('Manage Profile')}}
                                 </a>
+                                @if(!is_null(auth()->user()->seller))
+                                <a class="dropdown-item" href="{{route('auction.create')}}">
+                                    <i class="fa fa-dot-circle-o"></i>
+                                    {{__('Create Auction')}}
+                                </a>
+                                @endif
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}">
                                     <i class="fa fa-sign-out mr-3" aria-hidden="true"></i> {{__('Log out')}}

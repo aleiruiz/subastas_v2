@@ -8,7 +8,7 @@
                             <span class="auction-badge">
                                 <span class="badge {{config('commonconfig.auction_type.' . ( !is_null($auction) ? $auction->auction_type : '' ) . '.color_class')}}">{{ config('commonconfig.auction_type.' . ( !is_null($auction) ? $auction->auction_type : '' ) . '.text')}}</span>
                             </span>
-                <span class="fz-12 color-999 card-time d-block">{{ !is_null($auction->created_at) ?$auction->created_at->diffForHumans() : ''}}</span>
+                <span class="fz-12 color-999 card-time d-block">PUBLICADA {{ !is_null($auction->created_at) ?$auction->created_at->diffForHumans() : ''}}</span>
                 <figure>
 
                     <!-- Start: card image -->
@@ -41,31 +41,13 @@
 
                     <!-- Start: countdown -->
                     <div class="count-down">
-                        @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)->format('M d\\, Y h:i:s')))
-                            <div class="color-999 d-inline-block fz-12">{{'ENDS IN :'}}</div>
+                        @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
+                            <div class="color-999 d-inline-block fz-12">{{'EMPEZO:'}}</div>
                         @else
-                            <div class="color-999 d-inline-block fz-12">{{'STARTS IN :'}}</div>
+                            <div class="color-999 d-inline-block fz-12">{{'EMPIEZA:'}}</div>
                         @endif
-                        <div class="timer d-inline-block">
-                            <Timer
-                                starttime="{{\Carbon\Carbon::parse($auction->starting_date)->format('M d\\, Y h:i:s')}}"
-                                endtime="{{\Carbon\Carbon::parse($auction->ending_date)->format('M d\\, Y h:i:s')}}"
-                                trans='{
-                                    "day":"D",
-                                    "hours":"H",
-                                    "minutes":"M",
-                                    "seconds":"S",
-                                    "expired":"Event has been expired.",
-                                    "running":"Till the end of event.",
-                                    "upcoming":"Till start of event.",
-                                    "status": {
-                                            "expired":"Expired",
-                                            "running":"Running",
-                                            "upcoming":"Future"
-                                        }
-                                    }'
-                            ></Timer>
-                        </div>
+
+                                <div class="color-999 d-inline-block fz-12">{{\Carbon\Carbon::parse($auction->starting_date)->diffForHumans()}}</div>
                     </div>
                     <!-- End: countdown -->
 

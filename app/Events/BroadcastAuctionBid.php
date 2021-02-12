@@ -41,13 +41,14 @@ class BroadcastAuctionBid implements ShouldBroadcastNow
      */
     public function broadcastWith()
     {
+        $endTime = \Carbon\Carbon::parse($this->bid->auction->ending_date)->format('M d\\, Y H:i:s');
         return [
             'user_id' => $this->bid->user_id,
             'username' => $this->bid->user->username,
             'amount' => $this->bid->amount,
             'currency' => $this->bid->auction->currency->symbol,
             'date' => $this->bid->created_at->toDateTimeString(),
-            'auction' => $this->bid->auction,
+            'end_time' => $endTime,
             'bid_count' => $this->bid->auction->bids->count(),
             'bigger_bid' => $this->bid->auction->bids->max('amount'),
             'bid_increment_dif' => $this->bid->auction->bid_increment_dif

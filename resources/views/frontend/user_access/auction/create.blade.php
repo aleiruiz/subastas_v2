@@ -47,7 +47,9 @@
             $('.cvalidate').cValidate();
             //Init jquery Date Picker
             $('.datepicker').datetimepicker({
-                format: 'YYYY-MM-DD',
+                format: 'YYYY-MM-DD HH:mm:ss',
+                inline: true,
+                sideBySide: true
             });
         });
     </script>

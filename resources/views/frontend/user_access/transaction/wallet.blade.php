@@ -37,7 +37,7 @@
                                     <td class="font-weight-bold text-success">{{$wallet->balance}}</td>
                                     <td>{{$wallet->created_at !== null ? $wallet->created_at->diffForHumans():''}}</td>
                                     <td>
-                                        <div class="address-dropdown">
+                                        <div >
                                             <a class="flex-sm-fill text-sm-center nav-link p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
                                                 <i class="fa fa-th-list icon-round"></i>
                                             </a>

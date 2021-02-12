@@ -4,6 +4,7 @@ namespace App\Services\User;
 
 use App\Repositories\User\Interfaces\BidInterface;
 use App\Repositories\User\Interfaces\NotificationInterface;
+use App\Repositories\User\Interfaces\AuctionInterface;
 use App\Repositories\User\Interfaces\TransactionInterface;
 use App\Repositories\User\Interfaces\WalletInterface;
 use Exception;
@@ -33,7 +34,7 @@ class BidService
             $biddingFee = $vickreyBidderBiddingFee;
         }
 
-        $totalBidAmount = bcadd($parameters['amount'], $biddingFee);
+        $bidInsurance = bcadd($auction->bid_initial_price * 0.10, $biddingFee);
         $highestBid = $auction->bids()->orderBy('amount', 'desc')->first();
 
         if (count($auction->bids) > 0 && $auction->auction_type == AUCTION_TYPE_HIGHEST_BIDDER) {
@@ -59,7 +60,7 @@ class BidService
                 'conditions' => ['user_id' => $onBiddingUserWallet->user_id, 'currency_id' => $auction->currency_id],
                 'fields' => [
                     'on_order' => ['increment', $parameters['amount']],
-                    'balance' => ['decrement', $totalBidAmount],
+                    'balance' => ['decrement', $bidInsurance],
                 ]
             ],
             [
@@ -80,10 +81,10 @@ class BidService
 
             $date = now();
             $refId = Str::uuid();
-            $transactionAttributes = $this->bidTransaction($onBiddingUserWallet, $refId, $parameters, $biddingFee, $date);
+            $transactionAttributes = $this->bidHighTransaction($onBiddingUserWallet, $refId, $bidInsurance, $biddingFee, $date);
 
             if (count($auction->bids) > 0 && $auction->auction_type == AUCTION_TYPE_HIGHEST_BIDDER) {
-                if (!$this->bidReversalTransaction($auction, $highestBid, $refId, $date, $transactionAttributes)) {
+                if (!$this->bidReversalTransaction($auction, $highestBid, $refId, $date, $transactionAttributes, $bidInsurance)) {
                     throw new Exception('Failed to bid please try again later');
                 }
             }
@@ -91,6 +92,11 @@ class BidService
             app(TransactionInterface::class)->insert($transactionAttributes);
             $this->bid->create($parameters);
 
+            $parameters['ending_date'] = \Carbon\Carbon::now()->addMinutes(3);
+            $timeUpdate = app(AuctionInterface::class)->update($parameters, $auction->id);
+            if (empty($timeUpdate)) {
+                throw new Exception('Failed to update auction please try again later');
+            }
             DB::commit();
 
         } catch (Exception $exception) {
@@ -129,6 +135,70 @@ class BidService
         $biddingFee = settings('bidding_fee_on_unique_bidder_auction');
 
         return $this->adjustBidAmount($auction, $parameters, $biddingFee);
+    }
+
+    public function bidHighTransaction($onBiddingUserWallet, $refId, $amount, $biddingFee, $date)
+    {
+        if ($biddingFee > 0)
+        {
+            $bidTransaction = [
+                [
+                    'user_id' => $onBiddingUserWallet->user_id,
+                    'ref_id' => $refId,
+                    'wallet_id' => $onBiddingUserWallet->id,
+                    'model_id' => $onBiddingUserWallet->id,
+                    'model' => get_class($onBiddingUserWallet),
+                    'amount' => bcmul($biddingFee, "-1"),
+                    'journal_type' => JOURNAL_TYPE_DEBIT,
+                    'journal' => INCREASED_TO_SYSTEM_WALLET_AS_AUCTION_FEES,
+                    'updated_at' => $date,
+                    'created_at' => $date,
+                ],
+
+                [
+                    'user_id' => $onBiddingUserWallet->user_id,
+                    'ref_id' => $refId,
+                    'wallet_id' => $onBiddingUserWallet->id,
+                    'model_id' => $onBiddingUserWallet->id,
+                    'model' => get_class($onBiddingUserWallet),
+                    'amount' => bcmul($biddingFee, "1"),
+                    'journal_type' => JOURNAL_TYPE_CREDIT,
+                    'journal' => DECREASED_FROM_USER_WALLET_AS_AUCTION_FEES,
+                    'updated_at' => $date,
+                    'created_at' => $date,
+                ],
+            ];
+        }
+
+        $bidTransaction[] =
+            [
+                'user_id' => $onBiddingUserWallet->user_id,
+                'ref_id' => $refId,
+                'wallet_id' => $onBiddingUserWallet->id,
+                'model_id' => $onBiddingUserWallet->id,
+                'model' => get_class($onBiddingUserWallet),
+                'amount' => bcmul($amount, "-1"),
+                'journal_type' => JOURNAL_TYPE_DEBIT,
+                'journal' => INCREASED_TO_ESCROW_ON_BIDDING_FROM_USER_WALLET,
+                'updated_at' => $date,
+                'created_at' => $date,
+            ];
+
+        $bidTransaction[] =
+            [
+                'user_id' => $onBiddingUserWallet->user_id,
+                'ref_id' => $refId,
+                'wallet_id' => $onBiddingUserWallet->id,
+                'model_id' => $onBiddingUserWallet->id,
+                'model' => get_class($onBiddingUserWallet),
+                'amount' => bcmul($amount, "1"),
+                'journal_type' => JOURNAL_TYPE_CREDIT,
+                'journal' => DECREASED_FROM_USER_WALLET_TO_ESCROW_ON_BIDDING,
+                'updated_at' => $date,
+                'created_at' => $date,
+            ];
+
+        return $bidTransaction;
     }
 
     public function bidTransaction($onBiddingUserWallet, $refId, $parameters, $biddingFee, $date)
@@ -195,13 +265,13 @@ class BidService
         return $bidTransaction;
     }
 
-    public function bidReversalTransaction($auction, $highestBid, $refId, $date, &$transactionAttributes)
+    public function bidReversalTransaction($auction, $highestBid, $refId, $date, &$transactionAttributes, $bidInsurance)
     {
         $existedHighestBidderWallet = app(WalletInterface::class)->getFirstByConditions(['user_id' => $highestBid->user_id, 'currency_id' => $auction->currency_id]);
 
         $existedWalletAttributes = [
-            'on_order' => DB::raw('on_order - ' . $highestBid->amount),
-            'balance' => DB::raw('balance + ' . $highestBid->amount),
+            'on_order' => DB::raw('on_order - ' . $bidInsurance),
+            'balance' => DB::raw('balance + ' . $bidInsurance),
         ];
 
         if (!app(WalletInterface::class)->update($existedWalletAttributes, $existedHighestBidderWallet->id)) {
@@ -214,7 +284,7 @@ class BidService
             'wallet_id' => $existedHighestBidderWallet->id,
             'model_id' => $existedHighestBidderWallet->id,
             'model' => get_class($existedHighestBidderWallet),
-            'amount' => bcmul($highestBid->amount, "1"),
+            'amount' => bcmul($bidInsurance, "1"),
             'journal_type' => JOURNAL_TYPE_DEBIT,
             'journal' => INCREASED_TO_USER_WALLET_FROM_ESCROW_ON_BIDDING_REVERSAL,
             'updated_at' => $date,
@@ -227,7 +297,7 @@ class BidService
             'wallet_id' => $existedHighestBidderWallet->id,
             'model_id' => $existedHighestBidderWallet->id,
             'model' => get_class($existedHighestBidderWallet),
-            'amount' => bcmul($highestBid->amount, "-1"),
+            'amount' => bcmul($bidInsurance, "-1"),
             'journal_type' => JOURNAL_TYPE_CREDIT,
             'journal' => DECREASED_FROM_ESCROW_TO_USER_WALLET_ON_BIDDING_REVERSAL,
             'updated_at' => $date,
@@ -237,7 +307,7 @@ class BidService
         $route = route('auction.show', ['id' => $auction->id]);
         $notificationAttributes = [
             'user_id' => $highestBid->user_id,
-            'data' => __('Your :currency :amount has been restored to your balance from bidding on :auction', ['currency' => '<strong>' . $existedHighestBidderWallet->currency->symbol . '</strong>', 'amount' => '<strong>' . $highestBid->amount . '</strong>', 'auction' => '<strong>' . $auction->title . '</strong>']),
+            'data' => __('Your :currency :amount has been restored to your balance from bidding on :auction', ['currency' => '<strong>' . $existedHighestBidderWallet->currency->symbol . '</strong>', 'amount' => '<strong>' . $bidInsurance . '</strong>', 'auction' => '<strong>' . $auction->title . '</strong>']),
             'link' => $route,
             'updated_at' => $date,
             'created_at' => $date,

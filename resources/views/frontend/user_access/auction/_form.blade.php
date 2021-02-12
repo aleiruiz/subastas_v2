@@ -21,7 +21,7 @@
                         <!-- End: currency type -->
 
                         <!-- Start: auction type -->
-                        {{ Form::select(fake_field('auction_type'), auction_type(), old('auction_type', null), ['class' => 'custom-select color-666 mt-3', 'id' => fake_field('auction_type'), 'placeholder' =>  __('Select Auction Type')]) }}
+                        {{ Form::select(fake_field('auction_type'), auction_type(), old('auction_type', 1), ['class' => 'custom-select color-666 mt-3', 'id' => fake_field('auction_type'), 'style' => 'display: none', 'placeholder' =>  __('Select Auction Type')]) }}
                         <span class="invalid-feedback cval-error" data-cval-error="{{ fake_field('auction_type') }}">{{ $errors->first('auction_type') }}</span>
                         <!-- End: auction type -->
 
