@@ -1,3 +1,899 @@
+/* Personal Style By Leo */
+
+#nav-tab > a.nav-item.text-muted.nav-link.active{
+    color: #0958A1 !important;
+    background-color: #fff !important;
+    border-bottom-color: #0958A1 !important;
+    font-weight: 700;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+    border-color: none !important;
+}
+
+.nav-tabs .nav-link{
+    border: 3px solid transparent !important;
+}
+
+#app > div > div > div > div.col-lg-12 > div{
+    border: none !important;
+}
+
+#app > div > div > div > div.col-lg-12 > div > div.card-header{
+    border-bottom: none !important;
+    background-color: #fff !important;
+}
+
+body > div.main-nav > div > div > div.col-lg-5 > div > nav{
+    width: 200px;
+}
+
+body > div.main-nav > div > div > div.col-lg-5 > div{
+    display: flex;
+    justify-content: center;
+}
+
+#app > div > div > div.row > div > div.row > div > div > div > div.card-body > div.d-inline-block > div > p{
+    font-family: 'Mulish', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.15px;
+    text-transform: uppercase;
+    color: #5C5C5C !important;
+}
+
+#profileTab{
+    border-bottom: none !important;
+}
+
+#profileTab > li{
+    margin: 10px;
+}
+
+#app > div > div > div.row > div.col-md-3 > div.d-block.mt-3{
+    margin-bottom: 17px;
+}
+
+#app > div > div > div.row > div.col-md-9 > div{
+    background: none;
+}
+
+#app > div > div > div.row > div > div.row > div > div > div > div.card-body > div.d-inline-block > div{
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #E7E7E7;
+    margin-top: 5px !important;
+    padding-top: 15px !important;
+    text-align: center;
+}
+
+body > div.p-b-100 > section > div > div.row > div > div > div > div.card-body > div.d-inline-block > div > p{
+    font-family: 'Mulish', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.15px;
+    text-transform: uppercase;
+    color: #5C5C5C !important;
+}
+
+#DataTables_Table_0 > tbody > tr > td.text-right.font-weight-bold.color-default{
+    color: #20A90B !important;
+}
+
+body > div.main-sidenav.showbar > div.nav-card > div{
+    background: none !important;
+}
+
+#profileTabContent > div > div > div > div > div.card-body > div > div > div > div.col-xl-5 > div > a > h6{
+    font-family: 'Mulish', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    text-transform: uppercase !important;
+    line-height: 25px;
+    letter-spacing: 0.15px;
+    color: #043C78 !important;
+    font-size: 22px;
+}
+
+#app > div > div > div > div:nth-child(1) > nav > ol{
+    background: #1c1c1c;
+    border-radius: 15px;
+    margin-top: 30px;
+}
+
+#app > div > div > div > div:nth-child(1) > nav{
+    display: inline-block !important;
+}
+
+.transaction-list .active{
+    background: #FF6B00 !important;
+    color: #fff !important;
+    font-weight: bold;
+    border: 1px solid #FB4A0B !important;
+    -webkit-box-shadow: 0px 10px 8px -1px rgba(0,0,0,0.34) !important;
+    -moz-box-shadow: 0px 10px 8px -1px rgba(0,0,0,0.34) !important;
+    box-shadow: 0px 10px 8px -1px rgba(0,0,0,0.34) !important;
+    border-radius: 25px;
+    margin-bottom: 25px !important;
+    
+}
+
+#app > div > div > div.row > div.col-md-9 > div > div.card.card-outline.border-top-0.card-info > div{
+    background: #f2f2f2;
+    border: none !important;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+#app > div > div > div.row > div.col-md-9 > div > div.card.card-outline.border-top-0.card-info > div > form > div > label{
+    font-family: 'Mulish', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    text-transform: uppercase !important;
+    line-height: 25px;
+    letter-spacing: 0.15px;
+    color: #333 !important;
+    font-size: 16px;
+}
+
+#addressInfo > div.row > div > div > label{
+    font-family: 'Mulish', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    text-transform: uppercase !important;
+    line-height: 25px;
+    letter-spacing: 0.15px;
+    color: #044186 !important;
+    font-size: 13px;
+}
+
+#app > div > div > div.row > div.col-md-9 > div > div.card.card-outline.border-top-0.card-info > div.card-body{
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+#app > div > div > div.row > div.col-md-9 > div > div.card.card-outline.border-top-0.pt-3.card-info{
+    padding-top: 0 !important;
+}
+
+#app > div > div > div.row > div.col-md-3 > div.card.card-outline.card-info > div > img{
+    border-radius: 50%;
+    margin-bottom: 10px;
+    width: 200px;
+    height: 200px;
+}
+
+#app > div > div > div.row > div.col-md-3 > div.card.card-outline.card-info > div > p{
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+#profileTabContent > div > div > div > div > div.card-body > div > div > div > div.col-xl-3.align-self-center > div > a > img{
+    border-radius: 10%;
+}
+
+#app > div > div > div.row > div:nth-child(1) > div > div > div > div.col-xl-4.align-self-center > img{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+}
+
+#app > div > div > div.row > div.col-md-9 > div > div.card.card-outline.border-top-0.card-info{
+    border: none !important;
+}
+
+#app > div > div > div > div:nth-child(4) > div > div > div > div > a{
+    border-radius: 25px;
+    margin-bottom: 25px !important;
+}
+
+#profileTabContent > div > div > div > div > div.card-header{
+    background: rgb(0,65,125);
+    background: linear-gradient(90deg, rgba(0,65,125,1) 0%, rgba(32,18,77,1) 100%);
+}
+
+#profileTab > li > a{
+    color: #6c757d;
+    padding: .4rem 1rem !important;
+}
+
+#profileTab > li > a:hover{
+    border: none !important;
+}
+
+#profileTab > li > a{
+    border: none !important;
+}
+
+#profileTab > li > a:focus{
+    color: #0b64b7;
+    font-weight: 600;
+    border-bottom: 3px solid #0b64b7;
+}
+
+#app > div > div > div.row > div:nth-child(1) > div{
+    border: none !important;
+    border-top: none !important;
+    background: #f2f2f2;
+    border-radius: 25px;
+}
+#app > div > div > div.row > div > div.row{
+    background: #fff !important;
+}
+
+#app > div > div > div.row > div > div:nth-child(3){
+    background: #fff !important;
+}
+
+#app > div > div > div.row > div > div > div > div > div.col-xl-8.clearfix > h3{
+    font-family: 'Mulish', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    text-transform: uppercase !important;
+    line-height: 25px;
+    letter-spacing: 0.15px;
+    color: #043C78 !important;
+}
+
+#profileTabContent > div > div > div > div > div.card-body > div > div > div > div.col-xl-5 > div > p.mt-3.text-muted{
+    font-family: 'Mulish', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.15px;
+    text-transform: uppercase;
+    color: #5C5C5C !important;
+}
+
+#profileTabContent > div > div > div > div > div.card-body > div > div > div > div.col-lg-4.winner-parent > div > ul > li{
+    font-family: 'Mulish', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.15px;
+    text-transform: uppercase;
+    color: #5C5C5C !important;
+}
+
+#profileTabContent > div > div > div > div > div.card-body > div > div > div > div.col-xl-3.align-self-center{
+    padding: 20px;
+}
+
+#profileTabContent > div > div > div > div > div.card-body > div > div{
+    border: none !important;
+    background: #f3f3f3;
+    border-radius: 15px;
+}
+
+#profileTabContent > div > div > div > div > div.card-body > div > div > div > div.col-lg-4.winner-parent > div > ul > li{
+    background: #f3f3f3f3;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div.col-md-12.col-lg-7.order-lg-0 > div{
+    background: #fff !important;
+    border: none !important;
+}
+
+body > div.p-b-100 > section > div > div.row > div > div > div > div.card-body > div.d-inline-block > div{
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #E7E7E7;
+    margin-top: 5px !important;
+    padding-top: 15px !important;
+    text-align: center;
+}
+
+#profileTabContent > div > div > div > div > div.card-body > div > div > div > div.col-lg-4 > div > ul > li{
+    background: #f2f2f2;
+}
+
+body > footer > div > div > div > div.footer-border > div > div > div:nth-child(2) > div.calidad{
+    display: flex;
+}
+
+body > footer > div > div > div > div.footer-border > div > div > div:nth-child(2) > div.calidad > p{
+    margin-bottom: auto;
+    margin-top: auto;
+    color: #fff;
+    padding-left: 5px;
+}
+
+body > div.main-sidenav.showbar > div.nav-card > div > div{
+    background: #181818;
+    border-radius: 20px;
+}
+
+body > div.main-sidenav.showbar > div.nav-card > div > div > p{
+    text-transform: uppercase;
+    text-align: initial !important;
+    color: #fff !important;
+    font-weight: 300;
+}
+
+body > div.main-sidenav.showbar > div.nav-card > div > div > div > div{
+    justify-content: flex-start !important;
+}
+
+body > div.main-sidenav.showbar > div.nav-card > div > div > div > div > p{
+    color: #20A90B !important;
+    font-weight: bold;
+}
+
+body > div.main-sidenav.showbar > div.nav-card > div{
+    border: none !important;
+    box-shadow: none !important;
+}
+
+body > div.main-sidenav.showbar > div.nav-card > div > div > div > div > h6{
+    margin-left: 7px;
+    color: #fff !important;
+}
+
+#app > div > div > div > div.col-lg-12 > form > div > div.card-body.p-5 > div:nth-child(5) > div > div{
+    border-radius: 25px;
+    background-color: #ddd;
+}
+
+.form-control{
+
+    text-indent: 10px;
+    background: #fff !important;
+    font-size: 13px !important;
+    padding: 12px !important;
+    transition: 0.5s linear;
+}
+
+.form-control:focus{
+    border-bottom: 1px solid #007bff !important;
+    outline: none !important;
+}
+
+
+#app > div > div > div > div.col-lg-12 > form > div > div.card-body.p-5 > div > div > div > div{
+    margin-bottom: 20px;
+}
+
+#app > div > div > div > div.col-lg-12 > form > div > div.card-body.p-5 > div > div > div{
+    flex-direction: column !important;
+    margin-top: 0px !important;
+}
+
+#fake_489{
+    margin-top: 15px;
+}
+
+#confirmBidModal > div > div > div.modal-header.text-center{
+    background: #fff;
+    border: none;
+}
+
+#confirmBidModal > div > div > div.modal-footer.text-center{
+    border: none;
+}
+
+#confirmBidModal > div > div > div.modal-header.text-center > img{
+    margin-bottom: 20px;
+}
+
+#exampleModalLongTitle{
+        color: #181818;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+}
+
+#confirmBid{
+    background: rgb(255,0,0);
+    background: linear-gradient(0deg, rgba(255,0,0,1) 0%, rgba(249,113,16,1) 100%);
+    border-radius: 25px;
+    padding: 10px 50px;
+    color: #fff;
+    border: none !important;
+}
+
+#confirmBid:hover{
+    background: rgb(255,0,0);
+    background: linear-gradient(0deg, rgba(255,0,0,1) 0%, rgba(249,113,16,1) 100%);
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(2) > div > div > div{
+    background: #fb4a0b;
+    margin-left: 10px;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(2) > div > div > div > div.col-lg-4.col-md-12 > div > h4{
+    font-weight: 300 !important;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div.col-12.mb-4 > nav{
+    display: inline-block !important;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div > div > div > div{
+    margin-right: 0;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(2) > div > div > div > div.col-lg-8.col-md-12 > div.property-overview.mt-1 > ul > li{
+    color: #fff !important;
+    font-weight: bold;
+    text-transform: uppercase !important;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(2) > div > div{
+    background: #fb4a0b;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div > div > div > div > div.col-lg-4.col-md-12 > div > div{
+    display: inline-block;
+
+    padding: 5px;
+    margin-top: 10px;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div > div > div > div > div.col-lg-4.col-md-12{
+    padding-left: 0;
+    margin: auto;
+}
+
+#app > div > div > div > div.col-md-12.col-lg-5.order-lg-0 > div.s-box.mb-3{
+    background: #Fff !important;
+    margin-bottom: 0px !important;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div.col-md-12.col-lg-5.order-lg-0 > div.s-box.mb-3 > div.s-box-header > span{
+    color: #044186;
+    font-weight: 300;
+    text-transform: capitalize;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div.col-md-12.col-lg-5.order-lg-0 > div.s-box.mb-3 > div.s-box-header{
+    color: #044186;
+    font-weight: 300;
+    text-transform: lowercase;
+    padding-right: 10px;
+    margin-top: auto;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(2) > div{
+    margin-bottom: 0px;
+}
+
+body > div.p-b-100 > section > div > div.row > div > div > div > div.card-body > div.d-inline-block{
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+}
+
+body > div.p-b-100 > section > div > div.row > div > div > div > div.card-image-area.position-relative > figure > a > img{
+    min-height: 220px;
+    max-height: 220px;
+    border-top-left-radius: 25px !important;
+    border-top-right-radius: 25px !important;
+    object-fit: none;
+    object-position: center center;
+}
+
+body > div.p-b-100 > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.item-details.d-block > ul > li{
+    display: flex !important;
+    flex-direction: column-reverse;
+}
+
+body > div.p-b-100 > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.item-details.d-block > ul > li:nth-child(3) > span.main-text.d-block{
+    color: #181818 !important;
+}
+
+body > div.p-b-100 > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.item-details.d-block > ul > li:nth-child(2) > span.main-text.d-block{
+    color: #181818 !important;
+}
+
+body > div.p-b-100 > section > div > div.row > div{
+    padding: 35px;
+}
+
+body > div.p-b-100 > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.count-down{
+    background: rgb(27,200,255);
+    background: linear-gradient(180deg, rgba(27,200,255,1) 0%, rgba(9,88,161,1) 100%);
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 17px;
+    display: inline-block;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+body > div.p-b-100 > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.count-down > div.color-999.d-inline-block.fz-12{
+    color: #fff !important;
+}
+
+body > div.p-b-100 > section > div > div.row > div > div > div{
+    border-radius: 25px !important;
+    border: none !important;
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.25);
+
+}
+
+#app > div > div > div.row > div > div.row > div{
+    padding: 35px;
+}
+
+body > div.p-b-100 > section > div > div.row > div > div > div > div.card-image-area.position-relative > span.auction-badge > span{
+    border-top-right-radius: 25px;
+}
+
+#app > section > div > div > div{
+    padding-right: 0 !important;
+    padding-left: 0!important;
+}
+
+body > div.p-b-100 > section > div > div.m-b-50.position-relative > div.d-block > div > div > a{
+    color: #FF6B00 !important;
+}
+
+#carouselExampleIndicators > ol > li{
+    background-color: #f2f2f2 !important;
+    width: 15px !important;
+    height: 15px !important;
+    border-radius: 50% !important;
+}
+
+#carouselExampleIndicators > ol > li.active{
+    background-color: #FF6B00 !important;
+}
+
+.pagination .page-link {
+    padding: 10px 25px !important;
+    color: #FF6B00 !important;
+    border: none !important;
+    background: #1c1c1c !important;
+}
+.pagination .page-link:hover {
+    background: rgb(249,113,16);
+    background: linear-gradient(0deg, rgba(249,113,16,1) 0%, rgba(255,0,0,1) 100%);
+    color: #fff !important; }
+
+#app > div > div > div.row > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.item-details.d-block > ul > li{
+    display: flex !important;
+    flex-direction: column-reverse;
+}
+
+#app > div > div > div > div.col-md-12.col-lg-7.order-lg-0 > div > div > div.dispute-link.position-absolute{
+    background: #043C78 !important;
+}
+
+#app > div > div > div.row > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.item-details.d-block > ul > li:nth-child(2) > span.main-text.d-block{
+    color: #181818;
+}
+
+#app > div > div > div.row > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.item-details.d-block > ul > li:nth-child(3) > span.main-text.d-block{
+    color: #181818;
+}
+
+
+#app > div > div > div.row > div > div.row > div > div > div > div.card-body > div.d-inline-block > a{
+    margin-bottom: 9px !important;
+}
+
+#app > div > div > div.row > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.count-down > div.color-999.d-inline-block.fz-12{
+    color: #fff !important;
+}
+
+#app > div > div > div.row > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.count-down{
+    background: rgb(27,200,255);
+    background: linear-gradient(180deg, rgba(27,200,255,1) 0%, rgba(9,88,161,1) 100%);
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 17px;
+    display: inline-block;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+#app > div > div > div.row > div > div.row > div > div > div > div.card-body > div.d-inline-block{
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+}
+
+body > footer > div > div:nth-child(1){
+    background: #1c1c1c;
+}
+
+#profileTabContent > div > div > div > div > div.card-footer{
+    background: #1c1c1c !important;
+}
+
+#profileTabContent > div > div > div > div > div.card-footer > div > div:nth-child(1) > nav > ul > li.page-item.active > span{
+    border-color: #f07c22 !important;
+    background: rgb(249,113,16) !important;
+    background: linear-gradient(0deg, rgba(249,113,16,1) 0%, rgba(255,0,0,1) 100%) !important;
+    
+}
+
+body > footer > div > div:nth-child(1) > div{
+    text-align: center;
+}
+
+body > div.main-nav > div > div > div.col-lg-4 > div > nav > div:nth-child(2) > a > i{
+    color: #0958A1 !important;
+}
+
+#app > div > div > div.row > div > div > div > div > div.col-xl-8.clearfix > div.m-t-50.text-center > a{
+    background: rgb(249,113,16) !important;
+    background: linear-gradient(0deg, rgba(249,113,16,1) 0%, rgba(255,0,0,1) 100%) !important;
+}
+
+#app > div > div > div > div.col-lg-12 > form > div > div.card-header.py-4{
+    background: rgb(5,60,120);
+    background: linear-gradient(190deg, rgba(5,60,120,1) 0%, rgba(0,104,218,1) 100%);
+}
+
+#app > div > div > div > div > div > div.card-footer > div > div > nav > ul > li.page-item.active > span{
+    background: rgb(249,113,16) !important;
+    background: linear-gradient(0deg, rgba(249,113,16,1) 0%, rgba(255,0,0,1) 100%) !important;
+    border: none !important;
+    color: #fff !important
+}
+
+#app > div > div > div.row > div > div > div > div > div > form > div.form-group.mb-0.row{
+    margin-top: 30px;
+}
+
+#app > div > div > div > div.col-12.mb-4 > nav > ol{
+    background: #1c1c1c;
+    border-radius: 15px;
+    margin-top: 30px;
+}
+
+#app > div > div > div.profile-head.mb-4{
+    margin-top: 30px;
+    color: #181818;
+}
+
+#app > div > div > div > div > nav > ol > li > a{
+    color: #fff !important;
+}
+
+#app > div > div > div.profile-head.mb-4 > h4{
+    color: #333 !important;
+    text-transform: uppercase;
+}
+#app > div > div > div > div.col-12.mb-4 > nav > ol > li > a{
+    color: #fff !important;
+}
+
+#app > div > div > div > div.col-lg-12 > form > div > div.card-header.py-4 > h3{
+    color: #fff !important;
+}
+
+#app > div > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.item-details.d-block > ul > li > span.main-text.d-block{
+    color: #15b93a;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+    margin-top: 5px;
+}
+
+#app > div > div > div > div > div > div.card-footer{
+    background: #1c1c1c;
+}
+
+#app > div > div > div > div > div.m-y-50.position-relative > div.d-block > div > div > span{
+    color: rgb(249,113,16) !important;
+}
+
+#loginModal > div > div > div.modal-footer.text-center > div > p{
+    margin-bottom: 10px;
+}
+
+#loginModal > div > div > div.modal-footer.text-center > div > a{
+    background: rgb(0,65,125);
+    background: linear-gradient(90deg, rgba(0,65,125,1) 0%, rgba(32,18,77,1) 100%);
+    padding: 5px 25px;
+    border-radius: 25px;
+    color: #fff !important;
+}
+
+#app > div > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.item-details.d-block > ul > li:nth-child(2){
+    margin-top: 7px;
+    margin-bottom: 7px;
+    background: linear-gradient(90deg, rgba(249,113,16,1) 0%, rgba(255,0,0,1) 100%);
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-radius: 25px;
+    color: white;
+}
+
+#app > div > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.item-details.d-block > ul > li:nth-child(1){
+    background: radial-gradient(circle, rgba(0,65,125,1) 0%, rgba(32,18,77,1) 100%);
+    border-radius: 25px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+#app > div > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.item-details.d-block > ul > li:nth-child(3){
+    background: #1c1c1c;
+    padding: 7px;
+    border-radius: 25px;
+}
+
+#app > div > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.item-details.d-block > ul > li > span.sub-text.text-uppercase{
+    color: #fff !important;
+}
+
+#app > div > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.item-details.d-block > ul > li > span.main-text.card-money.d-block{
+    margin-top: 5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+}
+
+#app > div > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.item-details.d-block > ul > li{
+    display: flex !important;
+    flex-direction: column-reverse;
+}
+
+#app > div > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.item-details.d-block > ul > li:nth-child(1) > span.sub-text.text-uppercase{
+    color: #fff;
+    text-shadow: none !important;
+}
+
+#app > div > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.item-details.d-block > ul{
+    flex-direction: column;
+    margin: auto;
+}
+
+#app > div > section > div > div.row > div > div > div > div.card-body > div.d-inline-block > div > i{
+    color: #0958A1;
+}
+
+#app > div > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3{
+    margin-top: 7px !important;
+}
+
+#app > div > section > div > div.row > div > div > div > div.card-body > div.d-inline-block > div{
+    margin-top: 12px !important;
+}
+
+body > footer > div > div > div > div.footer-bottom > div > div > p{
+    color: #fff !important;
+}
+
+body > footer > div > div > div > div.footer-border > div > div > div.col-lg-3.col-md-12.p-t-50 > div > ul > li > i{
+    color: #FF6B00 !important;
+}
+
+body > footer > div > div > div > div.footer-border > div > div > div.col-lg-4.col-md-6.p-t-50 > div > div > div > div > p{
+    color: #fff !important;
+}
+
+#app > div > section > div > div.row > div > div > div > div.card-image-area.position-relative > span.auction-badge > span{
+    border-top-right-radius: 25px;
+}
+
+.prop-city .list li::before{
+    color: #FF6B00 !important;
+}
+
+#app > div > section > div > div.row > div > div{
+    box-shadow: 0px 0px 1px 1px rgba(211,211,211,1);
+    border-radius: 25px;
+}
+
+body > footer > div > div > div > div.footer-border > div > div > div.col-lg-5.col-md-6.p-t-50{
+    border-right: 1px solid #fff;
+}
+
+body > footer > div > div > div > div.footer-border > div > div > div.col-lg-4.col-md-6.p-t-50{
+    border-right: 1px solid #fff;
+}
+
+body > div.main-nav > div > div > div.col-lg-5 > div > nav > a:nth-child(2){
+    border: 1px solid #0958A1;
+    border-radius: 20px;
+    color: #0958A1;
+    background: #fff;
+    transition: 0.5s;
+}
+
+body > div.main-nav > div > div > div.col-lg-5 > div > nav > a:nth-child(2):hover{
+    background: rgb(0,65,125);
+    background: radial-gradient(circle, rgba(0,65,125,1) 0%, rgba(32,18,77,1) 100%);
+    color: #fff;
+}
+
+#app > div > div > div.row > div > div.row > div > div{
+    
+    border-radius: 25px;
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.25);
+
+}
+
+#app > div > div > div.row > div > div.row > div > div > div > div.card-image-area.position-relative > figure > a > img{
+    border-top-left-radius: 25px !important;
+    border-top-right-radius: 25px !important;
+    min-height: 220px;
+    max-height: 220px;
+    object-fit: none;
+    object-position: center center;
+}
+#app > div > section > div > div.row > div > div > div > div.card-image-area.position-relative > figure > a > img{
+    border-top-left-radius: 25px !important;
+    border-top-right-radius: 25px !important;
+    min-height: 220px;
+    max-height: 220px;
+    object-fit: none;
+    object-position: center center;
+}
+
+#app > div > div > div.row > div > div.row > div > div > div > div.card-image-area.position-relative > span.auction-badge > span{
+    border-top-right-radius: 25px;
+}
+
+#app > div > section > div > div.m-b-50.position-relative > div.fz-26.font-weight-bold.color-999.global-custom-header > span{
+    color: #043C78 !important;
+}
+
+body > div.main-nav > div > div > div.col-lg-5{margin: auto;}
+
+#app > div > div > div.row > div > div.card.card-outline.custom-card.mb-4.card-info > div.card-header > div.row > form > div.col-md-6 > div > a{
+    background: rgb(249,113,16);
+    background: linear-gradient(0deg, rgba(249,113,16,1) 0%, rgba(255,0,0,1) 100%);
+    border: none;
+}
+
+#app > div > div > div.row > div > div.card.card-outline.custom-card.mb-4.card-info > div.card-header > form > button{
+    background: rgb(249,113,16);
+    background: linear-gradient(0deg, rgba(249,113,16,1) 0%, rgba(255,0,0,1) 100%);
+    border: none;
+}
+
+#app > div > div > div.row > div > div.card.card-outline.custom-card.mb-4.card-info > div.card-header > form > div > div > h6{
+    color: #fff;
+}
+
+#app > div > div > div.row > div > div.card.card-outline.custom-card.mb-4.card-info > div.card-header > form > div > div > div > label{
+    color: #fff;
+}
+
+#app > div > div > div.row > div > div.card.card-outline.custom-card.mb-4.card-info > div.card-header{
+    background: rgb(0,65,125) !important;
+    background: radial-gradient(circle, rgba(0,65,125,1) 0%, rgba(32,18,77,1) 100%) !important;
+}
+
+#app > div > div > div.pb-3 > nav > ol > li:nth-child(1) > a{
+    color: #fff !important;
+}
+
+#app > div > div > div > div.col-lg-12 > nav > ol > li:nth-child(1) > a{
+    color: #fff !important;
+}
+
+#app > div > div > div.pb-3 > nav{
+    display: inline-block !important;
+    margin-top: 80px;
+}
+
+#app > div > div > div > div.col-lg-12 > nav{
+    display: inline-block !important;
+    margin-top: 80px;
+}
+
+#app > div > div > div.pb-3 > nav > ol{
+    background: #1c1c1c;
+    border-radius: 15px;
+}
+
+#app > div > div > div > div.col-lg-12 > nav > ol{
+    background: #1c1c1c;
+    border-radius: 15px;
+}
+
 /*-----------------------------------------------------------------------------------
 
 Template Name: GymKoro HTML Template
@@ -80,7 +976,7 @@ CSS INDEX
 -----------------------------------------------------------------------------------*/
 
 /*---- Google Font ----*/
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,700,800,900|Poppins:400,500,700");
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap');
 
 /* -- fonts use-------------------
 
@@ -96,9 +992,9 @@ font-family: 'Poppins', sans-serif;
 
 body {
 
-    background: #f0f0f0;
+    background: #fff !important;
     font-size: 14px;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Mulish', sans-serif;
     margin: 0;
 
 }
@@ -112,7 +1008,7 @@ body {
 p {
 
     font-size: 14px;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Mulish', sans-serif;
     color: #000;
     margin-bottom: 0;
 
@@ -120,14 +1016,15 @@ p {
 
 a {
 
-    color: #007fea;
+    color: #fff;
+    transition: 0.5 all;
 
 }
 
 a:hover {
 
     text-decoration: none;
-    color: #e83f53;
+    color: #FF6B00;
 
 }
 
@@ -163,13 +1060,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .color-default {
 
-    color: #e83f53 !important;
+    color: #043C78 !important;
 
 }
 
 .color-999 {
 
-    color: #999 !important;
+    color: #444 !important;
 
 }
 
@@ -275,12 +1172,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .default-color {
-    background-color: #e83f53;
+    background-color: #0958A1;
 }
 
 .breadcrumb-item.active {
     background: none !important;
-    color: #999 !important;
+    color: #fb4a0b !important;
     border: 0 !important;
     box-shadow: none !important;
 }
@@ -291,17 +1188,49 @@ h1, h2, h3, h4, h5, h6 {
 /* ========= 01.4 custom button ========= */
 
 .cm-filter-form button {
-    background-color: #e83f53 !important;
-    border-color: #e83f53;
+    color: #0958A1;
+    background: #fff;
+    border: #ddd 2px solid;
+}
+
+.cm-filter-form button:hover{
+    background: #0958A1 !important;
+}
+
+#app > div > div > div > div.col-lg-12 > div > div.card-header > form > button{
+    color: #0958A1;
+    background: #fff;
+    border: #ddd 2px solid;
+}
+
+#app > div > div > div > div.col-lg-12 > div > div.card-header > form > button:hover{
+    background: #0958A1 !important;
+    color: #fff !important;
+}
+
+.cm-filter-checkbox:checked + .cm-filter-checkbox-label::after{
+    background: #FB4A0B !important;
+}
+
+#app > div > div > div > div.col-lg-12 > div > div.card-header > form > div > div > h6{
+    margin-bottom: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+#app > div > div > div > div.col-lg-12 > div > div.card-header > div.row > form > div.col-md-6 > div > a{
+    color: #0958A1 !important;
+    background: #fff !important;
+    border: #ddd 2px solid !important;
 }
 
 .custom-btn {
 
-    border: 1px solid #ff214f;
-    font-weight: 500;
-    border-radius: 5px;
-    background: #ff214f;
-    color: #fff;
+    font-weight: bold;
+    border-radius: 25px;
+    background: #fff !important; 
+    color: rgba(9,88,161,1) !important;
+    border: rgba(9,88,161,1) 1px solid !important;
     padding: 10px 30px;
     text-transform: capitalize;
     display: inline-block;
@@ -316,10 +1245,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .custom-btn:hover {
 
+    background: rgba(9,88,161,1) !important;
     color: #fff !important;
-    box-shadow: 0 0 30px 3px rgba(232, 63, 83, 0.2);
-    background: #e83f53;
-
 }
 
 input:focus,
@@ -418,7 +1345,7 @@ input:focus,
 
 .p-t-50 {
 
-    padding-top: 50px;
+    padding-top: 0px;
 
 }
 .p-t-80 {
@@ -569,7 +1496,7 @@ input:focus,
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #ff214f;
+    background: #3d9bf2;
     animation: configure-clockwise 3s ease-in-out 0s infinite alternate;
 }
 
@@ -581,7 +1508,7 @@ input:focus,
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #ff214f;
+    background: #0958A1;
     transform: rotate(45deg);
     animation: configure-xclockwise 3s ease-in-out 0s infinite alternate;
 }
@@ -656,10 +1583,15 @@ input:focus,
 }
 
 .icon-round {
-    color: #999;
+    color: #0958A1;
     border-radius: 20px;
-    border: 1px solid #d2d2d2;
+    border: 1px solid #0958A1;
     padding: 8px;
+    margin-bottom: 7px;
+}
+
+#app > div > div > div > div:nth-child(2) > div > div.card-header > div > form{
+    margin-top: 15px;
 }
 
 .address-dropdown-menu .drop-menu.show {
@@ -706,7 +1638,6 @@ input:focus,
 .profile-head {
     background: #fff;
     padding: 15px 15px;
-    border: 1px solid #ddd;
 }
 
 .custom-border {
@@ -723,9 +1654,21 @@ input:focus,
 }
 
 .contact-bg .agent-form .form-control {
-    border: 1px solid #dbdada !important;
+    border-bottom: 3px solid #999 !important;
+    color: #999 !important;
+    padding: 12px !important;
+    text-indent: 10px;
+    background: #fff !important;
     font-size: 13px !important;
-    padding: 10px !important;
+    padding: 12px !important;
+    border-radius: none !important;
+    transition: 0.5s linear;
+}
+
+.contact-bg .agent-form .form-control:focus{
+    border-bottom: 3px solid #FF6B00 !important;
+    color: #FF6B00 !important;
+    outline: none !important;
 }
 
 .agent-info .agent-title {
@@ -773,9 +1716,9 @@ input:focus,
 
 
 .custom-profile-nav .nav-tabs .nav-item.show .nav-link, .custom-profile-nav .nav-tabs .nav-link.active {
-    color: #ff214f;
-    background-color: #eaeaea;
-    border-bottom: 2px solid #ff214f;
+    color: #fff;
+    background: #0958A1;
+    border-bottom: 2px solid #fff;
 }
 
 .custom-profile-nav .nav-tabs .nav-item.show .nav-link,.custom-profile-nav .nav-tabs .nav-link {
@@ -1000,7 +1943,7 @@ input:focus,
     padding-left: 3px;
     padding-top: 1px;
     font-size: 11px;
-    color: #555555;
+    color: #0958A1;
 }
 
 .checkbox input[type="checkbox"] {
@@ -1046,12 +1989,16 @@ input:focus,
 }
 
 
+.input-group>.custom-select:not(:last-child), .input-group>.form-control:not(:last-child){
+    border-top-right-radius: 6px !important;
+    border-bottom-right-radius: 6px !important;
+}
+
 .custom-login .input-group input {
 
-    border-radius: 0 !important;
     padding: 10px;
-    border: none;
-    border-bottom: 1px solid #e1e1e1 !important;
+    border: 1px solid #444 !important;
+    border-radius: 6px;
 }
 
 .modal {
@@ -1073,7 +2020,7 @@ input:focus,
 }
 
 .custom-modal .modal .modal-body {
-    padding: 50px 40px 30px;
+    padding: 0px 40px 30px;
 }
 
 .custom-modal .td button span::before, .custom-modal button span::after {
@@ -1087,9 +2034,10 @@ input:focus,
     display: block;
     position: relative;
     padding: 30px 0;
-    background-color: #e83f53;
-    border-bottom: 1px solid #e83f53;
+    background: rgb(0,65,125);
+    background: linear-gradient(90deg, rgba(0,65,125,1) 0%, rgba(32,18,77,1) 100%);
     color: #fff;
+    margin-bottom: 30px;
 }
 
 .custom-modal .modal-header .close {
@@ -1109,6 +2057,7 @@ input:focus,
     justify-content: center !important;
     text-align: center !important;
     font-size: 24px;
+    color: #fff !important;
 }
 
 .card-header {
@@ -1119,9 +2068,6 @@ input:focus,
     border-top: 1px solid rgba(176, 176, 176, 0.2);
 }
 
-.card {
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
 
 .rules-area p {
     line-height: 1.4;
@@ -1162,7 +2108,8 @@ input:focus,
 
 .drop-menu a:hover, .drop-menu a:hover i {
 
-    background-color: #ff214f;
+    background: rgb(5,60,120);
+    background: linear-gradient(131deg, rgba(5,60,120,1) 0%, rgba(0,104,218,1) 100%);
     transition: .3s;
     border-radius: 5px;
     color: #fff !important;
@@ -1170,31 +2117,51 @@ input:focus,
 }
 
 .guest-link {
-    font-size: 16px;
+    font-size: 12px;
     color: #666;
 }
 
 .nav-icons .nav-link{
 
     border-radius: 0;
+    color: #044183;
 
 }
 
 .card-time{
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    color: #515151 !important;
-    background: rgba(238, 238, 238, 0.69);
-    padding: 0 10px;
-    border-radius: 4px;
+    bottom: 0px;
+    right: 0px;
+    color: #FF6B00 !important;
+    background: rgba(247, 247, 247, 0.89);
+    padding: 10px 10px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#app > div > div > div.row > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.count-down{
+    text-align: center;
+}
+
+#app > div > div > div.row > div > div.row > div > div > div > div.card-body{
+    text-align: center;
 }
 
 .nav-icons nav a i {
 
-    color: #666;
+    color: #044183;
     font-size: 20px;
 
+}
+
+body > div.main-nav > div > div > div.col-lg-4 > div > nav > div:nth-child(1){
+    background: #fff;
+    border: 1px solid #044183;
+    border-radius: 25px;
+    color: #044183 !important;
+    margin:auto;
 }
 
 .c-button.c-button--primary {
@@ -1365,7 +2332,7 @@ input:focus,
     line-height: 100%;
     min-width: 12px;
     font-size: 10px;
-    color: #e13d3d;
+    color: #0958A1;
     top: -8px;
     right: -15px;
     font-weight: bold;
@@ -1411,19 +2378,18 @@ input:focus,
 #search {
     align-items: center;
     background: #e5e5e5;
-    border-radius: 10px;
+    border-radius: 25px;
     display: flex;
     justify-content: space-between;
-    padding: 0.6em 0.6em 0.6em 1em;
-    transition: all 0.5s;
+    padding: 0 10px 0 10px;
+    transition: all 1s;
     width: 100%;
+    height: 42px;
 }
-#search:hover, #search:focus, #search:focus-within {
-    background: rgba(0, 187, 0, .1);
-}
+
 #button i {
     font-size: 16px;
-    color: #999;
+    color: #0958A1;
 }
 #search button,
 #search input {
@@ -1435,10 +2401,13 @@ input:focus,
     color: inherit;
     font: inherit;
     outline: 0;
+    transition: 1s linear;
 }
 #search button {
     cursor: pointer;
-    padding: 0 0.25em;
+    line-height: 42px;
+    border-left: 2px solid #fff;
+    padding-left: 15px;
 }
 #search input {
     flex: 1;
@@ -1511,7 +2480,6 @@ input:focus,
 }
 
 .main-sidenav {
-    background: #ffff !important;
     overflow: hidden;
     z-index: 999999 !important;
     height: 100%;
@@ -1528,7 +2496,7 @@ input:focus,
     left: 0;
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, .2);
     height: 100%;
-    background: #fff;
+    background: #253238;
 }
 
 .main-sidenav .mCSB_inside > .mCSB_container {
@@ -1536,7 +2504,7 @@ input:focus,
 }
 
 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
-    background-color: rgba(58, 58, 58, 0.25) !important;
+    background-color: #044183 !important;
     filter: "alpha(opacity=75)";
     -ms-filter: "alpha(opacity=75)";
 }
@@ -1548,7 +2516,7 @@ input:focus,
 }
 
 .mCSB_scrollTools {
-    background: #fff;
+    background: none;
 }
 
 .dashboard-switcher {
@@ -1610,7 +2578,7 @@ input:focus,
     font-weight: 500;
     border-bottom: 0;
     border-left: 3px solid transparent;
-    color: #444;
+    color: #fff;
 }
 
 .sidebar-menu > li > a > .fa {
@@ -1620,15 +2588,13 @@ input:focus,
 .sidebar-menu > li:hover > a, .sidebar-menu > li.active > a {
     color: #fff;
     font-weight: bold;
-    background: #ff214f;
-    border-bottom: 0 !important;
-    border-left: 5px solid #09b2d5;
+    background: #394a52;
 }
 
 .sidebar-menu > li > .treeview-menu {
     margin: 0;
     padding: 20px 10px;
-    background: #eee;
+    background: #253238;
 }
 
 .sidebar-menu > li .label,
@@ -1641,10 +2607,8 @@ input:focus,
     padding: 15px 25px;
     font-size: 14px;
     font-weight: bold;
-    color: #626262;
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    border-top: 1px solid #eee;
+    color: #fff;
+    background: #253238;
 }
 
 .sidebar-menu li > a > .fa-angle-left {
@@ -1689,8 +2653,7 @@ input:focus,
     padding: 15px 15px 15px 45px;
     display: block;
     font-size: 14px;
-    color: #333;
-    border: 1px solid #eee !important;
+    color: #fff;
 }
 
 .sidebar-menu .treeview-menu > li > a > .fa {
@@ -1704,46 +2667,45 @@ input:focus,
 
 .sidebar-menu .treeview-menu > li.active > a, .sidebar-menu .treeview-menu > li > a:hover {
     color: #fff;
-    background-color: #ff214f;
+    background: #394a52;
 }
 
 .line-height-1 {
     line-height: 1;
 }
 
-.link-border {
-    width: 100%;
-    display: block;
-    border: 1px solid #eae9e9;
-    position: absolute;
-    top: 50%;
-    z-index: -9;
-}
-
 .link-area {
     display: inline-block;
     background: #fff;
-    border: 1px solid #e3e3e3;
+    border: 1px solid rgb(249,113,16); 
     border-radius: 25px;
-    padding: 3px 40px;
+    padding: 15px 40px;
+    transition: 0.3s;
+}
+
+.link-area:hover{
+    background: #fff;
 }
 
 .auction-badge {
     position: absolute;
-    right: 10px;
-    top: 10px;
+    right: 0px;
+    top: 0px;
     box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.18);
 }
 
 .global-custom-header {
     position: absolute;
     display: inline-block;
-    background: #FFF;
     top: 50%;
     transform: translateY(-50%);
     padding: 7px 20px;
-    border-radius: 5px;
-    border: 1px solid #e3e3e3;
+    font-weight: 300 !important;
+    text-transform: lowercase;
+}
+
+body > div.p-b-100 > section > div > div.m-b-50.position-relative > div.fz-26.font-weight-bold.color-999.global-custom-header > span{
+    font-weight: 900;
 }
 
 .c-slideout {
@@ -1800,28 +2762,34 @@ input:focus,
 /*----------------------------------------*/
 .property-title .item-name {
     font-size: 32px;
-    font-weight: 500;
-    color: #333;
-    font-weight: 700;
-    font-family: "Poppins", sans-serif; }
+    font-weight: 900;
+    color: #fff;
+    background: #fb4a0b;
+    text-transform: uppercase;
+    padding-left: 15px;
+    padding-top: 10px;
+}
 
 .property-title .property-area {
-    color: #999;
-    margin-top: 5px; }
+    color: #fff;
+    padding-top: 10px;
+    background: #fb4a0b;
+    padding-left: 15px;
+}
 .property-title .property-area i {
-    color: #ff214f;
+    color: #eee;
     font-size: 18px;
     margin-right: 10px; }
 
 .property-title .property-price {
+    padding: 18px;
     font-size: 26px;
-    color: #666;
-    font-weight: 700;
-    line-height: 1;
-    margin-top: 10px;
-    text-align: right; }
+    color: #fb4a0b;
+    font-weight: 300;
+    border-radius: 15px;
+    background: #fff; }
 .property-title .property-price span {
-    color: #ff214f;
+    font-weight: 300;
     font-size: 20px; }
 .property-title .property-price .for-badge {
     background: #ff214f;
@@ -1833,13 +2801,17 @@ input:focus,
     text-transform: capitalize; }
 
 .property-title .property-overview {
-    margin-top: 15px; }
+    background: #fb4a0b;
+    margin-top: 0 !important;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-bottom: 20px; }
 .property-title .property-overview ul li {
     margin-right: 30px;
     text-transform: capitalize; }
 .property-title .property-overview ul li i {
-    color: #ff214f !important;
-    font-size: 16px !important;
+    color: #333333 !important;
+    font-size: 18px !important;
     margin-right: 5px; }
 .property-title .property-overview ul li:last-child {
     margin-right: 0; }
@@ -1854,10 +2826,9 @@ input:focus,
     text-align: center; }
 .owl-six #sync2 .item {
     color: #FFF;
-    margin: 5px;
-    margin-top: 10px;
+    margin: 10px;
+    margin-top: 5px;
     background: #fff;
-    border-radius: 3px;
     text-align: center;
     cursor: pointer;
     -webkit-border-radius: 3px;
@@ -1867,19 +2838,20 @@ input:focus,
 .owl-six #sync2 .current .item {
     opacity: 1;
     transition: .3s;
-    border: 3px solid #10cea1; }
+    transform: scale(1.1); 
+}
 
 .property-tab .nav-tabs .nav-link {
     color: #999; }
 
 .property-tab .nav-tabs .nav-link.active,
 .property-tab .nav-tabs .nav-item.show .nav-link {
-    color: #10cea1 !important; }
+    color: #FB4A0B !important; }
 
 .features-list ul li {
     margin-bottom: 20px; }
 .features-list ul li i {
-    color: #ff214f;
+    color: #FB4A0B;
     font-size: 18px;
     margin-right: 10px; }
 
@@ -1887,17 +2859,18 @@ input:focus,
 /* ========== 07. blog page ============= */
 /*----------------------------------------*/
 .s-box {
-    background: #fff;
-    border: 1px solid rgba(125, 125, 125, 0.25);
+    background: #044183;
     padding: 20px; }
 .s-box-header {
     font-size: 22px;
-    font-weight: 600;
+    font-weight: 900;
+    color: #fff;
     text-transform: uppercase;
-    margin-bottom: 20px; }
+    text-align: center;
+    margin-bottom: 7px; }
 .s-box-header span {
-    color: #10cea1;
-    font-weight: normal; }
+    color: #fff;
+    font-weight: 900; }
 
 .blog-search {
     position: relative; }
@@ -2160,8 +3133,13 @@ a.disabled {
 }
 .grid-card .card-image-area figure {
     margin: 0;
-    background: #e6e6e6;
 }
+
+#app > div > div > div.row > div > div.row > div > div > div{
+    border-radius: 25px;
+    border: none !important;
+}
+
 .grid-card .card-image-area .add-to-area {
     right: 10px;
     padding: 5px 10px;
@@ -2186,41 +3164,52 @@ a.disabled {
     color: #FF6966;
 }
 
-.grid-card .card {
-    border-top: 1px solid #f5f5f5;
-}
 .grid-card .card .card-body {
-    padding: 25px;
-    border-top: 1px solid #efefef;
+    padding: 0px !important;
     font-size: 16px;
     overflow: hidden;
+    text-align: center;
 }
 .grid-card .card .card-body .grid-title {
     max-width: 300px;
-    line-height: 1;
-    color: #333;
-    font-size: 18px;
-    font-family: "Poppins", sans-serif;
     display: block !important;
+    font-family: 'Mulish', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    text-transform: uppercase !important;
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: 0.15px;
+    color: #043C78;
 }
 
 
-.pagination .page-link {
-    padding: 10px 25px !important;
-    color: #10cea1;
-    border: 1px solid #10cea1; }
+#app > div > div > div.row > div > div.row > div > div > div > div.card-body > div.d-inline-block > div > a{
+    font-family: 'Mulish', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.15px;
+    text-transform: uppercase;
+    
+    color: #5C5C5C !important;
+}
 
-.pagination .page-link:hover {
-    background: #10cea1;
-    color: #fff !important; }
-
-.pagination .page-item.disabled .page-link {
-    border: 1px solid #10cea1; }
-
-
+body > div.p-b-100 > section > div > div.row > div > div > div > div.card-body > div.d-inline-block > div > a{
+    font-family: 'Mulish', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.15px;
+    text-transform: uppercase;
+    
+    color: #5C5C5C !important;
+}
 
 .grid-card .card .card-body .item-amount {
-    color: #10cea1;
+    color: #FF6B00;
     font-size: 18px;
     font-weight: bold;
 }
@@ -2228,10 +3217,12 @@ a.disabled {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
-    border-top: 1px solid #f5f5f5;
+    /* border-top: 1px solid #f5f5f5; */
     margin-top: 15px;
     padding: 15px 0;
-    border-bottom: 1px solid #f5f5f5;
+    /* border-bottom: 1px solid #f5f5f5; */
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 }
 
 .owl-one {
@@ -2331,11 +3322,8 @@ a.disabled {
 
 /*11.0 FOOTER AREA*/
 .footer {
-    background: #333;
-}
-.footer .footer-border {
-    border-top: 1px solid #666;
-    border-bottom: 1px solid #666;
+    background: rgb(0,65,125);
+    background: linear-gradient(90deg, rgba(0,65,125,1) 0%, rgba(32,18,77,1) 100%);
 }
 
 .prop-city .v-2 li {
@@ -2410,7 +3398,8 @@ a.disabled {
     padding-top: 30px;
 }
 .footer-bottom p {
-    color: #999;
+    color: #1C1C1C;
+    text-align: center;
 }
 
 /*12. flash message*/
@@ -2634,8 +3623,8 @@ div.centralize-content {
 
     .pagination .page-link {
         padding: 5px 12px !important;
-        color: #10cea1;
-        border: 1px solid #10cea1;
+        color: rgba(9,88,161,1) !important;
+        border: 1px solid rgba(9,88,161,1) !important;
     }
 }
 @media only screen and (max-width: 575px){
@@ -2658,18 +3647,64 @@ div.centralize-content {
         display: flex;
         justify-content: center;
     }
+}
 
+@media only screen and (min-width: 1000px) {
+
+    body > div.main-nav > div {
+        max-width: 100% !important;
+    }
+    #app > div > div{
+        max-width: 100% !important;
+    }
+
+    #app > div > div > div.row > div > div.row > div{
+        padding: 35px;
+    }
+
+    #app > section > div{
+        max-width: 100% !important;
+    }
+
+    body > div.p-b-100 > section > div{
+        max-width: 100% !important;
+    }
+
+}
+
+#mCSB_1_dragger_vertical{
+    max-height: 200px !important;
 }
 
 @media only screen and (max-width: 1366px) {
     .mCustomScrollbar.sidenav {
-        max-height: 500px !important;
+        max-height: 400px !important;
+        
+    }
+    .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+        height: 200px !important;
     }
 }
 @media only screen and (max-width: 991px){
 
     .nav-card {
         display: none;
+    }
+
+    body > footer > div > div > div > div.footer-border > div > div > div{
+        border-right: none !important;
+    }
+
+    #app > div.p-b-100.p-t-80 > div > div > div > div > div > div > div.col-lg-8.col-md-12 > div.property-overview.mt-1 > ul{
+        flex-direction: column;
+    }
+
+    #app > div.p-b-100.p-t-80 > div > div > div > div > div > div > div.col-lg-8.col-md-12 > div.property-overview.mt-1 > ul > li{
+        margin-bottom: 10px;
+    }
+
+    #app > div.p-b-100.p-t-80 > div > div > div > div > div > div > div.col-lg-4.col-md-12 > div{
+        margin-bottom: 20px;
     }
 
     .mCustomScrollbar.sidenav {
@@ -2684,7 +3719,7 @@ div.centralize-content {
     }
 
     .p-t-md-200 {
-        padding-top: 200px !important;
+        padding-top: 192px !important;
     }
 
     .global-custom-header {

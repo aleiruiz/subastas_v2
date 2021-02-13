@@ -33,7 +33,7 @@
                 <li class="header">{{__('MAIN NAVIGATION')}}</li>
                 <li class="treeview {{is_current_route(['user-profile.index', 'seller-profile.index', 'seller-profile.create']) ? 'active' : ''}}">
                     <a href="javascript:;">
-                        <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+                    <img src="{{asset('public/icons/dashboard.svg')}}" width="20px"> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li class="{{is_current_route('user-profile.index') ? 'active' : ''}}"><a href="{{route('user-profile.index')}}"><i class="fa fa-dot-circle-o"></i> Profile</a></li>
@@ -47,7 +47,7 @@
                 </li>
                 <li class="treeview {{is_current_route(['user-currency.index','deposit.index','withdrawal.index','transaction-history']) ? 'active' : ''}}">
                     <a href="javascript:;">
-                        <i class="fa fa-money"></i>
+                        <img src="{{asset('public/icons/finanzas.svg')}}" width="20px">
                         <span>{{__('My Finance')}}</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
@@ -63,7 +63,7 @@
                 </li>
                 <li class="treeview {{is_current_route(['auction.create','seller-profile.index','user-profile.index','seller-profile.create']) ? 'active' : ''}}">
                     <a href="javascript:;">
-                        <i class="fa fa-list-ul"></i>
+                        <img src="{{asset('public/icons/tres-cuadros.svg')}}" width="20px">
                         <span>{{__('Manage Auction')}}</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
@@ -86,7 +86,7 @@
                 </li>
                 <li class="treeview {{is_current_route(['user-profile.edit','user-profile.change-password','user-profile.avatar.edit','user-address.create','user-address.index','profile-verification-with-address.create','profile-verification-with-id.create']) ? 'active' : ''}}">
                     <a href="javascript:;">
-                        <i class="fa fa-user-circle-o"></i>
+                        <img src="{{asset('public/icons/perfil.svg')}}" width="20px">
                         <span>{{__('Manage Profile')}}</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
@@ -103,7 +103,7 @@
                 @if(!is_null(auth()->user()->seller))
                     <li class="treeview {{is_current_route(['seller-profile.edit','address.create','address.index','seller-verification-with-address.create']) ? 'active' : ''}}">
                         <a href="javascript:;">
-                            <i class="fa fa-building-o" aria-hidden="true"></i>
+                        <img src="{{asset('public/icons/tienda.svg')}}" width="20px">
                             <span>{{__('Manage Store')}}</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
@@ -117,7 +117,7 @@
                 @endif
                 <li class="{{is_current_route('notification.index') ? 'active' : ''}}">
                     <a href="{{route('notification.index')}}">
-                        <i class="fa fa-bell-o"></i> <span>{{__('My Notifications')}}</span>
+                    <img src="{{asset('public/icons/notificaciones.svg')}}" width="20px"> <span>{{__('My Notifications')}}</span>
                         @if(total_notifications() != null)
                             <small class="label pull-right label-info custom-notifi-badge">{{total_notifications()}}</small>
                         @endif
@@ -125,7 +125,7 @@
                 </li>
                 <li class="treeview {{is_current_route(['dispute.create','dispute.index']) ? 'active' : ''}}">
                     <a href="javascript:;">
-                        <i class="fa fa-bug" aria-hidden="true"></i>
+                        <img src="{{asset('public/icons/info.svg')}}" width="20px">
                         <span>{{__('Manage Reports')}}</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
@@ -136,10 +136,10 @@
                 </li>
             @endif
             <li class="header mt-4">{{__('SITE NAVIGATION')}}</li>
-            <li class="{{is_current_route('auction.home') ? 'active' : ''}}"><a href="{{route('auction.home')}}"><i class="fa fa-gavel"></i> <span>{{__('All Auctions')}}</span></a></li>
+            <li class="{{is_current_route('auction.home') ? 'active' : ''}}"><a href="{{route('auction.home')}}"><img src="{{asset('public/icons/martillo-naranja.svg')}}" width="20px"> <span>{{__('All Auctions')}}</span></a></li>
             <li class="treeview {{is_current_route('auction-type.home') ? 'active' : ''}}">
                 <a href="javascript:;">
-                    <i class="fa fa-list"></i>
+                    <img src="{{asset('public/icons/tipo-subastas.svg')}}" width="20px">
                     <span>{{__('Auction Types')}}</span>
                     <span class="label label-primary pull-right badge badge-pill bg-teal text-white">4</span>
                 </a>
@@ -153,7 +153,7 @@
             </li>
             <li class="{{is_current_route('contact-us.create') ? 'active' : ''}}">
                 <a href="{{route('contact-us.create')}}">
-                    <i class="fa fa-envelope-open-o"></i> <span>{{__('Contact Us')}}</span>
+                    <img src="{{asset('public/icons/contactenos.svg')}}" width="20px"> <span>{{__('Contact Us')}}</span>
                 </a>
             </li>
         </ul>
@@ -198,7 +198,7 @@
                     @csrf
                     <div id="search">
                         <input name="p_srch" id="input" placeholder="Search..." value="{{ request()->get('p_srch') }}"/>
-                        <button type="submit" id="button"><i class="fa fa-search"></i></button>
+                        <button type="submit" id="button"><img src="{{asset('public/icons/buscador.svg')}}" width="20px"></button>
                     </div>
                 </form>
             </div>
@@ -223,7 +223,7 @@
                         @if(!is_null(auth()->user()->seller))
                             <div class="d-inline-block flex-fill ">
                                 <a class="text-sm-center nav-link"  href="{{route('auction.create')}}">
-                                    <i class="fa fa-dot-circle-o"></i> {{__('Create Auction')}}
+                                <img src="{{asset('public/icons/martillo-azul.svg')}}" width="25px"> {{__('Create Auction')}}
                                 </a>
                             </div>
                         @endif
@@ -231,7 +231,8 @@
                             <!-- Start: notification area -->
                             <a class="text-sm-center nav-link" data-toggle="dropdown" aria-haspopup="true"
                                aria-expanded="false" href="javascript:">
-                                <i class="fa fa-bell-o position-relative nav-notification">
+                               <img src="{{asset('public/icons/notificacion2.svg')}}" width="25px">
+                                <i class="position-relative nav-notification">
                                     @if(total_notifications() != null)
                                         <span class="notification-badge">{{total_notifications()}}</span>
                                     @endif

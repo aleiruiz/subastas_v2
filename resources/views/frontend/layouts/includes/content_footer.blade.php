@@ -204,7 +204,7 @@
                         <div class="row">
 
                             <!-- Start: property cities -->
-                            <div class="col-lg-5 col-md-6 p-t-50">
+                            <div class="col-lg-4 col-md-6 p-t-50">
                                 <h5 class="text-uppercase font-weight-bold mb-5 text-white">{{__('Popular Categories')}}</h5>
 
                                 <!-- Start: property cities list -->
@@ -244,31 +244,34 @@
                                         </div>
                                     </div>
                                     <!-- End: single card -->
-
+        
                                     @endforeach
 
                                 </div>
                                 <!-- End: popular posts list -->
-
+                                <div class="calidad">
+                                <img src="{{asset('public/icons/calidad-garantia.svg')}}" width="20px">
+                                <p>Calidad & Garantia</p>
+                                </div>
                             </div>
                             <!-- End: popular posts -->
 
                             <!-- Start: get in touch -->
-                            <div class="col-lg-3 col-md-12 p-t-50">
+                            <div class="col-lg-4 col-md-12 p-t-50">
                                 <h5 class="text-uppercase font-weight-bold mb-5 text-white">Contactanos</h5>
 
                                 <div class="get-in-touch">
                                     <ul>
                                         <li class="d-block">
-                                            <i class="fa fa-map-marker mr-3"></i>
-                                            {{settings('business_address')}}
-                                        </li>
-                                        <li class="d-block">
-                                            <i class="fa fa-phone"></i>
+                                        <img src="{{asset('public/icons/mensaje.svg')}}" width="20px">
                                             {{settings('business_contact_number')}}
                                         </li>
                                         <li class="d-block">
-                                            <i class="fa fa-envelope"></i>
+                                        <img src="{{asset('public/icons/localizaciones.svg')}}" width="20px">
+                                            {{settings('business_address')}}
+                                        </li>
+                                        <li class="d-block">
+                                        <img src="{{asset('public/icons/mensajes.svg')}}" width="20px">
                                             <a href="#">
                                                 {{settings('admin_receive_email')}}
                                             </a>
@@ -289,7 +292,7 @@
 
                         <!-- Start: copy right area -->
                         <div class="col-md-12">
-                            <p>&copy; Copyright {{settings('copy_rights_year')}} All rights reserved By {{settings('rights_reserved')}}</p>
+                            <p>&copy; Copyright {{settings('copy_rights_year')}} Todos los derechos reservados por {{settings('rights_reserved')}}</p>
                         </div>
                         <!-- End: copy right area -->
                     </div>

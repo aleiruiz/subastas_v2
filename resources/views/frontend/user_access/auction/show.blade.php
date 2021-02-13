@@ -160,6 +160,22 @@
                 <!-- Start: bidding section -->
                 <div class="col-md-12 col-lg-5 order-lg-0">
 
+                    <div class="s-box">
+                        @auth
+                            @if(!is_null($userLastBid))
+                                <ul class="list-group mt-3">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span>
+                                            {{__('Your Last Bid :')}}
+                                        </span>
+                                        <span class="badge border color-666 badge-pill"> <span
+                                                class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> {{$userLastBid->amount}}</span>
+                                    </li>
+                                </ul>
+                            @endif
+                        @endauth
+                    </div>
+
                     <div class="s-box mb-3">
                         <!-- Start: header -->
 
@@ -204,6 +220,13 @@
                         <!-- End: countdown -->
                     </div>
 
+
+                    <div class="s-box">
+                    @auth()
+                        @include('layouts.includes.bidding_list')
+                    @endauth
+                    </div>
+
                     <!-- Start: bidding section -->
                     <div class="s-box">
 
@@ -216,7 +239,7 @@
 
                         <!-- Start: item list -->
                         <div class="popular-cat">
-                            <ul class="list-group">
+                            <!-- <ul class="list-group">
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <span>
                                         {{__('Auction Type :')}}
@@ -231,7 +254,7 @@
                                     <span
                                         class="badge badge-pill {{config('commonconfig.is_multi_bid_allowed.' . ( !is_null($auction) ? $auction->is_multiple_bid_allowed : ACTIVE_STATUS_ACTIVE ) . '.color_class')}}">{{ config('commonconfig.is_multi_bid_allowed.' . ( !is_null($auction) ? $auction->is_multiple_bid_allowed : ACTIVE_STATUS_ACTIVE ) . '.text')}}</span>
                                 </li>
-                            </ul>
+                            </ul> -->
                             <ul class="list-group mt-3">
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <span>
@@ -291,19 +314,7 @@
                                     </li>
                                 @endif
                             </ul>
-                            @auth
-                            @if(!is_null($userLastBid))
-                                <ul class="list-group mt-3">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span>
-                                            {{__('Your Last Bid :')}}
-                                        </span>
-                                        <span class="badge border color-666 badge-pill"> <span
-                                                class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> {{$userLastBid->amount}}</span>
-                                    </li>
-                                </ul>
-                            @endif
-                            @endauth
+                            
 
                             @if(count($auction->bids) > 0 && $auction->auction_type == AUCTION_TYPE_HIGHEST_BIDDER)
                                 <ul class="list-group mt-3">
@@ -575,27 +586,27 @@
                             @endif
 
                             @auth()
-                            @if($auction->auction_type == AUCTION_TYPE_HIGHEST_BIDDER)
-                                <!-- Start: amenties body -->
+                                <!-- @if($auction->auction_type == AUCTION_TYPE_HIGHEST_BIDDER)
+                                    <!-- Start: amenties body --
                                     <div class="tab-pane fade" id="amenti" role="tabpanel" aria-labelledby="amenties">
 
-                                        <!-- Start: amenties -->
+                                        <!-- Start: amenties --
                                         <div class="m-t-50">
                                             <div class="row">
 
-                                                <!-- Start: amenties list -->
+                                                <!-- Start: amenties list --
                                                 <div class="col-12">
                                                     @include('layouts.includes.bidding_list')
                                                 </div>
-                                                <!-- End: amenties list -->
+                                                <!-- End: amenties list --
 
                                             </div>
                                         </div>
-                                        <!-- End: amenties -->
+                                        <!-- End: amenties --
 
                                     </div>
-                                    <!-- End: amenties body -->
-                                @endif
+                                    <!-- End: amenties body --
+                                @endif -->
                             @endauth
 
                             </div>
@@ -758,12 +769,11 @@
             Echo.channel('auction-bid')
                 .listen('BroadcastAuctionBid', (response) => {
                     if (response) {
-                        let row = '<tr>' +
-                            '<td class="text-left">' + response.date + '</td>';
+                        let row = '';
 
 
                         @if(auth()->check() && !is_null(auth()->user()->seller) ? $auction->seller_id == auth()->user()->seller->id : false)
-                            row = row + '<td>' + response.username + '</td>';
+                            row = row + '<li>' + response.username + '</li>';
                             @endif
 
                         let myBidHtml = '';
@@ -771,13 +781,13 @@
                             myBidHtml = '<span class="badge-success py-1 px-2 badge-pill fz-10 mr-2">' + "{{ __('My Bid') }}" +'</span>';
                         }
 
-                        row = row + '<td class="text-right font-weight-bold">' +
+                        row = row + '<li>' +
                             myBidHtml +
                             '<span class="color-default fz-16">' + response.amount + '</span>' +
                             '<span class="fz-12">' + response.currency + '</span>' +
-                            '</td>';
+                            '</li>';
 
-                        $('#bid > tbody > tr:first').before(row);
+                        $('#ul_bid').append(row);
 
                         $('#count-bid').html(response.bid_count);
 

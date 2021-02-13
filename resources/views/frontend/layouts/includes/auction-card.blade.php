@@ -30,7 +30,7 @@
                         {{$auction->title}}
                     </a>
                     <div class="sub-text mt-1 m-0">
-                        <i class="fa fa-user-circle-o mr-1"></i>
+                        <p>VENDEDOR</p>
                         <a class="color-999" href="{{route('seller-profile.show', $auction->seller->id)}}">{{$auction->seller->name}}</a>
                     </div>
                 </div>

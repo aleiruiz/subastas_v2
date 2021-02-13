@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Essential Css -->
-    <link rel="icon" href="{{asset('images/laraframe-logo.png') }}">
+    <link rel="icon" href="{{asset('public/icons/ico.ico')}}">
     <link rel="stylesheet" href="{{asset('vendor/font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}">
 
