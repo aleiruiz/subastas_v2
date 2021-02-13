@@ -161,7 +161,7 @@
                 <div class="col-md-12 col-lg-5 order-lg-0">
 
                     <div class="s-box">
-                        @auth
+                        @auth()
                             @if(!is_null($userLastBid))
                                 <ul class="list-group mt-3">
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -227,6 +227,9 @@
                     @endauth
                     </div>
 
+                </div>
+                <!-- End: bidding section -->
+                <div class="col-md-12 col-lg-7 order-lg-0">
                     <!-- Start: bidding section -->
                     <div class="s-box">
 
@@ -372,38 +375,40 @@
                         </div>
                         <!-- End: item list -->
 
-                        @auth
-                        @if($auction->status == AUCTION_STATUS_RUNNING)
-                            <div class="list-group mt-3">
-                                <div class="list-group-item py-4">
-                                    {{ Form::open(['route'=>['bid.store', $auctionId],'class'=>'form-horizontal cvalidate','id'=>'bidForm']) }}
-                                    @method('post')
-                                    @basekey
-
-                                    <!-- Start: auction main content -->
-                                    <div class="form-group">
-                                        <span class="d-flex justify-content-center">
-                                            <span class="input-number-decrement">–</span>
-                                        {{ Form::text(fake_field('amount'), old('amount'), ['class' => 'input-number color-666', 'id' => fake_field('amount'), 'min'=>'0' ]) }}
-                                        <span class="input-number-increment">+</span>
-                                        </span>
-                                        <span class="invalid-feedback cval-error d-block" data-cval-error="{{ fake_field('amount') }}">{{ $errors->first('amount') }}</span>
-                                    </div>
-                                    <!-- End: auction main content -->
-
-                                    <a class="btn custom-btn w-100 float-right has-spinner" id="offer">{{__('Bid Your Amount')}}</a>
-
-                                    {{ Form::close() }}
-                                </div>
-                            </div>
-                        @endif
-                        @endauth
                     </div>
                     <!-- End: bidding section -->
-
                 </div>
-                <!-- End: bidding section -->
 
+                <div class="col-md-12 col-lg-5 order-lg-0">
+                @auth
+                    @if($auction->status == AUCTION_STATUS_RUNNING)
+                        <div class="list-group mt-3">
+                            <div class="list-group-item py-4">
+                                {{ Form::open(['route'=>['bid.store', $auctionId],'class'=>'form-horizontal cvalidate','id'=>'bidForm']) }}
+                                @method('post')
+                                @basekey
+
+                                <!-- Start: auction main content -->
+                                <div class="form-group">
+                                    <span class="d-flex justify-content-center">
+                                        <span class="input-number-decrement">–</span>
+                                    {{ Form::text(fake_field('amount'), old('amount'), ['class' => 'input-number color-666', 'id' => fake_field('amount'), 'min'=>'0' ]) }}
+                                    <span class="input-number-increment">+</span>
+                                    </span>
+                                    <span class="invalid-feedback cval-error d-block" data-cval-error="{{ fake_field('amount') }}">{{ $errors->first('amount') }}</span>
+                                </div>
+                                <!-- End: auction main content -->
+
+                                <a class="btn custom-btn w-100 float-right has-spinner" id="offer">{{__('Bid Your Amount')}}</a>
+
+                                {{ Form::close() }}
+                            </div>
+                        </div>
+                    @endif
+                @endauth
+                </div>
+
+                    
                 @auth
                 <!-- Start: Winner info -->
                 @if(!is_null($auction->address_id) && auth()->user()->seller ? $auction->seller_id == auth()->user()->seller->id : false && $auction->status != AUCTION_STATUS_RUNNING)
@@ -536,13 +541,13 @@
                                            role="tab" aria-controls="featu"
                                            aria-selected="false">{{__('Term Description')}}</a>
                                     @endif
-                                    @auth
+                                    <!-- @auth
                                     @if($auction->auction_type == AUCTION_TYPE_HIGHEST_BIDDER)
                                         <a class="nav-item nav-link" id="amenties" data-toggle="tab" href="#amenti"
                                            role="tab" aria-controls="amenti"
                                            aria-selected="false">{{__('Bidding History')}}</a>
                                     @endif
-                                    @endauth
+                                    @endauth -->
                                 </div>
                                 <!-- Start: tab nav -->
 

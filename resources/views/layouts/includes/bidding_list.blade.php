@@ -1,5 +1,5 @@
 <!-- Start: comment form -->
-@component('components.card',['type' => 'info', 'class' => 'card text-right mt-4', 'style' => 'overflow-y: scroll; height: 100px;'])
+@component('components.card',['type' => 'info', 'class' => 'card text-right mt-4', 'style' => 'overflow-y: scroll; height: 400px;'])
 
 
         
