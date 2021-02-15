@@ -603,30 +603,6 @@
                                     <!-- End: features body -->
                             @endif
 
-                            @auth()
-                                <!-- @if($auction->auction_type == AUCTION_TYPE_HIGHEST_BIDDER)
-                                    <!-- Start: amenties body --
-                                    <div class="tab-pane fade" id="amenti" role="tabpanel" aria-labelledby="amenties">
-
-                                        <!-- Start: amenties --
-                                        <div class="m-t-50">
-                                            <div class="row">
-
-                                                <!-- Start: amenties list --
-                                                <div class="col-12">
-                                                    @include('layouts.includes.bidding_list')
-                                                </div>
-                                                <!-- End: amenties list --
-
-                                            </div>
-                                        </div>
-                                        <!-- End: amenties --
-
-                                    </div>
-                                    <!-- End: amenties body --
-                                @endif -->
-                            @endauth
-
                             </div>
                             <!-- End: property tab body -->
 
