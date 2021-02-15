@@ -1587,7 +1587,7 @@ input:focus,
     border-radius: 20px;
     border: 1px solid #0958A1;
     padding: 8px;
-    margin-bottom: 7px;
+    margin-bottom: 0px;
 }
 
 #app > div > div > div > div:nth-child(2) > div > div.card-header > div > form{

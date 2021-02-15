@@ -742,6 +742,7 @@
 "Your :currency :amount has been restored to your balance from bidding on :auction":"Su: moneda: cantidad se ha restablecido a su saldo de pujar en: subasta",
 "Your :currency :amount has been restored to your wallet on bidding to :auction":"Su: moneda: cantidad se ha restaurado en su billetera al hacer una oferta para: subasta",
 "Your Last Bid :":"Su última oferta:",
+"Last Bid :":"Propuesta actual:",
 "Your account has been created on :company":"Su cuenta ha sido creada en :company",
 "Your account has been verified successfully.":"Su cuenta se ha verificado correctamente.",
 "Your account's financial status has been changed by admin.":"El administrador ha cambiado el estado financiero de su cuenta",

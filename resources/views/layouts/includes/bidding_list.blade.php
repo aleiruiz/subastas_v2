@@ -9,12 +9,22 @@
             @if(!is_null(auth()->user()->seller) ? $auction->seller_id == auth()->user()->seller->id : false)
                 <li>{{$bid->user->username}}</li>
             @endif
-            <li>
+            <li style="height:30px !important;">
+                
                 @if($bid->user_id == auth()->id())
-                    <span class="badge-success py-1 px-2 badge-pill fz-10 mr-2">{{ __('My Bid') }}</span>
+                    <span style="background: url('{{asset('images/winner-badge.png')}}');background-size: 30px 30px;background-repeat: no-repeat;padding-left: 70px;"></span>
+                    <strong>{{$bid->user->username}}</strong>
+                    <span>Has ofertado</span>
+                    <span class="color-default fz-16">{{$bid->amount}}</span>
+                    <span class="fz-12">{{!is_null($auction->currency) ? $auction->currency->symbol : ''}}</span>
+                
+                @else
+                    <span>{{$bid->user->username}}</span>
+                    <span>Ha ofertado</span>
+                    <span class="color-default fz-16">{{$bid->amount}}</span>
+                    <span style="padding-right: 40px;" class="fz-12">{{!is_null($auction->currency) ? $auction->currency->symbol : ''}}</span>   
+                    <span style="background: url('{{asset('images/winner-badge.png')}}');background-size: 30px 30px;background-repeat: no-repeat;padding-left: 30px;"></span>
                 @endif
-                <span class="color-default fz-16">{{$bid->amount}}</span>
-                <span class="fz-12">{{!is_null($auction->currency) ? $auction->currency->symbol : ''}}</span>
             </li>
         @endforeach
         </ul>

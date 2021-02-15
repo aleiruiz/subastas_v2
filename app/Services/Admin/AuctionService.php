@@ -28,6 +28,7 @@ class AuctionService
         $data['defaultAddress'] = $data['auction']->seller->address()->where('is_default', ACTIVE_STATUS_ACTIVE)->first();
         $data['categories'] = app(CategoryInterface::class)->getAll()->pluck('name', 'id')->toArray();
         $data['comments'] = app(CommentInterface::class)->getByConditions(['auction_id' => $id]);
+        $data['lastBid'] =  $data['auction']->bids()->orderBy('id', 'desc')->first();
         if (auth()->check())
         {
             $data['userLastBid'] = $data['auction']->bids()->orderBy('id', 'desc')->where('user_id', auth()->user()->id)->first();

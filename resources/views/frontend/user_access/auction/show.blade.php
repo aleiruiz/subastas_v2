@@ -161,7 +161,20 @@
                 <div class="col-md-12 col-lg-5 order-lg-0">
 
                     <div class="s-box">
-                        @auth()
+                         
+                        @if(!is_null($lastBid))
+                            <ul class="list-group mt-3">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span style="background: url('{{asset('images/winner-badge.png')}}');background-size: 50px 50px;background-repeat: no-repeat;height: 50px;padding-left: 70px;padding-top: 15px;">
+
+                                        {{__('Last Bid :')}}
+                                    </span>
+                                    <span class="badge border color-666 badge-pill"> <span
+                                            class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> {{$lastBid->amount}}</span>
+                                </li>
+                            </ul>
+                        @endif
+                        <!-- @auth()
                             @if(!is_null($userLastBid))
                                 <ul class="list-group mt-3">
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -173,7 +186,7 @@
                                     </li>
                                 </ul>
                             @endif
-                        @endauth
+                        @endauth -->
                     </div>
 
                     <div class="s-box mb-3">
