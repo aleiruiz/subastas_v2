@@ -101,7 +101,7 @@ Vue.component("Timer", {
       } else if (distance < 0 && passTime > 0) {
         this.calcTime(passTime);
         this.message = this.wordString.running;
-        this.statusType = "running";
+        this.statusType = "running"; 
         this.statusText = this.wordString.status.running;
       } else if (distance > 0 && passTime > 0) {
         this.calcTime(distance);
@@ -113,6 +113,13 @@ Vue.component("Timer", {
         this.statusType = "expired";
         this.statusText = this.wordString.status.expired;
         clearInterval(this.interval);
+      }
+      if(this.statusType != 'expired'){
+        if(this.days == 0 && this.hours == 0 && this.minutes < 2 && this.minutes > 1){
+          console.log("2 msj");
+        }else if(this.days == 0 && this.hours == 0 && this.minutes < 1){
+          console.log("1 msj");
+        }
       }
     },
     calcTime: function(dist) {

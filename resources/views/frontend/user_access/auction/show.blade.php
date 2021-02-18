@@ -7,7 +7,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">
-                    <img src="{{asset('public/icons/garantia.png')}}" width="100px">
+                    <img src="{{asset('public/icons/garantia.svg')}}" width="100px">
                     <h5 class="modal-title justify-content-center font-weight-bold" id="exampleModalLongTitle">Garantia: {{ !is_null($auction->currency) ? $auction->currency->symbol : ''}} {{$auction->bid_initial_price * 0.10}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -48,20 +48,15 @@
 
                             <div class="row">
                                 <div class="col-lg-8 col-md-12">
-
-                                    <!-- Start: property title -->
-                                    <div class="item-name">{{$auction->title}}</div>
-                                    <!-- End: property title -->
-
                                     <!-- Start: property area -->
                                     <div class="property-area">
-                                        <i class="fa fa-map-marker"></i>
+                                    <img src="{{asset('public/icons/localizacion2.svg')}}" width="25px">
                                         {{!is_null($auction->seller->user->profile) ? $auction->seller->user->profile->address : ''}}
                                     </div>
                                     <!-- End: property area -->
 
                                     <div class="property-area text-uppercase">
-                                        <i class="fa fa-th-large" aria-hidden="true"></i>
+                                    <img src="{{asset('public/icons/id.svg')}}" width="25px">
                                         REFERENCIA:
                                         {{$auction->ref_id}}
                                     </div>
@@ -70,20 +65,20 @@
                                     <div class="property-overview mt-1">
                                         <ul class="nav">
                                             <li class="color-999">
-                                                <i class="fa fa-flag"></i>
+                                            <img src="{{asset('public/icons/verificado.svg')}}" width="25px">
                                                 Subastador <a
                                                     href="{{route('seller-profile.show', $auction->seller_id)}}">{{ !is_null($auction->seller) ? $auction->seller->name : ''}}</a>
                                             </li>
                                             <li class="color-999">
-                                                <i class="fa fa-list-alt"></i>
+                                            <img src="{{asset('public/icons/categorias2.svg')}}" width="25px">
                                                 {{ !is_null($auction->category) ? $auction->category->name : ''}}
                                             </li>
                                             <li class="color-999">
-                                                <i class="fa fa-money"></i>
+                                            <img src="{{asset('public/icons/dollar.svg')}}" width="25px">
                                                 {{ !is_null($auction->currency) ? $auction->currency->symbol : ''}}
                                             </li>
                                             <li class="color-999">
-                                                <i class="fa fa-clock-o"></i>
+                                            <img src="{{asset('public/icons/hora.svg')}}" width="25px">
                                                 {{ !is_null($auction->ending_date) ? $carbon->parse($auction->ending_date)->diffForHumans() : ''}}
                                             </li>
                                         </ul>
@@ -116,6 +111,12 @@
                 </div>
                 <!-- End: property title details -->
 
+                <div class="col-12">
+                    <!-- Start: property title -->
+                    <div class="item-name" style="font-size: 30px;color: blue;">{{$auction->title}}</div>
+                    <!-- End: property title -->
+                </div>
+
                 <!-- Start: blog grid -->
                 <div class="col-md-12 col-lg-7 order-lg-0">
                     <div class="m-md-top-50 bg-custom-gray border">
@@ -138,7 +139,7 @@
                             <div class="dispute-link position-absolute">
                                 <a class="flex-sm-fill text-sm-center nav-link p-0" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false" href="#">
-                                    <i class="fa fa-th-list icon-round"></i>
+                                   <img src="{{asset('public/icons/info.svg')}}" width="20px">
                                 </a>
                                 <div class="address-dropdown-menu">
                                     <div class="dropdown-menu  drop-menu dropdown-menu-right">
@@ -165,8 +166,8 @@
                         @if(!is_null($lastBid))
                             <ul class="list-group mt-3">
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span style="background: url('{{asset('images/winner-badge.png')}}');background-size: 50px 50px;background-repeat: no-repeat;height: 50px;padding-left: 70px;padding-top: 15px;">
-
+                                    <span>
+                                    <img src="{{asset('public/icons/has-ofertado-blanco.svg')}}" width="60px">
                                         {{__('Last Bid :')}}
                                     </span>
                                     <span class="badge border color-666 badge-pill"> <span
@@ -193,6 +194,7 @@
                         <!-- Start: header -->
 
                         <div class="s-box-header">
+                        <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
                             <?php
                             $now = \Carbon\Carbon::now();
                             $start = \Carbon\Carbon::parse($auction->starting_date);
@@ -402,18 +404,53 @@
                                 @basekey
 
                                 <!-- Start: auction main content -->
-                                <div class="form-group">
+                                <div class="form-group" style="display:none;">
                                     <span class="d-flex justify-content-center">
                                         <span class="input-number-decrement">–</span>
-                                    {{ Form::text(fake_field('amount'), old('amount'), ['class' => 'input-number color-666', 'id' => fake_field('amount'), 'min'=>'0' ]) }}
-                                    <span class="input-number-increment">+</span>
+                                        {{ Form::text(fake_field('amount'), ($lastBid->amount + $auction->bid_increment_dif), ['class' => 'input-number color-666', 'id' => fake_field('amount'), 'min'=>'0']) }}
+                                        <span class="input-number-increment">+</span>
                                     </span>
                                     <span class="invalid-feedback cval-error d-block" data-cval-error="{{ fake_field('amount') }}">{{ $errors->first('amount') }}</span>
                                 </div>
                                 <!-- End: auction main content -->
-
-                                <a class="btn custom-btn w-100 float-right has-spinner" id="offer">{{__('Bid Your Amount')}}</a>
-
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-4 order-lg-0">
+                                        <label>{{__('Increment')}}<img src="{{asset('images/dado.svg')}}" style="width: 18px;" alt=""></label>
+                                        <hr>
+                                        <div>
+                                            <ul>
+                                                <li>
+                                                    <img src="{{asset('images/flor.svg')}}" style="width: 20px; height: 20px;" alt="">
+                                                    <span class="fz-12">{{!is_null($auction->currency) ? $auction->currency->symbol : ''}}</span>
+                                                    {{ $auction->bid_increment_dif }}
+                                                    <input class="custom-radio-checkbox__input" type="radio" name="bid_increment" data-val="{{ $auction->bid_increment_dif }}" checked />
+                                                    <span class="custom-radio-checkbox__show custom-radio-checkbox__show--radio"></span>
+                                                </li>
+                                                <li>
+                                                    <img src="{{asset('images/torre.svg')}}" style="width: 20px; height: 20px;" alt="">
+                                                    <span class="fz-12">{{!is_null($auction->currency) ? $auction->currency->symbol : ''}}</span>
+                                                    {{ number_format($auction->bid_increment_dif * 1.15, 0, '', '') }}
+                                                    <input class="custom-radio-checkbox__input" type="radio" name="bid_increment" data-val="{{ number_format($auction->bid_increment_dif * 1.15, 0, '', '') }}" />
+                                                    <span class="custom-radio-checkbox__show custom-radio-checkbox__show--radio"></span>
+                                                </li>
+                                                <li>
+                                                    <img src="{{asset('images/corazon.svg')}}" style="width: 20px; height: 20px;" alt="">
+                                                    <span class="fz-12">{{!is_null($auction->currency) ? $auction->currency->symbol : ''}}</span>
+                                                    {{ number_format($auction->bid_increment_dif * 1.30, 0, '', '') }}
+                                                    <input class="custom-radio-checkbox__input" type="radio" name="bid_increment" data-val="{{ number_format($auction->bid_increment_dif * 1.30, 0, '', '') }}" />
+                                                    <span class="custom-radio-checkbox__show custom-radio-checkbox__show--radio"></span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-8 order-lg-0">
+                                        <a class="btn custom-btn w-100 float-right has-spinner" id="offer">
+                                            {{__('Bid Your Amount')}}
+                                            <br><span id="cost">{{ ((!is_null($auction->currency) ? $auction->currency->symbol : '') . ' ' . ($lastBid->amount + $auction->bid_increment_dif))}}</span>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
                                 {{ Form::close() }}
                             </div>
                         </div>
@@ -664,6 +701,13 @@
     <script type="text/javascript">
         
         $(document).ready(function () {
+            var last_amount = '{{$lastBid->amount}}';
+            $("input[name='bid_increment'").on('click', function(){
+                var currency = '{{!is_null($auction->currency) ? $auction->currency->symbol : ''}}';
+                $("#cost").html(currency + ' ' + (parseInt(last_amount) + parseInt($(this).data('val'))));
+                $("#{{ fake_field('amount') }}").val(parseInt(last_amount) + parseInt($(this).data('val')));
+            })
+
             let user = @json(auth()->user());
             $('.cvalidate').cValidate();
             //Init jquery Date Picker
@@ -764,7 +808,7 @@
                 .listen('BroadcastAuctionBid', (response) => {
                     if (response) {
                         let row = '';
-
+                        last_amount = response.amount;
 
                         @if(auth()->check() && !is_null(auth()->user()->seller) ? $auction->seller_id == auth()->user()->seller->id : false)
                             row = row + '<li>' + response.username + '</li>';

@@ -38,16 +38,21 @@
 
                 <!-- Start: card details -->
                 <div class="details-bottom mt-3">
+                    @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
+                        @php($lng =  'es_MX')
+                        <label>{{\Carbon\Carbon::parse($auction->starting_date)->locale($lng)->isoFormat('dddd D MMMM | h:mm A')}}</label>
+                    @endif
 
                     <!-- Start: countdown -->
                     <div class="count-down">
                         @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
-                            <div class="color-999 d-inline-block fz-12">{{'EMPEZO:'}}</div>
+                            <div class="color-999 d-inline-block fz-12">{{'Deseo Participar'}}</div>
                         @else
-                            <div class="color-999 d-inline-block fz-12">{{'EMPIEZA:'}}</div>
+                            <div class="color-999 d-inline-block fz-12">{{'Empezó:'}}</div>
+                            <div class="color-999 d-inline-block fz-12">{{\Carbon\Carbon::parse($auction->starting_date)->diffForHumans()}}</div>
                         @endif
 
-                                <div class="color-999 d-inline-block fz-12">{{\Carbon\Carbon::parse($auction->starting_date)->diffForHumans()}}</div>
+                                <!-- <div class="color-999 d-inline-block fz-12">{{\Carbon\Carbon::parse($auction->starting_date)->diffForHumans()}}</div> -->
                     </div>
                     <!-- End: countdown -->
 
