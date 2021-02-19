@@ -111,10 +111,42 @@
                 </div>
                 <!-- End: property title details -->
 
-                <div class="col-7">
+                <div class="col-md-12 col-lg-7">
                     <!-- Start: property title -->
                     <div class="item-name" style="font-size: 30px;color: blue;">{{$auction->title}}</div>
                     <!-- End: property title -->
+                </div>
+
+                <div class="col-md-12 col-lg-5">
+
+                    <div class="s-box">
+                         
+                         @if(!is_null($lastBid))
+                             <ul class="list-group mt-3">
+                                 <li class="list-group-item d-flex justify-content-between align-items-center">
+                                     <span>
+                                     <img src="{{asset('public/icons/has-ofertado-blanco.svg')}}" width="60px">
+                                         {{__('Last Bid :')}}
+                                     </span>
+                                     <span class="badge border color-666 badge-pill"> <span
+                                             class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> {{$lastBid->amount}}</span>
+                                 </li>
+                             </ul>
+                         @endif
+                         <!-- @auth()
+                             @if(!is_null($userLastBid))
+                                 <ul class="list-group mt-3">
+                                     <li class="list-group-item d-flex justify-content-between align-items-center">
+                                         <span>
+                                             {{__('Your Last Bid :')}}
+                                         </span>
+                                         <span class="badge border color-666 badge-pill"> <span
+                                                 class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> {{$userLastBid->amount}}</span>
+                                     </li>
+                                 </ul>
+                             @endif
+                         @endauth -->
+                     </div>
                 </div>
 
                 <!-- Start: blog grid -->
@@ -161,34 +193,6 @@
                 <!-- Start: bidding section -->
                 <div class="col-md-12 col-lg-5 order-lg-0">
 
-                    <div class="s-box">
-                         
-                        @if(!is_null($lastBid))
-                            <ul class="list-group mt-3">
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span>
-                                    <img src="{{asset('public/icons/has-ofertado-blanco.svg')}}" width="60px">
-                                        {{__('Last Bid :')}}
-                                    </span>
-                                    <span class="badge border color-666 badge-pill"> <span
-                                            class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> {{$lastBid->amount}}</span>
-                                </li>
-                            </ul>
-                        @endif
-                        <!-- @auth()
-                            @if(!is_null($userLastBid))
-                                <ul class="list-group mt-3">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span>
-                                            {{__('Your Last Bid :')}}
-                                        </span>
-                                        <span class="badge border color-666 badge-pill"> <span
-                                                class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> {{$userLastBid->amount}}</span>
-                                    </li>
-                                </ul>
-                            @endif
-                        @endauth -->
-                    </div>
 
                     <div class="s-box mb-3">
                         <!-- Start: header -->

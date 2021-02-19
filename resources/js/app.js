@@ -131,5 +131,22 @@ Vue.component("Timer", {
       this.minutes = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
       this.seconds = Math.floor((dist % (1000 * 60)) / 1000);
     },
+    valid_status: function(inf){
+      axios.post("{{route('register.store')}}", {
+          first_name: first_name,
+          last_name: last_name,
+          username: reg_username,
+          email: email,
+          password: password,
+          password_confirmation: password_confirmation,
+          check_agreement: check_agreement,
+      })
+      .then(function (response) {
+          
+      })
+      .catch(function (error) {
+
+      });
+    }
   },
 });
