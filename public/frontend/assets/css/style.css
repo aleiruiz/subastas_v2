@@ -1,5 +1,13 @@
 /* Personal Style By Leo */
 
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(3) > div{
+    font-size: 40px;
+    color: #043C78;
+    text-transform: uppercase;
+    FONT-WEIGHT: 600;
+    padding: 20px;
+}
+
 #nav-tab > a.nav-item.text-muted.nav-link.active{
     color: #0958A1 !important;
     background-color: #fff !important;

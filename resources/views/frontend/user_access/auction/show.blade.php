@@ -111,7 +111,7 @@
                 </div>
                 <!-- End: property title details -->
 
-                <div class="col-12">
+                <div class="col-7">
                     <!-- Start: property title -->
                     <div class="item-name" style="font-size: 30px;color: blue;">{{$auction->title}}</div>
                     <!-- End: property title -->
@@ -419,27 +419,27 @@
                                         <hr>
                                         <div>
                                             <ul>
-                                                <li>
+                                                <label>
                                                     <img src="{{asset('images/flor.svg')}}" style="width: 20px; height: 20px;" alt="">
                                                     <span class="fz-12">{{!is_null($auction->currency) ? $auction->currency->symbol : ''}}</span>
                                                     {{ $auction->bid_increment_dif }}
                                                     <input class="custom-radio-checkbox__input" type="radio" name="bid_increment" data-val="{{ $auction->bid_increment_dif }}" checked />
                                                     <span class="custom-radio-checkbox__show custom-radio-checkbox__show--radio"></span>
-                                                </li>
-                                                <li>
+                                                </label>
+                                                <label>
                                                     <img src="{{asset('images/torre.svg')}}" style="width: 20px; height: 20px;" alt="">
                                                     <span class="fz-12">{{!is_null($auction->currency) ? $auction->currency->symbol : ''}}</span>
                                                     {{ number_format($auction->bid_increment_dif * 1.15, 0, '', '') }}
                                                     <input class="custom-radio-checkbox__input" type="radio" name="bid_increment" data-val="{{ number_format($auction->bid_increment_dif * 1.15, 0, '', '') }}" />
                                                     <span class="custom-radio-checkbox__show custom-radio-checkbox__show--radio"></span>
-                                                </li>
-                                                <li>
+                                                </label>
+                                                <label>
                                                     <img src="{{asset('images/corazon.svg')}}" style="width: 20px; height: 20px;" alt="">
                                                     <span class="fz-12">{{!is_null($auction->currency) ? $auction->currency->symbol : ''}}</span>
                                                     {{ number_format($auction->bid_increment_dif * 1.30, 0, '', '') }}
                                                     <input class="custom-radio-checkbox__input" type="radio" name="bid_increment" data-val="{{ number_format($auction->bid_increment_dif * 1.30, 0, '', '') }}" />
                                                     <span class="custom-radio-checkbox__show custom-radio-checkbox__show--radio"></span>
-                                                </li>
+                                                </label>
                                             </ul>
                                         </div>
                                     </div>
