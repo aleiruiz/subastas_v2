@@ -128,8 +128,10 @@
                                      <img src="{{asset('public/icons/has-ofertado-blanco.svg')}}" width="60px">
                                          {{__('Last Bid :')}}
                                      </span>
-                                     <span class="badge border color-666 badge-pill"> <span
-                                             class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> {{$lastBid->amount}}</span>
+                                     <span class="badge border color-666 badge-pill" id="spn_last_bid">
+                                        <span class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> 
+                                        {{$lastBid->amount}}
+                                    </span>
                                  </li>
                              </ul>
                          @endif
@@ -815,22 +817,25 @@
             Echo.channel('auction-bid')
                 .listen('BroadcastAuctionBid', (response) => {
                     if (response) {
-                        let row = '';
+                        let row = '<li>';
                         last_amount = response.amount;
 
                         @if(auth()->check() && !is_null(auth()->user()->seller) ? $auction->seller_id == auth()->user()->seller->id : false)
-                            row = row + '<li>' + response.username + '</li>';
-                            @endif
+                            
+                        @endif
 
+                        row = row + '<span class="usuario-batalla">' + response.username + '</span>';
                         let myBidHtml = '';
                         if (user.id == response.user_id) {
                             myBidHtml = '<span class="badge-success py-1 px-2 badge-pill fz-10 mr-2">' + "{{ __('My Bid') }}" +'</span>';
                         }
 
-                        row = row + '<li>' +
-                            myBidHtml +
-                            '<span class="color-default fz-16">' + response.amount + '</span>' +
-                            '<span class="fz-12">' + response.currency + '</span>' +
+                        row = row +
+                            //myBidHtml +
+                            '<span class="gris-color"> ha ofertado por </span>'+
+                            '<span class="color-default fz-16">' + response.amount + ' </span>' +
+                            '<span class="fz-12">' + response.currency + ' </span>' +
+                            '<img src="{{asset('images/has-ofertado-naranja.svg')}}" alt="">'+
                             '</li>';
 
                         $('#ul_bid').append(row);
@@ -838,6 +843,13 @@
                         $('#count-bid').html(response.bid_count);
 
                         $('#max-bid').html(`<span class="font-weight-normal"> {{$auction->currency->symbol}}</span> ${response.bigger_bid} </span>`);
+
+                        $('#spn_last_bid').html('<span class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span>' + response.bigger_bid);
+                        var currency = '{{!is_null($auction->currency) ? $auction->currency->symbol : ''}}';
+                        aa = (parseInt(response.bigger_bid) + parseInt('{{$auction->bid_increment_dif}}'))
+                        $("#cost").html(currency + ' ' + aa);
+                        $("#{{ fake_field('amount') }}").val(aa);
+                        
 
                         let minimumBid = response.bigger_bid + response.bid_increment_dif;
 
@@ -857,11 +869,11 @@
                                     '</li>';
                                 $('#ul_bid').append(row);
                                 
-                                let row = '<li>' +
+                                let row_msj = '<li>' +
                                     '<span class="color-default fz-16">' + strInterval[cntInter - 1] + '</span>' +
                                     '<span class="fz-12"></span>' +
                                     '</li>';
-                                $('#ul_bid').append(row);
+                                $('#ul_bid').append(row_msj);
                             }
 
                         }, 10000)
