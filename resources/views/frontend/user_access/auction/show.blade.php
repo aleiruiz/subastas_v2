@@ -117,7 +117,7 @@
                     <!-- End: property title -->
                 </div>
 
-                <div class="col-md-12 col-lg-5">
+                <div class="col-md-12 col-lg -5">
 
                     <div class="s-box">
                          
@@ -808,6 +808,10 @@
                 }
             }
 
+            var cntInter = 0;
+            strInterval = ["¡A la una!", "¡A las dos!"];
+            var timerId  = null;
+
             Echo.channel('auction-bid')
                 .listen('BroadcastAuctionBid', (response) => {
                     if (response) {
@@ -839,6 +843,29 @@
 
                         $('#minimum-bid').html(`<span class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> ${minimumBid}</span>`);
 
+
+                        timerInter = setInterval(function(){
+                            cntInter++;
+                            
+                            if(cntInter == 3){
+                                cntInter = 0;
+                                clearInterval(timerInter);
+                            }else{
+                                let row = '<li>' +
+                                    '<span class="color-default fz-16">Se lo llevan por ' + response.amount + '</span>' +
+                                    '<span class="fz-12"></span>' +
+                                    '</li>';
+                                $('#ul_bid').append(row);
+                                
+                                let row = '<li>' +
+                                    '<span class="color-default fz-16">' + strInterval[cntInter - 1] + '</span>' +
+                                    '<span class="fz-12"></span>' +
+                                    '</li>';
+                                $('#ul_bid').append(row);
+                            }
+
+                        }, 10000)
+                        $("#")
                     }
                 });
         });
