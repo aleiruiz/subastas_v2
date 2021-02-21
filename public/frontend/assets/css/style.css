@@ -1,11 +1,254 @@
 /* Personal Style By Leo */
 
+body > div.p-b-100 > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > label{
+    display: block;
+    font-weight: 600;
+    color: #343a40;
+}
+
+#app > div > div > div.row > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > label{
+    display: block;
+    font-weight: 600;
+    color: #343a40;
+}
+
+#bidForm > div.row > div.col-md-12.col-lg-4.order-lg-0 > div > ul > label > img{
+    width: 30px !important;
+    height: 30px !important;
+    margin-right: 7px;
+}
+
+#spn_last_bid{
+    border: 1px solid rgba(63, 63, 63, 0.1)!important
+}
+
+#bidForm > div.row > div.col-md-12.col-lg-4.order-lg-0 > div > ul > label{
+    background: #fff;
+    padding: 10px;
+    border-radius: 7px;
+    -webkit-box-shadow: 0px 4px 8px 0px rgb(112 112 112);
+    -moz-box-shadow: 0px 4px 8px 0px rgba(112,112,112,1);
+    box-shadow: 0px 3px 6px 0px rgb(112 112 112);
+    margin-bottom: 15px;
+}
+
+.custom-radio-checkbox__show--radio {
+    background-image: url("https://subastas.xweb.live/images/uncheck.png");
+}
+
+#bidForm > div.row > div.col-md-12.col-lg-4.order-lg-0 > div > ul > label > input {
+    display: none;
+}
+
+.custom-radio-checkbox__show {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    vertical-align: middle;
+}
+
+.custom-radio-checkbox__input:checked + .custom-radio-checkbox__show--radio {
+    background-image: url("https://subastas.xweb.live/images/check.png");
+}
+
+#bidForm > div.row > div.col-md-12.col-lg-4.order-lg-0 > hr{
+    margin-top: 8px !important;
+    border-top: 1px solid rgba(31, 31, 31, 0.7) !important;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div.col-md-12.col-lg.-\35  > div > ul{
+    margin-top: 0px !important;
+}
+
+#offer{
+    border-radius: 50px;
+    background: rgb(249,113,16) !important;
+    background: linear-gradient(0deg, rgba(249,113,16,1) 0%, rgba(255,0,0,1) 100%) !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 20px 30px;
+    text-transform: capitalize;
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    letter-spacing: 1px;
+    font-size: 15px !important;
+    -webkit-box-shadow: 0px 4px 5px 0px rgba(112,112,112,1);
+   -moz-box-shadow: 0px 4px 5px 0px rgba(112,112,112,1);
+    box-shadow: 0px 4px 5px 0px rgba(112,112,112,1);
+}
+
+#bidForm > div.row > div.col-md-12.col-lg-8.order-lg-0{
+    margin: auto;
+}
+
+#bidForm > div.row > div.col-md-12.col-lg-4.order-lg-0 > label > img{
+    width: 26px;
+    margin-left: 10px;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(8) > div > div{
+    border: none !important;
+    padding: 0px !important;
+}
+
+#bidForm > div.row{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+#bidForm > div.row > div.col-md-12.col-lg-4.order-lg-0{
+    background: #f2f2f2;
+}
+
+#bidForm > div.row > div.col-md-12.col-lg-4.order-lg-0 > label{
+    margin-bottom: 0px !important;
+    margin-top: 20px;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #686161;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+#offer:hover{
+    background: rgb(249,113,16) !important;
+    background: linear-gradient(0deg, rgba(249,113,16,1) 0%, rgba(255,0,0,1) 100%) !important;
+    color: #fff !important;
+}
+
+#spn_last_bid{
+    border-radius: 7px;
+    color: #fff !important;
+    font-size: 25px !important;
+    padding: 15px 15px !important;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div.col-md-12.col-lg.-\35  > div > ul > li > span:nth-child(1){
+    font-size: 25px;
+    color: #fff;
+    font-weight: 200;
+    margin-right: 10px;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div.col-md-12.col-lg.-\35 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(5){
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(3){
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(6){
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(8){
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(8) > div{
+    margin-top: 0px !important;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div.col-12.mb-4{
+    display: none;
+}
+
+#app > div.p-b-100.p-t-80{
+    padding-top: 0px !important;
+}
+
+#cost{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div.col-md-12.col-lg.-\35  > div{
+    background: #FB4A0B;
+    padding: 15px !important;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div.col-md-12.col-lg.-\35  > div > ul > li{
+    background: #FB4A0B;
+    border: 1px solid #fb4b0b80;
+    padding: 0 !important;
+    justify-content: center !important;
+}
+
 #app > div.p-b-100.p-t-80 > div > div > div:nth-child(3) > div{
-    font-size: 40px;
-    color: #043C78;
+    font-size: 40px !important;
+    color: #043C78 !important;
     text-transform: uppercase;
     FONT-WEIGHT: 600;
     padding: 20px;
+}
+
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(6) > div:nth-child(2) > div{
+    background: #044186;
+    border: none !important;
+    border-radius: 0px !important;
+}
+
+#ul_bid > li{
+    background: #fff;
+    border-radius: 50px;
+    text-align: center;
+    padding: 10px 0px;
+    margin-bottom: 30px;
+}
+
+#ul_bid > li > span.fz-12{
+    color: #6c757d!important;
+}
+
+#ul_bid > li > span.usuario-batalla{
+    text-transform: uppercase;
+    color: #6c757d!important;
+}
+
+
+#ul_bid > li > span.fz-12{
+    color: #6c757d!important;
+}
+
+#ul_bid > li > span.gris-color{
+    color: #6c757d!important;
+}
+
+#ul_bid > li > span.color-default.fz-16{
+    font-weight: 900;
+    color: #343a40 !important;
+}
+
+#ul_bid > li > span.gris-color{
+    color: #6c757d!important;
+}
+
+#ul_bid > li > span.color-default.fz-16{
+    font-weight: 900;
+    color: #343a40 !important;
+}
+
+
+
+
+
+
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(6){
+    background: #044186;
 }
 
 #nav-tab > a.nav-item.text-muted.nav-link.active{
@@ -200,9 +443,9 @@ body > div.main-sidenav.showbar > div.nav-card > div{
     margin-bottom: 25px !important;
 }
 
-#profileTabContent > div > div > div > div > div.card-header{
-    background: rgb(0,65,125);
-    background: linear-gradient(90deg, rgba(0,65,125,1) 0%, rgba(32,18,77,1) 100%);
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(2){
+    padding-left: 0px !important;
+    padding-right: 0px !important;
 }
 
 #profileTab > li > a{
@@ -411,12 +654,14 @@ body > div.main-sidenav.showbar > div.nav-card > div > div > div > div > h6{
 }
 
 #app > div.p-b-100.p-t-80 > div > div > div:nth-child(2) > div > div > div{
-    background: #fb4a0b;
+    background: rgb(0,65,125);
+    background: linear-gradient(90deg, rgba(0,65,125,1) 0%, rgba(32,18,77,1) 100%);
     margin-left: 10px;
 }
 
 #app > div.p-b-100.p-t-80 > div > div > div:nth-child(2) > div > div > div > div.col-lg-4.col-md-12 > div > h4{
     font-weight: 300 !important;
+    margin: auto;
 }
 
 #app > div.p-b-100.p-t-80 > div > div > div.col-12.mb-4 > nav{
@@ -434,12 +679,17 @@ body > div.main-sidenav.showbar > div.nav-card > div > div > div > div > h6{
 }
 
 #app > div.p-b-100.p-t-80 > div > div > div:nth-child(2) > div > div{
-    background: #fb4a0b;
+    background: rgb(0,65,125);
+    background: linear-gradient(90deg, rgba(0,65,125,1) 0%, rgba(32,18,77,1) 100%);
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(2) > div > div > div > div.col-lg-4.col-md-12 > div > span{
+    background: #FB4A0B !important;
 }
 
 #app > div.p-b-100.p-t-80 > div > div > div > div > div > div > div.col-lg-4.col-md-12 > div > div{
     display: inline-block;
-
+    color: #20A90B !important;
     padding: 5px;
     margin-top: 10px;
 }
@@ -450,7 +700,7 @@ body > div.main-sidenav.showbar > div.nav-card > div > div > div > div > h6{
 }
 
 #app > div > div > div > div.col-md-12.col-lg-5.order-lg-0 > div.s-box.mb-3{
-    background: #Fff !important;
+    background: #F2f2f2 !important;
     margin-bottom: 0px !important;
     padding: 5px;
     display: flex;
@@ -462,6 +712,7 @@ body > div.main-sidenav.showbar > div.nav-card > div > div > div > div > h6{
     color: #044186;
     font-weight: 300;
     text-transform: capitalize;
+    letter-spacing: 1px;
 }
 
 #app > div.p-b-100.p-t-80 > div > div > div.col-md-12.col-lg-5.order-lg-0 > div.s-box.mb-3 > div.s-box-header{
@@ -2781,7 +3032,6 @@ body > div.p-b-100 > section > div > div.m-b-50.position-relative > div.fz-26.fo
 .property-title .property-area {
     color: #fff;
     padding-top: 10px;
-    background: #fb4a0b;
     padding-left: 15px;
 }
 .property-title .property-area i {
@@ -2792,15 +3042,21 @@ body > div.p-b-100 > section > div > div.m-b-50.position-relative > div.fz-26.fo
 .property-title .property-price {
     padding: 18px;
     font-size: 26px;
-    color: #fb4a0b;
+    color: #fff;
+    text-transform: uppercase;
+    border: 1px solid rgba(0, 65, 125, 0.5);
     font-weight: 300;
     border-radius: 15px;
-    background: #fff; }
+    display: flex;
+    background: transparent; }
 .property-title .property-price span {
     font-weight: 300;
-    font-size: 20px; }
+    height: 22px;
+    margin: auto;
+}
 .property-title .property-price .for-badge {
-    background: #ff214f;
+    background: rgb(0,65,125);
+    background: linear-gradient(90deg, rgba(0,65,125,1) 0%, rgba(32,18,77,1) 100%);
     padding: 5px 15px;
     border-radius: 15px;
     color: #fff !important;
@@ -2809,7 +3065,6 @@ body > div.p-b-100 > section > div > div.m-b-50.position-relative > div.fz-26.fo
     text-transform: capitalize; }
 
 .property-title .property-overview {
-    background: #fb4a0b;
     margin-top: 0 !important;
     padding-top: 10px;
     padding-left: 15px;
@@ -3655,6 +3910,9 @@ div.centralize-content {
         display: flex;
         justify-content: center;
     }
+    #app > div.p-b-100.p-t-80 > div > div > div.col-md-12.col-lg.-\35  > div > ul > li > span:nth-child(1){
+        font-size: 15px;
+    }
 }
 
 @media only screen and (min-width: 1000px) {
@@ -3699,6 +3957,11 @@ div.centralize-content {
         display: none;
     }
 
+    #bidForm > div.row > div.col-md-12.col-lg-8.order-lg-0{
+
+        margin-top: 15px;
+    }
+    
     body > footer > div > div > div > div.footer-border > div > div > div{
         border-right: none !important;
     }
