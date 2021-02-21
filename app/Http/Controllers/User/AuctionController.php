@@ -85,6 +85,38 @@ class AuctionController extends Controller
 
     public function show($id)
     {
+        $auction_ = app(AuctionService::class)->auctionDetails($id);
+
+        if ($auction_['auction']->status == AUCTION_STATUS_RUNNING) {
+            $last_bid = app(BidInterface::class)->getFirstByConditions(['auction_id' => $id], null, ['id' =>'desc']);
+            if (!is_null($last_bid)) {
+                $time_ = Carbon::parse($last_bid->created_at)
+                            ->addSeconds(((TIME_INTERVAL_AUCTION / 1000)) * 3)
+                            ->format('H:i:s');
+                if ($time_ < now()->format('H:i:s')) {
+                    $parameter['is_winner'] = AUCTION_WINNER_STATUS_WIN;
+                    $changeAuctionStatus['status'] = AUCTION_STATUS_COMPLETED;
+
+                    $updateAsWinner = app(BidInterface::class)->update($parameter, $last_bid->id);
+                    $completeAuction = app(AuctionInterface::class)->update($changeAuctionStatus, $id);
+
+                    if ($updateAsWinner && $completeAuction) {
+                        $date = now();
+                        $route = route('shipping-description.create', ['id' => $id]);
+                        $notificationAttributes = [
+                            'user_id' => $updateAsWinner->user_id,
+                            'data' => __('You just won the :auction, please submit your address', ['auction' => '<strong>' . $auction_['auction']->title . '</strong>']),
+                            'link' => $route,
+                            'updated_at' => $date,
+                            'created_at' => $date,
+                        ];
+
+                        app(NotificationInterface::class)->insert($notificationAttributes);
+                    }
+                }
+            }
+        }
+        //dd($auction_['isWinner']->user);
         $details = app(AuctionService::class)->auctionDetails($id);
         return view('frontend.user_access.auction.show', $details);
     }

@@ -123,6 +123,7 @@
 </script>
 
 <!-- REQUIRED SCRIPTS -->
+@yield('script_add_timer')
 @yield('script')
 </body>
 </html>

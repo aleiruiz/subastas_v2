@@ -244,7 +244,29 @@
 
                     <div class="s-box">
                     @auth()
+                        @if($auction->status == AUCTION_STATUS_RUNNING)
                         @include('layouts.includes.bidding_list')
+                        <div id="div_wait" style="height: 400px; display:none;">
+                            <center><label>Procesando</label>
+                            <label>Espere un momento</label></center>
+                            <img />
+                        </div>
+                        @else
+                        <div style="height:400px;">
+                            <center>
+                                <img src="{{asset('images/has-ofertado.svg')}}" alt=""><br>
+                                <label style="color:white;font-size:25px;">
+                                    @if($isWinner->user_id == auth()->id())
+                                        Estimado {{$isWinner->user->username}} eres el
+                                    @else
+                                        El usuario {{$isWinner->user->username}} fue el
+                                    @endif
+                                    <br><strong>mejor postor de la subasta<strong><br>con una oferta de<br><strong>{{!is_null($auction->currency) ? $auction->currency->symbol : ''}} {{$isWinner->amount}}<strong>
+                                <label>
+                            </center>
+                            
+                        </div>
+                        @endif
                     @endauth
                     </div>
 
@@ -403,7 +425,11 @@
                 <div class="col-md-12 col-lg-5 order-lg-0">
                 @auth
                     @if($auction->status == AUCTION_STATUS_RUNNING)
-                        <div class="list-group mt-3">
+                        <div class="list-group mt-3" id="div_info_bid" style="display:none;">
+                            <img/>
+                            <center><label>Gracias por participar<br>En breve publicaremos el resultado de esta oferta.</label></center>
+                        </div>
+                        <div class="list-group mt-3" id="div_form_bid">
                             <div class="list-group-item py-4">
                                 {{ Form::open(['route'=>['bid.store', $auctionId],'class'=>'form-horizontal cvalidate','id'=>'bidForm']) }}
                                 @method('post')
@@ -413,7 +439,7 @@
                                 <div class="form-group" style="display:none;">
                                     <span class="d-flex justify-content-center">
                                         <span class="input-number-decrement">–</span>
-                                        {{ Form::text(fake_field('amount'), ($lastBid->amount + $auction->bid_increment_dif), ['class' => 'input-number color-666', 'id' => fake_field('amount'), 'min'=>'0']) }}
+                                        {{ Form::text(fake_field('amount'), ((!is_null($lastBid) ? $lastBid->amount : $auction->bid_initial_price) + $auction->bid_increment_dif), ['class' => 'input-number color-666', 'id' => fake_field('amount'), 'min'=>'0']) }}
                                         <span class="input-number-increment">+</span>
                                     </span>
                                     <span class="invalid-feedback cval-error d-block" data-cval-error="{{ fake_field('amount') }}">{{ $errors->first('amount') }}</span>
@@ -452,7 +478,7 @@
                                     <div class="col-md-12 col-lg-8 order-lg-0">
                                         <a class="btn custom-btn w-100 float-right has-spinner" id="offer">
                                             {{__('Bid Your Amount')}}
-                                            <br><span id="cost">{{ ((!is_null($auction->currency) ? $auction->currency->symbol : '') . ' ' . ($lastBid->amount + $auction->bid_increment_dif))}}</span>
+                                            <br><span id="cost">{{ ((!is_null($auction->currency) ? $auction->currency->symbol : '') . ' ' . ((!is_null($lastBid) ? $lastBid->amount : $auction->bid_initial_price) + $auction->bid_increment_dif))}}</span>
                                         </a>
                                         
                                     </div>
@@ -707,7 +733,7 @@
     <script type="text/javascript">
         
         $(document).ready(function () {
-            var last_amount = '{{$lastBid->amount}}';
+            var last_amount = '{{(!is_null($lastBid) ? $lastBid->amount : $auction->bid_initial_price)}}';
             $("input[name='bid_increment'").on('click', function(){
                 var currency = '{{!is_null($auction->currency) ? $auction->currency->symbol : ''}}';
                 $("#cost").html(currency + ' ' + (parseInt(last_amount) + parseInt($(this).data('val'))));
@@ -817,6 +843,9 @@
             Echo.channel('auction-bid')
                 .listen('BroadcastAuctionBid', (response) => {
                     if (response) {
+
+                        clearInterval(timer_glob);
+
                         let row = '<li>';
                         last_amount = response.amount;
 
@@ -861,7 +890,16 @@
                             
                             if(cntInter == 3){
                                 cntInter = 0;
+
+                                $("#div_bidding_list").css("display","none");
+                                $("#div_form_bid").css("display","none");
+                                $("#div_info_bid").css("display","block");
+                                $("#div_wait").css("display","block");
+                                
                                 clearInterval(timerInter);
+                                setTimeout(function(){
+                                    window.location.reload();
+                                }, 2000);
                             }else{
                                 let row = '<li>' +
                                     '<span class="color-default fz-16">Se lo llevan por ' + response.amount + '</span>' +
@@ -876,8 +914,7 @@
                                 $('#ul_bid').append(row_msj);
                             }
 
-                        }, 10000)
-                        $("#")
+                        }, {{TIME_INTERVAL_AUCTION}});
                     }
                 });
         });
