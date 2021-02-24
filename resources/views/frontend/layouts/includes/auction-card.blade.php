@@ -8,7 +8,14 @@
                             <span class="auction-badge">
                                 <span class="badge {{config('commonconfig.auction_type.' . ( !is_null($auction) ? $auction->auction_type : '' ) . '.color_class')}}">{{ config('commonconfig.auction_type.' . ( !is_null($auction) ? $auction->auction_type : '' ) . '.text')}}</span>
                             </span>
-                <span class="fz-12 color-999 card-time d-block">PUBLICADA {{ !is_null($auction->created_at) ?$auction->created_at->diffForHumans() : ''}}</span>
+                <!-- <span class="fz-12 color-999 card-time d-block">PUBLICADA {{ !is_null($auction->created_at) ?$auction->created_at->diffForHumans() : ''}}</span> -->
+
+                <span class="fz-12 color-999 card-time d-block">
+                    <span class="sub-text text-uppercase">{{__('Start At')}}</span>
+                    <span class="main-text card-money d-block">
+                        <span class="fz-14 font-weight-normal"> {{$auction->currency != null ? $auction->currency->symbol : ''}}</span> {{$auction->bid_initial_price}}
+                    </span>
+                </span>
                 <figure>
 
                     <!-- Start: card image -->
@@ -45,13 +52,14 @@
 
                     <!-- Start: countdown -->
                     <div class="count-down">
+                        <a href="{{route('auction.show', $auction->id)}}">
                         @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
                             <div class="color-999 d-inline-block fz-12">{{'Deseo Participar'}}</div>
                         @else
                             <div class="color-999 d-inline-block fz-12">{{'Empezó:'}}</div>
                             <div class="color-999 d-inline-block fz-12">{{\Carbon\Carbon::parse($auction->starting_date)->diffForHumans()}}</div>
                         @endif
-
+                        </a>
                                 <!-- <div class="color-999 d-inline-block fz-12">{{\Carbon\Carbon::parse($auction->starting_date)->diffForHumans()}}</div> -->
                     </div>
                     <!-- End: countdown -->
@@ -60,22 +68,22 @@
                     <div class="item-details d-block">
 
                         <ul class="nav nav-pills nav-fill">
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <span class="main-text card-money d-block">
                                    <span class="fz-14 font-weight-normal"> {{$auction->currency != null ? $auction->currency->symbol : ''}}</span> {{$auction->bid_initial_price}}
                                 </span>
                                 <span class="sub-text text-uppercase">{{__('Start At')}}</span>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <span class="main-text d-block">
                                     {{shipping_type($auction->shipping_type)}}
                                 </span>
                                 <span class="sub-text text-uppercase">{{__('Shipping')}}</span>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <span class="main-text d-block">{{$auction->is_multiple_bid_allowed != null ? is_multiple_bid_allowed($auction->is_multiple_bid_allowed) : '' }}</span>
                                 <span class="sub-text text-uppercase">{{__('Multi Bid')}}</span>
-                            </li>
+                            </li> -->
                         </ul>
 
                     </div>

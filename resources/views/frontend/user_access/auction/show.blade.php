@@ -424,7 +424,7 @@
 
                 <div class="col-md-12 col-lg-5 order-lg-0">
                 @auth
-                    @if($auction->status == AUCTION_STATUS_RUNNING)
+                    @if($auction->status == AUCTION_STATUS_RUNNING && \Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
                         <div class="list-group mt-3" id="div_info_bid" style="display:none;">
                             <img/>
                             <center><label>Gracias por participar<br>En breve publicaremos el resultado de esta oferta.</label></center>
