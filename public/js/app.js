@@ -55710,6 +55710,7 @@ var uuid = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
+indChangeEst = false;
 function getLocalTime(offset) {
   var d = new Date();
   localTime = d.getTime();
@@ -55785,11 +55786,16 @@ Vue.component("Timer", {
         this.statusText = this.wordString.status.expired;
         clearInterval(this.interval);
       } else if (distance < 0 && passTime > 0) {
+        if(indChangeEst){
+          indChangeEst=false;
+          window.location.reload();
+        }
         this.calcTime(passTime);
         this.message = this.wordString.running;
         this.statusType = "running";
         this.statusText = this.wordString.status.running;
       } else if (distance > 0 && passTime > 0) {
+        indChangeEst = true;
         this.calcTime(distance);
         this.message = this.wordString.upcoming;
         this.statusType = "upcoming";
