@@ -204,7 +204,7 @@
                             <?php
                             $now = \Carbon\Carbon::now();
                             $start = \Carbon\Carbon::parse($auction->starting_date);
-                            $end = \Carbon\Carbon::parse($auction->ending_date);
+                            $end = \Carbon\Carbon::parse($auction->ending_date)->addHours(10);
                              ?>
                             @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
                                 <span> Termina </span>
@@ -301,13 +301,39 @@
                                         class="badge badge-pill {{config('commonconfig.is_multi_bid_allowed.' . ( !is_null($auction) ? $auction->is_multiple_bid_allowed : ACTIVE_STATUS_ACTIVE ) . '.color_class')}}">{{ config('commonconfig.is_multi_bid_allowed.' . ( !is_null($auction) ? $auction->is_multiple_bid_allowed : ACTIVE_STATUS_ACTIVE ) . '.text')}}</span>
                                 </li>
                             </ul> -->
+                            
+                            <!-- <div class="col-md-6">
+                                <span>
+                                    Conectados
+                                </span>
+                                <span class="badge badge-primary badge-pill" id="conectados">1</span>
+                            </div> -->
+                            <div class="col-md-6">
+                                <span>
+                                    {{__('Total Bids :')}}
+                                </span>
+                                <span class="badge badge-primary badge-pill" id="count-bid">{{$auction->bids->count()}}</span>
+                            </div>
+                            
                             <ul class="list-group mt-3">
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                 <li class="list-group-item d-flex justify-content-between align-items-center">
+                                     <span>
+                                        Precio Base:
+                                     </span>
+                                     <span class="badge border color-666 badge-pill" id="spn_last_bid">
+                                        <span class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> 
+                                        {{$auction->bid_initial_price}}
+                                    </span>
+                                 </li>
+                             </ul>
+                            <!-- <ul class="list-group mt-3"> -->
+                                <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <span>
                                         {{__('Total Bids :')}}
                                     </span>
                                     <span class="badge badge-primary badge-pill" id="count-bid">{{$auction->bids->count()}}</span>
-                                </li>
+                                </li> -->
+                                <!-- 
                                 @if($auction->auction_type != AUCTION_TYPE_UNIQUE_BIDDER && $auction->auction_type != AUCTION_TYPE_VICKREY_AUCTION)
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <span>
@@ -349,8 +375,9 @@
                                         <span
                                             class="badge badge-primary badge-pill"><span class="font-weight-normal"> {{$auction->currency->symbol}}</span><span class="font-weight-normal"> {{$auction->currency->symbol}}</span> {{settings('bidding_fee_on_vickrey_bidder_auction')}}</span>
                                     </li>
-                                @endif
-                                @if(count($auction->bids) > 0 && $auction->auction_type == AUCTION_TYPE_HIGHEST_BIDDER)
+                                @endif 
+                                -->
+                                <!-- @if(count($auction->bids) > 0 && $auction->auction_type == AUCTION_TYPE_HIGHEST_BIDDER)
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <span>
                                             {{__('Highest Bid Amount:')}}
@@ -358,11 +385,11 @@
                                         <span
                                             class="badge badge-primary badge-pill" id="max-bid"><span class="font-weight-normal"> {{$auction->currency->symbol}}</span> {{$auction->bids->max('amount')}}</span>
                                     </li>
-                                @endif
-                            </ul>
+                                @endif -->
+                            <!-- </ul> -->
                             
 
-                            @if(count($auction->bids) > 0 && $auction->auction_type == AUCTION_TYPE_HIGHEST_BIDDER)
+                            <!-- @if(count($auction->bids) > 0 && $auction->auction_type == AUCTION_TYPE_HIGHEST_BIDDER)
                                 <ul class="list-group mt-3">
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <span class="font-weight-bold color-666">
@@ -413,7 +440,7 @@
                                         <span class="badge bg-warning text-white badge-pill"> <span class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span>{{$auction->bid_initial_price}}</span>
                                     </li>
                                 </ul>
-                            @endif
+                            @endif -->
 
                         </div>
                         <!-- End: item list -->

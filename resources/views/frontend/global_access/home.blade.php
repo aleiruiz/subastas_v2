@@ -16,10 +16,11 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/owl.theme.default.min.css') }}">
 @endsection
 @section('script')
-    <script src="{{asset('vendor/owl-carousel/owl.carousel.min.js')}}"></script>
+    <!-- <script src="{{asset('vendor/owl-carousel/owl.carousel.min.js')}}"></script> -->
     <script>
         $(document).ready(function () {
-            $('.carousel').carousel();
+            //$('.carousel').carousel();
+            //$('#carouselExampleIndicators').carousel();
         });
         new Vue({
             el:'#app'

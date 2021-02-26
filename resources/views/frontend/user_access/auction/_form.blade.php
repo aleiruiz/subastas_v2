@@ -80,7 +80,7 @@
                                 <!-- End: starting date -->
 
                             </div>
-                            <div class="col-6">
+                            <div class="col-6" style="display:none;">
                                 <!-- Start: ending date -->
                                 {{ Form::text(fake_field('ending_date'), old('ending_date'), ['class'=> 'form-control datepicker', 'id' => fake_field('ending_date'),'data-cval-name' => 'The ending_date field','data-cval-rules' => 'required|decimal', 'placeholder' => __('Ending Date')]) }}
                                 <span class="invalid-feedback cval-error" data-cval-error="{{ fake_field('ending_date') }}">{{ $errors->first('ending_date') }}</span>
@@ -159,7 +159,7 @@
                 <!-- End: basic information -->
 
                 <!-- Start: basic information -->
-                <div class="form-group form-row mt-4">
+                <div class="form-group form-row mt-4" style="display:none;">
                     <label class="col-lg-2 col-form-label text-right pr-3 color-999" for="{{ fake_field('content') }}">{{('Multiple Bid :')}}</label>
 
                     <div class="col-md-10">
