@@ -119,9 +119,10 @@
 
                 <div class="col-md-12 col-lg -5">
 
-                    <div class="s-box">
-                         
+                    <div class="s-box" style="height: 100%;">
+                         @php ($indLastBid = false)
                          @if(!is_null($lastBid))
+                            @php ($indLastBid = true)
                              <ul class="list-group mt-3">
                                  <li class="list-group-item d-flex justify-content-between align-items-center">
                                      <span>
@@ -134,7 +135,9 @@
                                     </span>
                                  </li>
                              </ul>
-                         @endif
+                        @else
+
+                        @endif
                          <!-- @auth()
                              @if(!is_null($userLastBid))
                                  <ul class="list-group mt-3">
@@ -194,17 +197,19 @@
 
                 <!-- Start: bidding section -->
                 <div class="col-md-12 col-lg-5 order-lg-0">
+                    @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
 
 
                     <div class="s-box mb-3">
+                        @if($indLastBid)
                         <!-- Start: header -->
-
                         <div class="s-box-header">
-                        <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
+                            <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
                             <?php
                             $now = \Carbon\Carbon::now();
                             $start = \Carbon\Carbon::parse($auction->starting_date);
                             $end = \Carbon\Carbon::parse($auction->ending_date)->addHours(10);
+                            //print_r($start);
                              ?>
                             @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
                                 <span> Termina </span>
@@ -239,6 +244,8 @@
                             </div>
                         </div>
                         <!-- End: countdown -->
+
+                        @endif
                     </div>
 
 
@@ -261,7 +268,7 @@
                                     @else
                                         El usuario {{$isWinner->user->username}} fue el
                                     @endif
-                                    <br><strong>mejor postor de la subasta<strong><br>con una oferta de<br><strong>{{!is_null($auction->currency) ? $auction->currency->symbol : ''}} {{$isWinner->amount}}<strong>
+                                    <br><strong>mejor postor de la subasta</strong><br>con una oferta de<br><strong>{{!is_null($auction->currency) ? $auction->currency->symbol : ''}} {{$isWinner->amount}}</strong>
                                 <label>
                             </center>
                             
@@ -269,7 +276,64 @@
                         @endif
                     @endauth
                     </div>
+                    @else
 
+                    <div class="s-box">
+                        <div id="div_wait" style="height: 400px;">
+                            <center>
+                                <label>¡Bienvenido al proceso en vivo!</label>
+                                <br>
+                                <label>Recibiendo<br>participantes</label>
+                                <br>
+                                <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
+                                
+                                <div class="s-box-header">
+                                
+                                    <?php
+                                    $now = \Carbon\Carbon::now();
+                                    $start = \Carbon\Carbon::parse($auction->starting_date);
+                                    $end = \Carbon\Carbon::parse($auction->ending_date)->addHours(10);
+                                    //print_r($start);
+                                    ?>
+                                    @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
+                                        <span> Termina </span>
+                                    @else
+                                        <span> Inicia </span>
+                                    @endif
+                                    {{__('In')}}
+                                </div>
+                                <!-- End: header -->
+                                <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
+                                <!-- Start: countdown -->
+                                <div class="count-down">
+                                    <div class="timer d-inline-block">
+                                        <Timer
+                                            starttime="{{$start}}"
+                                            endtime="{{$end}}"
+                                            type='auction'
+                                            trans='{
+                                                        "day":"D",
+                                                        "hours":"H",
+                                                        "minutes":"M",
+                                                        "seconds":"S",
+                                                        "expired":"Este evento a expirado.",
+                                                        "running":"Este evento esta en progreso.",
+                                                        "upcoming":"Este evento aun no a empezado.",
+                                                        "status": {
+                                                                "expired":"Expirado",
+                                                                "running":"En Progreso",
+                                                                "upcoming":"Ya Viene"
+                                                            }
+                                                        }'
+                                        ></Timer>
+                                    </div>
+                                </div>
+                            </center>
+                            <img />
+                        </div>  
+                    </div>
+
+                    @endif
                 </div>
                 <!-- End: bidding section -->
                 <div class="col-md-12 col-lg-7 order-lg-0">
@@ -320,7 +384,7 @@
                                      <span>
                                         Precio Base:
                                      </span>
-                                     <span class="badge border color-666 badge-pill" id="spn_last_bid">
+                                     <span class="badge border color-666 badge-pill" id="spn_initial_price">
                                         <span class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> 
                                         {{$auction->bid_initial_price}}
                                     </span>
@@ -864,13 +928,16 @@
             }
 
             var cntInter = 0;
-            strInterval = ["¡A la una!", "¡A las dos!"];
+            strInterval = ["¡A la una!", "¡A las dos!", "¡A las tres!"];
             var timerId  = null;
 
             Echo.channel('auction-bid')
                 .listen('BroadcastAuctionBid', (response) => {
                     if (response) {
-
+                        if(!{{($indLastBid) ? 'true' : 'false'}}){
+                            window.location.reload();
+                            return;
+                        }
                         clearInterval(timer_glob);
 
                         let row = '<li>';
@@ -915,19 +982,19 @@
                         timerInter = setInterval(function(){
                             cntInter++;
                             
-                            if(cntInter == 3){
-                                cntInter = 0;
+                            // if(cntInter == 3){
+                            //     cntInter = 0;
 
-                                $("#div_bidding_list").css("display","none");
-                                $("#div_form_bid").css("display","none");
-                                $("#div_info_bid").css("display","block");
-                                $("#div_wait").css("display","block");
+                            //     $("#div_bidding_list").css("display","none");
+                            //     $("#div_form_bid").css("display","none");
+                            //     $("#div_info_bid").css("display","block");
+                            //     $("#div_wait").css("display","block");
                                 
-                                clearInterval(timerInter);
-                                setTimeout(function(){
-                                    window.location.reload();
-                                }, 2000);
-                            }else{
+                            //     clearInterval(timerInter);
+                            //     setTimeout(function(){
+                            //         window.location.reload();
+                            //     }, 2000);
+                            // }else{
                                 let row = '<li>' +
                                     '<span class="color-default fz-16">Se lo llevan por ' + response.amount + '</span>' +
                                     '<span class="fz-12"></span>' +
@@ -939,6 +1006,23 @@
                                     '<span class="fz-12"></span>' +
                                     '</li>';
                                 $('#ul_bid').append(row_msj);
+                            //}
+
+                            
+                            if(cntInter == 3){
+                                cntInter = 0;
+
+                                clearInterval(timer_glob);
+                                setTimeout(function(){
+                                    $("#div_bidding_list").css("display","none");
+                                    $("#div_form_bid").css("display","none");
+                                    $("#div_info_bid").css("display","block");
+                                    $("#div_wait").css("display","block");
+
+                                    // setTimeout(function(){
+                                    //     window.location.reload();
+                                    // }, 5000);
+                                }, 5000);
                             }
 
                         }, {{TIME_INTERVAL_AUCTION}});
