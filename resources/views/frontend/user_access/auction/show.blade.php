@@ -1026,10 +1026,10 @@
 
                                 clearInterval(timer_glob);
                                 setTimeout(function(){
-                                    $("#div_bidding_list").css("display","none");
-                                    $("#div_form_bid").css("display","none");
-                                    $("#div_info_bid").css("display","block");
-                                    $("#div_wait").css("display","block");
+                                    // $("#div_bidding_list").css("display","none");
+                                    // $("#div_form_bid").css("display","none");
+                                    // $("#div_info_bid").css("display","block");
+                                    // $("#div_wait").css("display","block");
 
                                     // setTimeout(function(){
                                     //     window.location.reload();
