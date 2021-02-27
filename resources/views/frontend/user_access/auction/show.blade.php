@@ -271,7 +271,7 @@
                         @else
                         <div style="height:400px;">
                             <center>
-                                <img src="{{asset('images/has-ofertado.svg')}}" alt=""><br>
+                            <img src="{{asset('public/icons/has-ofertado-blanco.svg')}}"><br>
                                 <label style="color:white;font-size:25px;">
                                     @if($isWinner->user_id == auth()->id())
                                         Estimado {{$isWinner->user->username}} eres el
@@ -386,7 +386,9 @@
                                 <span>
                                     {{__('Total Bids :')}}
                                 </span>
-                                <span class="badge badge-primary badge-pill" id="count-bid">{{$auction->bids->count()}}</span>
+                                <span class="badge badge-primary badge-pill" id="count-bid">
+                                <img src="{{asset('public/icons/has-ofertado.svg')}}">    
+                                {{$auction->bids->count()}}</span>
                             </div>
                             
                             <ul class="list-group mt-3">

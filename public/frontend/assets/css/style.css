@@ -1,5 +1,176 @@
 /* Personal Style By Leo */
 
+#ya-puedes-enviar{
+    background: #4f76a0 !important;
+    padding: 10px 8px !important;
+}
+
+#ya-puedes-enviar > img{
+    background: #fff;
+    width: 100px;
+    padding: 5px;
+    border-radius: 50px;
+}
+
+#ya-puedes-enviar > strong{
+    color: #fff !important;
+}
+
+#div_wait > center > img:nth-child(5){
+    display: none;
+}
+
+#div_wait > center > label:nth-child(1){
+    color: #f2f2f2;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+#div_wait > center > label:nth-child(3){
+    color: #fff;
+    font-size: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#div_wait > center > label:nth-child(2){
+    color: #f2f2f2;
+    font-size: 20px;
+    margin-top: 10px;
+    text-transform: lowercase;
+}
+
+
+#count-bid{
+    background: none;
+    color: #043c78 !important;
+    font-size: 28px !important;
+    font-weight: 900;
+}
+
+#count-bid > img{
+    width: 50px;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(6) > div:nth-child(2) > div > center > label > p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 900;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(6) > div:nth-child(2) > div > center > label > br:nth-child(3){
+    display: none;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(6) > div:nth-child(2) > div > center > label > strong:nth-child(2){
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(6) > div:nth-child(2) > div > center > label > strong:nth-child(5){
+    margin-top: 20px;
+    display: block;
+    font-size: 40px;
+}
+
+#spn_initial_price{
+    color: #fff !important;
+    border: 2px solid #3c3e40 !important;
+    border-radius: 7px;
+    padding: 10px 20px !important;
+    font-size: 30px !important;
+    margin-left: 20px;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(6) > div:nth-child(2) > div > center > img{
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(6) > div:nth-child(2) > div{
+    height: 400px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(7) > div > div.popular-cat > ul{
+    margin-top: 0px !important;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(7) > div > div.popular-cat > div > span:nth-child(1){
+    margin-bottom: 10px;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(7) > div > div.popular-cat > div{
+    background: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-transform: uppercase;
+    color: #5c5c5c;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 20px;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(7) > div > div.popular-cat > ul > li{
+    border: none !important;
+    display: flex !important;
+    justify-content: center !important;
+    background: #2b2d2f;
+    border-radius: 0px !important;
+    padding: 20px;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(7) > div > div.popular-cat > ul > li > span:nth-child(1){
+    color: #fff;
+    font-size: 23px;
+    font-weight: 300;
+}
+
+#spn_last_bid{
+    font-weight: 900;
+    border: 2px solid #fc6934 !important;
+    font-size: 30px !important;
+    margin-left: 15px;
+}
+
+#spn_last_bid > span{
+    font-weight: 900 !important;
+    font-size: 30px !important;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(7) > div{
+    padding: 0 !important;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(2) > div > div > div > div.col-lg-8.col-md-12 > div:nth-child(1){
+    padding-top: 30px;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(7){
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+#app > div > div > div.row > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.count-down > a > div{
+    color: #fff !important;
+    text-transform: initial;
+    font-weight: 600;
+    font-size: 13px !important;
+}
+
+body > div.p-b-100 > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.count-down > a > div{
+    color: #fff !important;
+    text-transform: initial;
+    font-weight: 600;
+    font-size: 13px !important;
+}
+
 body > div.p-b-100 > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > label{
     display: block;
     font-weight: 600;
@@ -16,10 +187,6 @@ body > div.p-b-100 > section > div > div.row > div > div > div > div.card-body >
     width: 30px !important;
     height: 30px !important;
     margin-right: 7px;
-}
-
-#spn_last_bid{
-    border: 1px solid rgba(63, 63, 63, 0.1)!important
 }
 
 #bidForm > div.row > div.col-md-12.col-lg-4.order-lg-0 > div > ul > label{
@@ -121,12 +288,11 @@ body > div.p-b-100 > section > div > div.row > div > div > div > div.card-body >
 #spn_last_bid{
     border-radius: 7px;
     color: #fff !important;
-    font-size: 25px !important;
     padding: 15px 15px !important;
 }
 
 #app > div.p-b-100.p-t-80 > div > div > div.col-md-12.col-lg.-\35  > div > ul > li > span:nth-child(1){
-    font-size: 25px;
+    font-size: 21px;
     color: #fff;
     font-weight: 200;
     margin-right: 10px;
@@ -762,12 +928,10 @@ body > div.p-b-100 > section > div > div.row > div{
 body > div.p-b-100 > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.count-down{
     background: rgb(27,200,255);
     background: linear-gradient(180deg, rgba(27,200,255,1) 0%, rgba(9,88,161,1) 100%);
-    padding-top: 8px;
-    padding-bottom: 8px;
-    border-radius: 17px;
+    border-radius: 50px;
     display: inline-block;
-    padding-left: 25px;
-    padding-right: 25px;
+    box-shadow: 0px 4px 3px 0px rgb(143 143 143);
+    padding: 15px 40px;
 }
 
 body > div.p-b-100 > section > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.count-down > div.color-999.d-inline-block.fz-12{
@@ -2391,17 +2555,61 @@ input:focus,
     position: absolute;
     bottom: 0px;
     right: 0px;
-    color: #FF6B00 !important;
     background: rgba(247, 247, 247, 0.89);
     padding: 10px 10px;
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+body > div.p-b-100 > section > div > div.row > div > div > div > div.card-image-area.position-relative > span.fz-12.color-999.card-time.d-block > span.sub-text.text-uppercase{
+    font-size: 10px !important;
+    color: #FF6B00;
+    text-transform: initial !important;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+#app > div > div > div.row > div > div.row > div > div > div > div.card-image-area.position-relative > span.fz-12.color-999.card-time.d-block > span.sub-text.text-uppercase{
+    font-size: 10px !important;
+    color: #FF6B00;
+    text-transform: initial !important;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+body > div.p-b-100 > section > div > div.row > div > div > div > div.card-image-area.position-relative > span.fz-12.color-999.card-time.d-block > span.main-text.card-money.d-block{
+    font-weight: 900;
     text-transform: uppercase;
-    font-weight: bold;
+    font-size: 19px !important;
+    color: #FF6B00;
+}
+
+body > div.p-b-100 > section > div > div.row > div > div > div > div.card-image-area.position-relative > span.fz-12.color-999.card-time.d-block > span.main-text.card-money.d-block > span{
+    font-weight: 900 !important;
+    text-transform: uppercase;
+    font-size: 19px !important;
+    color: #FF6B00;
+}
+
+#app > div > div > div.row > div > div.row > div > div > div > div.card-image-area.position-relative > span.fz-12.color-999.card-time.d-block > span.main-text.card-money.d-block{
+    font-weight: 900 !important;
+    text-transform: uppercase;
+    font-size: 19px !important;
+    color: #FF6B00;
+}
+
+#app > div > div > div.row > div > div.row > div > div > div > div.card-image-area.position-relative > span.fz-12.color-999.card-time.d-block > span.main-text.card-money.d-block > span{
+    font-weight: 900 !important;
+    text-transform: uppercase;
+    font-size: 19px !important;
+    color: #FF6B00;
 }
 
 #app > div > div > div.row > div > div.row > div > div > div > div.card-body > div.details-bottom.mt-3 > div.count-down{
     text-align: center;
+    box-shadow: 0px 4px 3px 0px rgb(143 143 143);
+    padding: 15px 40px;
+    border-radius: 50px;
 }
 
 #app > div > div > div.row > div > div.row > div > div > div > div.card-body{

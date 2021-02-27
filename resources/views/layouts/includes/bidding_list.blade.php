@@ -7,8 +7,8 @@
 
         <ul id="ul_bid">
         
-            <li>
-                <img src="{{asset('images/has-ofertado.svg')}}" alt="">
+            <li id="ya-puedes-enviar">
+                <img src="{{asset('images/conteo-logo.svg')}}" alt="">
                 <strong>¡Ya puedes enviar tus propuestas!</strong>
             </li>
 
