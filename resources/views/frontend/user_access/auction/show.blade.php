@@ -136,7 +136,17 @@
                                  </li>
                              </ul>
                         @else
-
+                            <ul class="list-group mt-3">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>
+                                        Precio Base:
+                                     </span>
+                                     <span class="badge border color-666 badge-pill" id="spn_last_bid">
+                                        <span class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> 
+                                        {{$auction->bid_initial_price}}
+                                    </span>
+                                </li>
+                            </ul>
                         @endif
                          <!-- @auth()
                              @if(!is_null($userLastBid))
@@ -208,7 +218,7 @@
                             <?php
                             $now = \Carbon\Carbon::now();
                             $start = \Carbon\Carbon::parse($auction->starting_date);
-                            $end = \Carbon\Carbon::parse($auction->ending_date)->addHours(10);
+                            $end = \Carbon\Carbon::parse($auction->ending_date);
                             //print_r($start);
                              ?>
                             @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))

@@ -96,6 +96,7 @@ class AuctionController extends Controller
                 if ($time_ < now()->format('H:i:s')) {
                     $parameter['is_winner'] = AUCTION_WINNER_STATUS_WIN;
                     $changeAuctionStatus['status'] = AUCTION_STATUS_COMPLETED;
+                    $changeAuctionStatus['ending_date'] = \Carbon\Carbon::now();
 
                     $updateAsWinner = app(BidInterface::class)->update($parameter, $last_bid->id);
                     $completeAuction = app(AuctionInterface::class)->update($changeAuctionStatus, $id);
