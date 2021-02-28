@@ -1,5 +1,5 @@
 <!-- Start: comment form -->
-@component('components.card',['id' => 'div_bidding_list', 'type' => 'info', 'class' => 'card text-right mt-4', 'style' => 'overflow-y: scroll; height: 400px;display: flex;flex-direction: column-reverse;'])
+@component('components.card',['id' => 'div_bidding_list', 'type' => 'info', 'class' => 'card text-right mt-4', 'style' => 'height: 400px;display: flex;flex-direction: column-reverse;'])
 @php($ind = 0)
 @php($mount = 0)
 

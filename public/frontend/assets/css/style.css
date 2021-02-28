@@ -1,7 +1,7 @@
 /* Personal Style By Leo */
 
-#div_bidding_list{
-    height: 100% !important;
+#div_bidding_list > div{
+    overflow: auto;
 }
 
 #ul_bid > li:nth-child(3) > img{
@@ -152,6 +152,7 @@
 
 #ya-puedes-enviar > strong{
     color: #fff !important;
+    font-size: 10px;
 }
 
 #div_wait > center > img:nth-child(5){
@@ -4254,6 +4255,13 @@ div.centralize-content {
     }
     #app > div.p-b-100.p-t-80 > div > div > div.col-md-12.col-lg.-\35  > div > ul > li > span:nth-child(1){
         font-size: 15px;
+    }
+
+    #ya-puedes-enviar > strong{
+        font-size: 8px;
+    }
+    #ya-puedes-enviar > img{
+        width: 100px;
     }
 }
 
