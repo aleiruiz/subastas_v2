@@ -1007,13 +1007,13 @@
                             //         window.location.reload();
                             //     }, 2000);
                             // }else{
-                                let row = '<li>' +
+                                let row = '<li class="li-blue">' +
                                     '<span class="color-default fz-16">Se lo llevan por ' + response.amount + '</span>' +
                                     '<span class="fz-12"></span>' +
                                     '</li>';
                                 $('#ul_bid').append(row);
                                 
-                                let row_msj = '<li>' +
+                                let row_msj = '<li class="li-orange">' +
                                     '<span class="color-default fz-16">' + strInterval[cntInter - 1] + '</span>' +
                                     '<span class="fz-12"></span>' +
                                     '</li>';

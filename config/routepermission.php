@@ -276,6 +276,7 @@ return [
                 ROUTE_GROUP_CREATION_ACCESS => [
                     'auction.create',
                     'auction.store',
+                    'add-count-visits'
                 ],
                 ROUTE_GROUP_MODIFIER_ACCESS => [
                     'update-shipping-status.update',
@@ -428,6 +429,7 @@ return [
     ],
     ROUTE_TYPE_AVOIDABLE_MAINTENANCE => [
         'login',
+        'add-count-visits'
     ],
     ROUTE_TYPE_AVOIDABLE_UNVERIFIED => [
 

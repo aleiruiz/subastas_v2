@@ -26,6 +26,37 @@
 <script>
     $(document).ready(function () {
 
+        $("a[id*='btnAction']").off('click');
+        $("a[id*='btnAction']").on('click', btnAction);
+
+        function btnAction(e){
+            e.preventDefault();
+            var auction_id = $(this).data("id");
+            var hrf = $(this).attr("href");
+
+
+
+
+
+
+
+
+
+            $.ajax({
+                url: "{{route('add-count-visits')}}",
+                headers: {
+                        //'Authorization' : 'Bearer {{ csrf_token() }}',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                data: {auction_id: auction_id,},
+                type: 'POST',
+                async: false,
+                success: function (response) {
+                    
+                }
+            });
+        }
+
         // Login ajax
         $("#loginAlert, #txt_uname_alert, #txt_pwd_alert").hide()
         $("#but_submit").on("click", function (event) {
@@ -37,7 +68,6 @@
 
             var username = $("#txt_uname").val()
             var password = $("#txt_pwd").val()
-
             axios.post("{{route('user-login')}}", {
                 username: username,
                 password: password,

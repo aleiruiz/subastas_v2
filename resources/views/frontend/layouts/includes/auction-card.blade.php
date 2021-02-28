@@ -52,7 +52,7 @@
 
                     <!-- Start: countdown -->
                     <div class="count-down">
-                        <a href="{{route('auction.show', $auction->id)}}">
+                        <a href="{{route('auction.show', $auction->id)}}" data-id="{{$auction->id}}" id="btnAction_{{$auction->id}}">
                         @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
                             <div class="color-999 d-inline-block fz-12">{{'Deseo Participar'}}</div>
                         @else

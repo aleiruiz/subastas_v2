@@ -80,7 +80,7 @@ Route::namespace('User')->group(function () {
 
     Route::get('user-disputes/{id}/read', 'DisputeController@markAsRead')->name('dispute.mark-as-read');
     Route::get('user-disputes/{id}/unread', 'DisputeController@markAsUnread')->name('dispute.mark-as-unread');
-
+    
 });
 
 Route::namespace('Transaction')->group(function () {

@@ -30,6 +30,7 @@ class Auction extends Model
         'status',
         'product_claim_status',
         'is_multiple_bid_allowed',
+        'countvisits'
     ];
 
     protected $fakeFields = [
@@ -54,6 +55,7 @@ class Auction extends Model
         'status',
         'product_claim_status',
         'is_multiple_bid_allowed',
+        'countvisits'
     ];
 
     public function seller()

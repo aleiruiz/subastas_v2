@@ -96,7 +96,7 @@ class AuctionController extends Controller
                 if ($time_ < now()->format('H:i:s')) {
                     $parameter['is_winner'] = AUCTION_WINNER_STATUS_WIN;
                     $changeAuctionStatus['status'] = AUCTION_STATUS_COMPLETED;
-                    $changeAuctionStatus['ending_date'] = \Carbon\Carbon::now();
+                    $changeAuctionStatus['ending_date'] = \Carbon\Carbon::now()->addMinutes(-3);
 
                     $updateAsWinner = app(BidInterface::class)->update($parameter, $last_bid->id);
                     $completeAuction = app(AuctionInterface::class)->update($changeAuctionStatus, $id);
@@ -251,4 +251,10 @@ class AuctionController extends Controller
 
     }
 
+    public function add_count_visits(Request $request){
+        $auction_id = $request['auction_id'];
+
+        $details = app(AuctionService::class)->auctionDetails($auction_id);
+        dd($details);
+    }
 }

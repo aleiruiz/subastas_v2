@@ -52,13 +52,13 @@
             timer_glob = setInterval(function(){
                 cntInter++;
                 
-                let row = '<li>' +
+                let row = '<li class="li-blue">' +
                     '<span class="color-default fz-16">{{($ind == 1) ? "Te lo llevas" : "Se lo llevan"}} por {{ $mount }}</span>' +
                     '<span class="fz-12"></span>' +
                     '</li>';
                 $('#ul_bid').append(row);
                 
-                let row_msj = '<li>' +
+                let row_msj = '<li class="li-orange">' +
                     '<span class="color-default fz-16">' + strInterval[cntInter - 1] + '</span>' +
                     '<span class="fz-12"></span>' +
                     '</li>';
