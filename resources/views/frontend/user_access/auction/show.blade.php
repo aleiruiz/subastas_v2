@@ -384,6 +384,14 @@
                             </div> -->
                             <div class="col-md-6">
                                 <span>
+                                    {{__('Visitas :')}}
+                                </span>
+                                <span class="badge badge-primary badge-pill" id="count-bid">
+                                <img src="{{asset('public/icons/has-ofertado.svg')}}">    
+                                {{$auction->countvisits}}</span>
+                            </div>
+                            <div class="col-md-6">
+                                <span>
                                     {{__('Total Bids :')}}
                                 </span>
                                 <span class="badge badge-primary badge-pill" id="count-bid">
