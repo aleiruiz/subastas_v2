@@ -53,14 +53,14 @@
                 cntInter++;
                 
                 let row = '<li class="li-blue">' +
-                    '<img src="{{asset('public/icons/garantia.svg')}}" width="100px">'+
+                    '<img src="{{asset('public/icons/conteo-logo.svg')}}" width="140px">'+
                     '<span class="color-default fz-16">{{($ind == 1) ? "Te lo llevas" : "Se lo llevan"}} por {{ $mount }}</span>' +
                     '<span class="fz-12"></span>' +
                     '</li>';
                 $('#ul_bid').append(row);
                 
                 let row_msj = '<li class="li-orange">' +
-                    '<img src="{{asset('public/icons/garantia.svg')}}" width="100px">'+
+                    '<img src="{{asset('public/icons/conteo-logo.svg')}}" width="140px">'+
                     '<span class="color-default fz-16">' + strInterval[cntInter - 1] + '</span>' +
                     '<span class="fz-12"></span>' +
                     '</li>';

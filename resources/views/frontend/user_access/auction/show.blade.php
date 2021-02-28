@@ -387,7 +387,7 @@
                                     {{__('Visitas :')}}
                                 </span>
                                 <span class="badge badge-primary badge-pill" id="count-bid">
-                                <img src="{{asset('public/icons/has-ofertado.svg')}}">    
+                                <img src="{{asset('public/icons/perfil-azul.svg')}}">    
                                 {{$auction->countvisits}}</span>
                             </div>
                             <div class="col-md-6">
@@ -399,7 +399,7 @@
                                 {{$auction->bids->count()}}</span>
                             </div>
                             
-                            <ul class="list-group mt-3">
+                            <ul class="list-group mt-3 col-md-12">
                                  <li class="list-group-item d-flex justify-content-between align-items-center">
                                      <span>
                                         Precio Base:
