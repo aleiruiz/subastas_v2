@@ -255,6 +255,11 @@ class AuctionController extends Controller
         $auction_id = $request['auction_id'];
 
         $details = app(AuctionService::class)->auctionDetails($auction_id);
-        dd($details);
+        $visits = $details['auction']->countvisits;
+
+        $changeAuctionStatus['countvisits'] = $visits + 1;
+        $completeAuction = app(AuctionInterface::class)->update($changeAuctionStatus, $auction_id);
+
+        return response()->json(true);
     }
 }

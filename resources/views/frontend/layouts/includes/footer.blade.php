@@ -34,14 +34,6 @@
             var auction_id = $(this).data("id");
             var hrf = $(this).attr("href");
 
-
-
-
-
-
-
-
-
             $.ajax({
                 url: "{{route('add-count-visits')}}",
                 headers: {
@@ -52,7 +44,7 @@
                 type: 'POST',
                 async: false,
                 success: function (response) {
-                    
+                    window.location.href = hrf;
                 }
             });
         }

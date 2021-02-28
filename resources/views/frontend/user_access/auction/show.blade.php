@@ -1008,12 +1008,14 @@
                             //     }, 2000);
                             // }else{
                                 let row = '<li class="li-blue">' +
+                                    '<img src="{{asset('public/icons/garantia.svg')}}" width="100px">'+
                                     '<span class="color-default fz-16">Se lo llevan por ' + response.amount + '</span>' +
                                     '<span class="fz-12"></span>' +
                                     '</li>';
                                 $('#ul_bid').append(row);
                                 
                                 let row_msj = '<li class="li-orange">' +
+                                    '<img src="{{asset('public/icons/garantia.svg')}}" width="100px">'+
                                     '<span class="color-default fz-16">' + strInterval[cntInter - 1] + '</span>' +
                                     '<span class="fz-12"></span>' +
                                     '</li>';
