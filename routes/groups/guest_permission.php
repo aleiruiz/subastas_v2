@@ -10,4 +10,3 @@ Route::post('forget-password/send-mail','Guest\AuthController@sendPasswordResetM
 Route::get('reset-password/{id}','Guest\AuthController@resetPassword')->name('reset-password.index');
 Route::post('reset-password/{id}/update','Guest\AuthController@updatePassword')->name('reset-password.update');
 
-Route::post('add_count_visits', 'User\AuctionController@add_count_visits')->name('add-count-visits');
