@@ -120,34 +120,20 @@
                 <div class="col-md-12 col-lg -5">
 
                     <div class="s-box" style="height: 100%;">
-                         @php ($indLastBid = false)
-                         @if(!is_null($lastBid))
-                            @php ($indLastBid = true)
-                             <ul class="list-group mt-3">
-                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                     <span>
-                                     <img src="{{asset('public/icons/has-ofertado-blanco.svg')}}" width="60px">
-                                         {{__('Last Bid :')}}
-                                     </span>
-                                     <span class="badge border color-666 badge-pill" id="spn_last_bid">
-                                        <span class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> 
-                                        {{$lastBid->amount}}
-                                    </span>
-                                 </li>
-                             </ul>
-                        @else
-                            <ul class="list-group mt-3">
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span>
-                                        Precio Base:
-                                     </span>
-                                     <span class="badge border color-666 badge-pill" id="spn_last_bid">
-                                        <span class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> 
-                                        {{$auction->bid_initial_price}}
-                                    </span>
-                                </li>
-                            </ul>
-                        @endif
+                         
+                        <ul class="list-group mt-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>
+                                    <img src="{{asset('public/icons/has-ofertado-blanco.svg')}}" width="60px">
+                                    <label id="lblLastBid">{{ (!is_null($lastBid)) ? __('Last Bid :') : 'Precio Base :' }}</label>
+                                </span>
+                                <span class="badge border color-666 badge-pill" id="spn_last_bid">
+                                    <span class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> 
+                                    {{ (!is_null($lastBid)) ? $lastBid->amount : $auction->bid_initial_price }}
+                                </span>
+                            </li>
+                        </ul>
+                        
                          <!-- @auth()
                              @if(!is_null($userLastBid))
                                  <ul class="list-group mt-3">
@@ -202,6 +188,11 @@
                         <!-- End: properties slider -->
 
                     </div>
+                    <div class="m-md-top-50 bg-custom-gray border">
+                        <div id="divListBids">
+                            
+                        </div>
+                    </div>
                 </div>
                 <!-- End: blog grid -->
 
@@ -211,9 +202,8 @@
 
 
                     <div class="s-box mb-3">
-                        @if($indLastBid)
                         <!-- Start: header -->
-                        <div class="s-box-header">
+                        <div class="s-box-header" id="timerCrono" style="{{ (!is_null($lastBid)) ? '' : 'display:none;' }}">
                             <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
                             <?php
                             $now = \Carbon\Carbon::now();
@@ -221,11 +211,14 @@
                             $end = \Carbon\Carbon::parse($auction->ending_date);
                             //print_r($start);
                              ?>
+
+                            <span id="txtTimer">
                             @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
-                                <span> Termina </span>
+                                Termina
                             @else
-                                <span> Empieza </span>
+                                Empieza 
                             @endif
+                            </span>
                             {{__('In')}}
                         </div>
                         <!-- End: header -->
@@ -254,8 +247,6 @@
                             </div>
                         </div>
                         <!-- End: countdown -->
-
-                        @endif
                     </div>
 
 
@@ -344,6 +335,13 @@
                     </div>
 
                     @endif
+
+                    
+
+                    <div id="divImgContador">
+                        <img src="{{asset('public/icons/initial.svg')}}">
+                    </div>
+
                 </div>
                 <!-- End: bidding section -->
                 <div class="col-md-12 col-lg-7 order-lg-0">
@@ -532,7 +530,6 @@
                     </div>
                     <!-- End: bidding section -->
                 </div>
-
                 <div class="col-md-12 col-lg-5 order-lg-0">
                 @auth
                     @if($auction->status == AUCTION_STATUS_RUNNING && \Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
@@ -951,13 +948,23 @@
             strInterval = ["¡A la una!", "¡A las dos!", "¡A las tres!"];
             var timerId  = null;
 
+
+            @php ($id = 17)
+            @php ($url = route('load.bidlist', $id))
+            //include('frontend.user_access.auction.lists_bid
+            setTimeout(function(){
+                $("#divListBids").load('{{ $url }}');
+            },500);
+
             Echo.channel('auction-bid')
                 .listen('BroadcastAuctionBid', (response) => {
                     if (response) {
-                        if(!{{($indLastBid) ? 'true' : 'false'}}){
-                            window.location.reload();
-                            return;
-                        }
+
+                        $("#lblLastBid").html('Precio Base :');
+                        $("#timerCrono").css("display", "initial");
+                        $("#divListBids").load('{{ $url }}');   
+                        $("#divImgContador").html('<img src="{{asset('public/icons/initial.svg')}}">')
+
                         clearInterval(timer_glob);
 
                         let row = '<li>';
@@ -1015,15 +1022,27 @@
                             //         window.location.reload();
                             //     }, 2000);
                             // }else{
+                                switch(cntInter){
+                                    case 1:
+                                        $("#divImgContador").html('<img src="{{asset('public/icons/cont1.svg')}}">')
+                                        break;
+                                    case 2:
+                                        $("#divImgContador").html('<img src="{{asset('public/icons/cont2.svg')}}">')
+                                        break;
+                                    case 3:
+                                        $("#divImgContador").html('<img src="{{asset('public/icons/cont3.svg')}}">')
+                                        break;
+                                }
+
                                 let row = '<li class="li-blue">' +
-                                    '<img src="{{asset('public/icons/garantia.svg')}}" width="100px">'+
+                                    '<img src="{{asset('public/icons/conteo-logo.svg')}}" width="100px">'+
                                     '<span class="color-default fz-16">Se lo llevan por ' + response.amount + '</span>' +
                                     '<span class="fz-12"></span>' +
                                     '</li>';
                                 $('#ul_bid').append(row);
                                 
                                 let row_msj = '<li class="li-orange">' +
-                                    '<img src="{{asset('public/icons/garantia.svg')}}" width="100px">'+
+                                    '<img src="{{asset('public/icons/conteo-logo.svg')}}" width="100px">'+
                                     '<span class="color-default fz-16">' + strInterval[cntInter - 1] + '</span>' +
                                     '<span class="fz-12"></span>' +
                                     '</li>';

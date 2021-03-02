@@ -55784,6 +55784,7 @@ Vue.component("Timer", {
         this.message = this.wordString.expired;
         this.statusType = "expired";
         this.statusText = this.wordString.status.expired;
+		$("#txtTimer").html('Termina');
         clearInterval(this.interval);
       } else if (distance < 0 && passTime > 0) {
         if(indChangeEst){
@@ -55804,6 +55805,7 @@ Vue.component("Timer", {
         this.message = this.wordString.expired;
         this.statusType = "expired";
         this.statusText = this.wordString.status.expired;
+		$("#txtTimer").html('Termina');
         clearInterval(this.interval);
       }
     },

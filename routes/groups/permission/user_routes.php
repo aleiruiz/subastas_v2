@@ -1,7 +1,8 @@
 <?php
 
 Route::namespace('User')->group(function () {
-
+    
+    
 //   User Verifications Controllers
     Route::get('profile/verification', 'VerificationController@Index')->name('profile-verification.index');
     Route::get('profile/verification-with-id', 'VerificationController@verificationWithIdIndex')->name('profile-verification-with-id.index');

@@ -262,4 +262,24 @@ class AuctionController extends Controller
 
         return response()->json(true);
     }
+    
+    public function bid_list($id){
+        //dd($id);
+
+        $bids = app(BidInterface::class)->getByConditions(['auction_id' => $id]);
+
+         $cont = 1;
+         $html = '';
+        foreach ($bids->groupBy('user_id')->sortByDesc('amount') as $item) {
+            $html .= '<tr>
+                        <td>' . $cont . '</td>
+                        <td>' . $item[0]->user->username . '</td>
+                        <td>' . $item->count() . '</td>
+                    </tr>';
+            $cont = $cont + 1;
+        }
+        $data['html'] = $html;
+        return view('frontend.user_access.auction.lists_bid', $data);
+    }
+    
 }
