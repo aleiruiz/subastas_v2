@@ -18,13 +18,27 @@
     overflow: auto;
 }
 
-#ul_bid > li.li-blue .propone-blue{
+#ul_bid > .respuesta-blue{
     background: #4f76a0 !important;
     padding: 10px 8px !important;
     display: flex  !important;
     justify-content: space-between;
 }
 
+#ul_bid > .respuesta-blue > img{
+    background: #fff;
+    width: 140px;
+    padding: 5px;
+    border-radius: 50px;
+}
+
+#ul_bid > .respuesta-blue > span.color-default.fz-16{
+    
+    margin: auto;
+    color: #fff !important;
+    font-weight: 600;
+
+}
 
 #ul_bid > .propone-blue{
     background: #4f76a0 !important;
@@ -33,14 +47,14 @@
     justify-content: space-between;
 }
 
- li.li-blue .propone-blue > img{
+#ul_bid > .propone-blue > img{
     background: #fff;
     width: 140px;
     padding: 5px;
     border-radius: 50px;
 }
 
-#ul_bid > li.li-blue .propone-blue > span.color-default.fz-16{
+#ul_bid > .propone-blue > span.color-default.fz-16{
     
     margin: auto;
     color: #fff !important;
@@ -48,7 +62,7 @@
 
 }
 
-#ul_bid > li.li-orange .propone-orange{
+#ul_bid > .propone-orange{
         background: rgb(249,113,16) !important;
         background: linear-gradient(260deg, rgba(249,113,16,1) 80%, #fb4a0b 100%) !important;
         padding: 10px 8px !important;
@@ -56,18 +70,43 @@
         justify-content: space-between;
 }
 
-#ul_bid > li.li-orange .propone-orange > img{
+#ul_bid > .propone-orange > img{
     background: #fff;
     width: 140px;
     padding: 5px;
     border-radius: 50px;
 }
 
-#ul_bid > li.li-orange .propone-orange > span.color-default.fz-16{
+#ul_bid > .propone-orange > span.color-default.fz-16{
     margin: auto;
     color: #fff !important;
     font-weight: 600;
 }
+
+#ul_bid > .respuesta-orange{
+    background: rgb(249,113,16) !important;
+    background: linear-gradient(260deg, rgba(249,113,16,1) 80%, #fb4a0b 100%) !important;
+    padding: 10px 8px !important;
+    display: flex  !important;
+    justify-content: space-between;
+}
+
+#ul_bid > .respuesta-orange > img{
+background: #fff;
+width: 140px;
+padding: 5px;
+border-radius: 50px;
+}
+
+#ul_bid > .respuesta-orange > span.color-default.fz-16{
+margin: auto;
+color: #fff !important;
+font-weight: 600;
+}
+
+
+
+
 
 
 
