@@ -338,8 +338,25 @@
 
                     
 
-                    <div id="divImgContador">
-                        <img src="{{asset('public/icons/initial.svg')}}">
+                    <div id="divImgContador" style="position:absolute; bottom: 90px;">
+                        @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
+                        <div id="img_inicio" class="imgCont show" style="height: 0px;">
+                            <img src="{{ asset('public/icons/contador-0.jpg') }}" style="width: 100%;">
+                        </div>
+                        @else
+                        <div id="img_inicio" class="imgCont show" style="height: 0px;">
+                            <img src="{{ asset('public/icons/contador-inicio.jpg') }}" style="width: 100%;">
+                        </div>
+                        @endif
+                        <div id="img_1" class="imgCont hide" style="height: 0px;">
+                            <img src="{{ asset('public/icons/contador-1.jpg') }}" style="width: 100%;">
+                        </div>
+                        <div id="img_2" class="imgCont hide" style="height: 0px;">
+                            <img src="{{ asset('public/icons/contador-2.jpg') }}" style="width: 100%;">
+                        </div>
+                        <div id="img_3" class="imgCont hide" style="height: 0px;">
+                            <img src="{{ asset('public/icons/contador-3.jpg') }}" style="width: 100%;">
+                        </div>
                     </div>
 
                 </div>
@@ -963,7 +980,13 @@
                         $("#lblLastBid").html('Precio Base :');
                         $("#timerCrono").css("display", "initial");
                         $("#divListBids").load('{{ $url }}');   
-                        $("#divImgContador").html('<img src="{{asset('public/icons/initial.svg')}}">')
+                        
+                        
+                        $(".imgCont").removeClass("show");
+                        $(".imgCont").addClass("hide");
+
+                        $("#img_inicio").removeClass("hide");
+                        $("#img_inicio").addClass("show");
 
                         clearInterval(timer_glob);
 
@@ -1022,15 +1045,20 @@
                             //         window.location.reload();
                             //     }, 2000);
                             // }else{
+                                $(".imgCont").removeClass("show");
+                                $(".imgCont").addClass("hide");
                                 switch(cntInter){
                                     case 1:
-                                        $("#divImgContador").html('<img src="{{asset('public/icons/cont1.svg')}}">')
+                                        $("#img_1").removeClass("hide");
+                                        $("#img_1").addClass("show");
                                         break;
                                     case 2:
-                                        $("#divImgContador").html('<img src="{{asset('public/icons/cont2.svg')}}">')
+                                        $("#img_2").removeClass("hide");
+                                        $("#img_2").addClass("show");
                                         break;
                                     case 3:
-                                        $("#divImgContador").html('<img src="{{asset('public/icons/cont3.svg')}}">')
+                                        $("#img_3").removeClass("hide");
+                                        $("#img_3").addClass("show");
                                         break;
                                 }
 
@@ -1137,5 +1165,8 @@
             display: flex !important;
             justify-content: center;
         }
+        
+        .hide{ display:none !important; }
+        .show{ display:block !important; }
     </style>
 @endsection

@@ -52,6 +52,23 @@
             timer_glob = setInterval(function(){
                 cntInter++;
                 
+                $(".imgCont").removeClass("show");
+                $(".imgCont").addClass("hide");
+                switch(cntInter){
+                    case 1:
+                        $("#img_1").removeClass("hide");
+                        $("#img_1").addClass("show");
+                        break;
+                    case 2:
+                        $("#img_2").removeClass("hide");
+                        $("#img_2").addClass("show");
+                        break;
+                    case 3:
+                        $("#img_3").removeClass("hide");
+                        $("#img_3").addClass("show");
+                        break;
+                }
+
                 let row = '<li class="li-blue propone-blue">' +
                     '<img src="{{asset('public/icons/conteo-logo.svg')}}" width="140px">'+
                     '<span class="color-default fz-16">{{($ind == 1) ? "Te lo llevas" : "Se lo llevan"}} por {{ $mount }}</span>' +
