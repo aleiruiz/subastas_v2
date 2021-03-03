@@ -1034,14 +1034,14 @@
                                         break;
                                 }
 
-                                let row = '<li class="li-blue">' +
+                                let row = '<li class="li-blue respuesta-blue">' +
                                     '<img src="{{asset('public/icons/conteo-logo.svg')}}" width="100px">'+
                                     '<span class="color-default fz-16">Se lo llevan por ' + response.amount + '</span>' +
                                     '<span class="fz-12"></span>' +
                                     '</li>';
                                 $('#ul_bid').append(row);
                                 
-                                let row_msj = '<li class="li-orange">' +
+                                let row_msj = '<li class="li-orange respuesta-orange">' +
                                     '<img src="{{asset('public/icons/conteo-logo.svg')}}" width="100px">'+
                                     '<span class="color-default fz-16">' + strInterval[cntInter - 1] + '</span>' +
                                     '<span class="fz-12"></span>' +

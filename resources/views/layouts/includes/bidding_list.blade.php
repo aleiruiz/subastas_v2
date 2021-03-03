@@ -52,14 +52,14 @@
             timer_glob = setInterval(function(){
                 cntInter++;
                 
-                let row = '<li class="li-blue">' +
+                let row = '<li class="li-blue propone-blue">' +
                     '<img src="{{asset('public/icons/conteo-logo.svg')}}" width="140px">'+
                     '<span class="color-default fz-16">{{($ind == 1) ? "Te lo llevas" : "Se lo llevan"}} por {{ $mount }}</span>' +
                     '<span class="fz-12"></span>' +
                     '</li>';
                 $('#ul_bid').append(row);
                 
-                let row_msj = '<li class="li-orange">' +
+                let row_msj = '<li class="li-orange propone-orange">' +
                     '<img src="{{asset('public/icons/conteo-logo.svg')}}" width="140px">'+
                     '<span class="color-default fz-16">' + strInterval[cntInter - 1] + '</span>' +
                     '<span class="fz-12"></span>' +
