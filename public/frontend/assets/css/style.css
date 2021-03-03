@@ -25,6 +25,14 @@
     justify-content: space-between;
 }
 
+
+#ul_bid > .propone-blue{
+    background: #4f76a0 !important;
+    padding: 10px 8px !important;
+    display: flex  !important;
+    justify-content: space-between;
+}
+
  li.li-blue .propone-blue > img{
     background: #fff;
     width: 140px;
