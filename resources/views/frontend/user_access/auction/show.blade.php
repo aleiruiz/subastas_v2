@@ -338,23 +338,23 @@
 
                     
 
-                    <div id="divImgContador" style="position:absolute; bottom: 90px;">
+                    <div id="divImgContador">
                         @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
-                        <div id="img_inicio" class="imgCont show" style="height: 0px;">
+                        <div id="img_inicio" class="imgCont show">
                             <img src="{{ asset('public/icons/contador-0.jpg') }}" style="width: 100%;">
                         </div>
                         @else
-                        <div id="img_inicio" class="imgCont show" style="height: 0px;">
+                        <div id="img_inicio" class="imgCont show">
                             <img src="{{ asset('public/icons/contador-inicio.jpg') }}" style="width: 100%;">
                         </div>
                         @endif
-                        <div id="img_1" class="imgCont hide" style="height: 0px;">
+                        <div id="img_1" class="imgCont hide">
                             <img src="{{ asset('public/icons/contador-1.jpg') }}" style="width: 100%;">
                         </div>
-                        <div id="img_2" class="imgCont hide" style="height: 0px;">
+                        <div id="img_2" class="imgCont hide">
                             <img src="{{ asset('public/icons/contador-2.jpg') }}" style="width: 100%;">
                         </div>
-                        <div id="img_3" class="imgCont hide" style="height: 0px;">
+                        <div id="img_3" class="imgCont hide">
                             <img src="{{ asset('public/icons/contador-3.jpg') }}" style="width: 100%;">
                         </div>
                     </div>

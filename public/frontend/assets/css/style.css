@@ -1,23 +1,38 @@
 /* Personal Style By Leo */
 
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(7) > div > div.s-box-header{
+    display: none;
+}
+
+#div_bidding_list{
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: 500px !important;
+}
+
+
+
+
 #div_bidding_list > div{
     overflow: auto;
 }
 
-#ul_bid > li:nth-child(3) > img{
-    background: #fff;
-    padding: 5px;
-    border-radius: 50px;
-}
-
-#ul_bid > li:nth-child(3){
+#ul_bid > li.li-blue .propone-blue{
     background: #4f76a0 !important;
     padding: 10px 8px !important;
     display: flex  !important;
     justify-content: space-between;
 }
 
-#ul_bid > li:nth-child(3) > span.color-default.fz-16{
+ li.li-blue .propone-blue > img{
+    background: #fff;
+    width: 140px;
+    padding: 5px;
+    border-radius: 50px;
+}
+
+#ul_bid > li.li-blue .propone-blue > span.color-default.fz-16{
     
     margin: auto;
     color: #fff !important;
@@ -25,102 +40,22 @@
 
 }
 
-#ul_bid > li:nth-child(4){
-    background: rgb(249,113,16) !important;
-    background: linear-gradient(260deg, rgba(249,113,16,1) 80%, #fb4a0b 100%) !important;
-    padding: 10px 8px !important;
-    display: flex  !important;
-    justify-content: space-between;
+#ul_bid > li.li-orange .propone-orange{
+        background: rgb(249,113,16) !important;
+        background: linear-gradient(260deg, rgba(249,113,16,1) 80%, #fb4a0b 100%) !important;
+        padding: 10px 8px !important;
+        display: flex  !important;
+        justify-content: space-between;
 }
 
-#ul_bid > li:nth-child(4) > span.color-default.fz-16{
-    margin: auto;
-    color: #fff !important;
-    font-weight: 600;
-}
-
-#ul_bid > li:nth-child(4) > img{
+#ul_bid > li.li-orange .propone-orange > img{
     background: #fff;
+    width: 140px;
     padding: 5px;
     border-radius: 50px;
 }
 
-#ul_bid > li:nth-child(5) > img{
-    background: #fff;
-    padding: 5px;
-    border-radius: 50px;
-}
-
-#ul_bid > li:nth-child(6) > img{
-    background: #fff;
-    padding: 5px;
-    border-radius: 50px;
-}
-#ul_bid > li:nth-child(6) > img{
-    background: #fff;
-    padding: 5px;
-    border-radius: 50px;
-}
-#ul_bid > li:nth-child(7) > img{
-    background: #fff;
-    padding: 5px;
-    border-radius: 50px;
-}
-#ul_bid > li:nth-child(8) > img{
-    background: #fff;
-    padding: 5px;
-    border-radius: 50px;
-}
-
-#ul_bid > li:nth-child(5){
-    background: #4f76a0 !important;
-    padding: 10px 8px !important;
-    display: flex  !important;
-    justify-content: space-between;
-}
-
-#ul_bid > li:nth-child(5) > span.color-default.fz-16{
-    margin: auto;
-    color: #fff !important;
-    font-weight: 600;
-}
-
-#ul_bid > li:nth-child(6){
-    background: rgb(249,113,16) !important;
-    background: linear-gradient(260deg, rgba(249,113,16,1) 80%, #fb4a0b 100%) !important;
-    padding: 10px 8px !important;
-    display: flex  !important;
-    justify-content: space-between;
-}
-
-#ul_bid > li:nth-child(6) > span.color-default.fz-16{
-    margin: auto;
-    color: #fff !important;
-    font-weight: 600;
-}
-
-#ul_bid > li:nth-child(7){
-    background: #4f76a0 !important;
-    padding: 10px 8px !important;
-    display: flex  !important;
-    justify-content: space-between;
-}
-
-#ul_bid > li:nth-child(7) > span.color-default.fz-16{
-    margin: auto;
-    color: #fff !important;
-    font-weight: 600;
-}
-
-#ul_bid > li:nth-child(8){
-    background: rgb(249,113,16) !important;
-    background: linear-gradient(260deg, rgba(249,113,16,1) 80%, #fb4a0b 100%) !important;
-    padding: 10px 8px !important;
-    display: flex  !important;
-    justify-content: space-between;
-}
-
-#ul_bid > li:nth-child(8) > span.color-default.fz-16{
+#ul_bid > li.li-orange .propone-orange > span.color-default.fz-16{
     margin: auto;
     color: #fff !important;
     font-weight: 600;
@@ -128,6 +63,39 @@
 
 
 
+
+
+
+
+
+
+
+#divImgContador{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(5) > div:nth-child(2){
+    padding: 50px;
+}
+
+#divListBids > table > thead{
+    background: #e0e0e0;
+}
+
+#divListBids > table > thead > tr > th{
+    padding: 10px 20px;
+    color: #5c5c5c;
+    font-weight: 600;
+}
+
+#divListBids > table > tbody > tr > td{
+    padding: 10px 20px;
+    color: #5c5c5c;
+    font-weight: 800;
+
+}
 
 #app > div.p-b-100.p-t-80 > div > div > div:nth-child(7) > div > div.popular-cat > ul{
     padding-right: 0px !important;
@@ -226,7 +194,6 @@
 }
 
 #app > div.p-b-100.p-t-80 > div > div > div:nth-child(6) > div:nth-child(2) > div{
-    height: 400px;
     justify-content: center;
     display: flex;
     align-items: center;
@@ -258,7 +225,7 @@
     justify-content: center !important;
     background: #2b2d2f;
     border-radius: 0px !important;
-    padding: 20px;
+    padding: 44px;
 }
 
 #app > div.p-b-100.p-t-80 > div > div > div:nth-child(7) > div > div.popular-cat > ul > li > span:nth-child(1){
