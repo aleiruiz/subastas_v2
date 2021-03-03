@@ -949,7 +949,7 @@
             var timerId  = null;
 
 
-            @php ($id = 17)
+            @php ($id = $auction->id)
             @php ($url = route('load.bidlist', $id))
             //include('frontend.user_access.auction.lists_bid
             setTimeout(function(){
@@ -1054,6 +1054,7 @@
                                 cntInter = 0;
 
                                 clearInterval(timer_glob);
+                                clearInterval(timerInter);
                                 setTimeout(function(){
                                     // $("#div_bidding_list").css("display","none");
                                     // $("#div_form_bid").css("display","none");
