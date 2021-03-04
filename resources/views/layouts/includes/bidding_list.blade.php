@@ -87,15 +87,15 @@
                 if(cntInter == 3){
                     cntInter = 0;
 
-                    // $("#div_bidding_list").css("display","none");
-                    // $("#div_form_bid").css("display","none");
-                    // $("#div_info_bid").css("display","block");
-                    // $("#div_wait").css("display","block");
+                    $("#div_bidding_list").css("display","none");
+                    $("#div_form_bid").css("display","none");
+                    $("#div_info_bid").css("display","block");
+                    $("#div_wait").css("display","block");
 
                     clearInterval(timer_glob);
-                    // setTimeout(function(){
-                    //     window.location.reload();
-                    // }, 5000);
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 5000);
                 }
 
             }, {{TIME_INTERVAL_AUCTION}});
