@@ -90,7 +90,7 @@ class BidService
             }
 
             app(TransactionInterface::class)->insert($transactionAttributes);
-            $this->bid->create($parameters);
+            $bid = $this->bid->create($parameters);
 
             $parameters['ending_date'] = \Carbon\Carbon::now()->addMinutes(3);
             $timeUpdate = app(AuctionInterface::class)->update($parameters, $auction->id);
@@ -98,7 +98,7 @@ class BidService
                 throw new Exception('Failed to update auction please try again later');
             }
             DB::commit();
-
+            return $bid;
         } catch (Exception $exception) {
             DB::rollBack();
 

@@ -579,7 +579,7 @@
                                                 <label>
                                                     <img src="{{asset('images/flor.svg')}}" style="width: 20px; height: 20px;" alt="">
                                                     <span class="fz-12">{{!is_null($auction->currency) ? $auction->currency->symbol : ''}}</span>
-                                                    {{ $auction->bid_increment_dif }}
+                                                    {{ $auction->bid_increment_dif }} 
                                                     <input class="custom-radio-checkbox__input" type="radio" name="bid_increment" data-val="{{ $auction->bid_increment_dif }}" checked />
                                                     <span class="custom-radio-checkbox__show custom-radio-checkbox__show--radio"></span>
                                                 </label>
@@ -856,7 +856,7 @@
     <script src="{{ asset('vendor/jasny-bootstrap/js/jasny-bootstrap.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap4-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script type="text/javascript">
-        
+        var timerInter  = null;
         $(document).ready(function () {
             var last_amount = '{{(!is_null($lastBid) ? $lastBid->amount : $auction->bid_initial_price)}}';
             $("input[name='bid_increment'").on('click', function(){
@@ -1098,10 +1098,147 @@
                         }, {{TIME_INTERVAL_AUCTION}});
                     }
                 });
+                
+
+            $("#bidForm").submit(function(e) {
+
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+
+                var form = $(this);
+                var url = form.attr('action');
+
+                $.ajax({
+                    type: "POST",
+                    asyn: true,
+                    url: url,
+                    data: form.serialize(), // serializes the form's elements.
+                    success: function(response)
+                    {
+                        $('#confirmBidModal').modal("hide");
+                        // if (response) {
+
+                        //     $("#lblLastBid").html('Precio Base :');
+                        //     $("#timerCrono").css("display", "initial");
+                        //     $("#divListBids").load('{{ $url }}');   
+                        //     $(".imgCont").removeClass("show");
+                        //     $(".imgCont").addClass("hide");
+                        //     $("#img_inicio").removeClass("hide");
+                        //     $("#img_inicio").addClass("show");
+
+                        //     clearInterval(timer_glob);
+
+                        //     let row = '<li>';
+                        //     last_amount = response.amount;
+                        //     row = row + '<strong>' + response.username + '</strong>';
+                        //     // let myBidHtml = '';
+                        //     // if (user.id == response.user_id) {
+                        //     //     myBidHtml = '<span class="badge-success py-1 px-2 badge-pill fz-10 mr-2">' + "{{ __('My Bid') }}" +'</span>';
+                        //     // }
+
+                        //     row = row +
+                        //         //myBidHtml +
+                        //         '<span class="gris-color"> ha ofertado por </span>'+
+                        //         '<span class="color-default fz-16">' + response.amount + ' </span>' +
+                        //         '<span class="fz-12">' + response.currency + ' </span>' +
+                        //         //'<img src="{{asset('images/has-ofertado-naranja.svg')}}" alt="">'+
+                        //         '</li>';
+
+                        //     $('#ul_bid').append(row);
+
+                        //     $('#count-bid').html(response.bid_count);
+
+                        //     $('#max-bid').html(`<span class="font-weight-normal"> {{$auction->currency->symbol}}</span> ${response.bigger_bid} </span>`);
+
+                        //     $('#spn_last_bid').html('<span class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span>' + response.bigger_bid);
+                        //     var currency = '{{!is_null($auction->currency) ? $auction->currency->symbol : ''}}';
+                        //     aa = (parseInt(response.bigger_bid) + parseInt('{{$auction->bid_increment_dif}}'))
+                        //     $("#cost").html(currency + ' ' + aa);
+                        //     $("#{{ fake_field('amount') }}").val(aa);
+
+
+                        //     let minimumBid = response.bigger_bid + response.bid_increment_dif;
+
+                        //     $('#minimum-bid').html(`<span class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> ${minimumBid}</span>`);
+
+
+                        //     timerInter = setInterval(function(){
+                        //         cntInter++;
+                                
+                        //         // if(cntInter == 3){
+                        //         //     cntInter = 0;
+
+                        //         //     $("#div_bidding_list").css("display","none");
+                        //         //     $("#div_form_bid").css("display","none");
+                        //         //     $("#div_info_bid").css("display","block");
+                        //         //     $("#div_wait").css("display","block");
+                                    
+                        //         //     clearInterval(timerInter);
+                        //         //     setTimeout(function(){
+                        //         //         window.location.reload();
+                        //         //     }, 2000);
+                        //         // }else{
+                        //             $(".imgCont").removeClass("show");
+                        //             $(".imgCont").addClass("hide");
+                        //             switch(cntInter){
+                        //                 case 1:
+                        //                     $("#img_1").removeClass("hide");
+                        //                     $("#img_1").addClass("show");
+                        //                     break;
+                        //                 case 2:
+                        //                     $("#img_2").removeClass("hide");
+                        //                     $("#img_2").addClass("show");
+                        //                     break;
+                        //                 case 3:
+                        //                     $("#img_3").removeClass("hide");
+                        //                     $("#img_3").addClass("show");
+                        //                     break;
+                        //             }
+
+                        //             let row = '<li class="li-blue respuesta-blue">' +
+                        //                 '<img src="{{asset('public/icons/conteo-logo.svg')}}" width="100px">'+
+                        //                 '<span class="color-default fz-16">Se lo llevan por ' + response.amount + '</span>' +
+                        //                 '<span class="fz-12"></span>' +
+                        //                 '</li>';
+                        //             $('#ul_bid').append(row);
+                                    
+                        //             let row_msj = '<li class="li-orange respuesta-orange">' +
+                        //                 '<img src="{{asset('public/icons/conteo-logo.svg')}}" width="100px">'+
+                        //                 '<span class="color-default fz-16">' + strInterval[cntInter - 1] + '</span>' +
+                        //                 '<span class="fz-12"></span>' +
+                        //                 '</li>';
+                        //             $('#ul_bid').append(row_msj);
+                        //         //}
+
+                                
+                        //         if(cntInter == 3){
+                        //             cntInter = 0;
+
+                        //             clearInterval(timer_glob);
+                        //             clearInterval(timerInter);
+                        //             setTimeout(function(){
+                        //                 $("#div_bidding_list").css("display","none");
+                        //                 $("#div_form_bid").css("display","none");
+                        //                 $("#div_info_bid").css("display","block");
+                        //                 $("#div_wait").css("display","block");
+
+                        //                 setTimeout(function(){
+                        //                     window.location.reload();
+                        //                 }, 5000);
+                        //             }, 5000);
+                        //         }
+
+                        //     }, {{TIME_INTERVAL_AUCTION}});
+                        // }
+
+
+                    }
+                });
+            });
         });
         new Vue({
             el:'#app'
         });
+
     </script>
 @endsection
 

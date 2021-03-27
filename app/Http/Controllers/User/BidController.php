@@ -75,8 +75,25 @@ class BidController extends Controller
         }
 
         if ($auction->auction_type == AUCTION_TYPE_HIGHEST_BIDDER) {
-            $response = $this->service->highestBidder($auction, $parameters, $onBiddingUserWallet);
-            return redirect()->back()->with($response[SERVICE_RESPONSE_STATUS], $response[SERVICE_RESPONSE_MESSAGE]);
+            $bid = $this->service->highestBidder($auction, $parameters, $onBiddingUserWallet);
+            //return redirect()->back()->with($response[SERVICE_RESPONSE_STATUS], $response[SERVICE_RESPONSE_MESSAGE]);
+            
+            if(isset($bid['status'])){
+                return false;
+            }else{
+                return [
+                    'user_id' => $bid->user_id,
+                    'username' => $bid->user->username,
+                    'amount' => $bid->amount,
+                    'currency' => $bid->auction->currency->symbol,
+                    'date' => $bid->created_at->toDateTimeString(),
+                    //'end_time' => $endTime,
+                    'bid_count' => $bid->auction->bids->count(),
+                    'bigger_bid' => $bid->auction->bids->max('amount'),
+                    'bid_increment_dif' => $bid->auction->bid_increment_dif
+                ];
+            }
+//            return json_encode($response);
         }
 
         if ($auction->auction_type == AUCTION_TYPE_BLIND_BIDDER) {

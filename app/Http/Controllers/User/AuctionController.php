@@ -60,6 +60,7 @@ class AuctionController extends Controller
 
         $parameters = $request->only('title', 'address_id', 'auction_type', 'category_id', 'currency_id', 'product_description', 'starting_date', 'ending_date', 'bid_initial_price', 'bid_increment_dif', 'is_shippable', 'shipping_type', 'terms_description', 'is_multiple_bid_allowed');
         $parameters['ref_id'] = Str::uuid();
+        $parameters['ending_date'] = Carbon::parse($parameters['starting_date'])->addSeconds(120);
         $parameters['seller_id'] = Auth::user()->seller->id;
 
         $new_name = 0;
@@ -270,7 +271,8 @@ class AuctionController extends Controller
 
          $cont = 1;
          $html = '';
-        foreach ($bids->groupBy('user_id')->sortByDesc('amount') as $item) {
+         $bids = $bids->sortByDesc('amount');
+        foreach ($bids->groupBy('user_id') as $item) {
             $html .= '<tr>
                         <td>' . $cont . '</td>
                         <td>' . $item[0]->user->username . '</td>
