@@ -25,6 +25,7 @@
                 </div>
                 <div class="modal-footer text-center">
                         <a class="btn btn-success"  id="confirmBid">Aceptar</a>
+                        <a class="btn btn-success"  id="confirmBidWarranty" style="display:none;">Aceptar</a>
                 </div>
             </div>
         </div>
@@ -199,141 +200,167 @@
                 <!-- Start: bidding section -->
                 <div class="col-md-12 col-lg-5 order-lg-0">
                     @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
+                        <div class="s-box mb-3">
+                            <!-- Start: header -->
+                            <div class="s-box-header" id="timerCrono" style="{{ (!is_null($lastBid)) ? '' : 'display:none;' }}">
+                                <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
+                                <?php
+                                $now = \Carbon\Carbon::now();
+                                $start = \Carbon\Carbon::parse($auction->starting_date);
+                                $end = \Carbon\Carbon::parse($auction->ending_date);
+                                //print_r($start);
+                                ?>
 
-
-                    <div class="s-box mb-3">
-                        <!-- Start: header -->
-                        <div class="s-box-header" id="timerCrono" style="{{ (!is_null($lastBid)) ? '' : 'display:none;' }}">
-                            <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
-                            <?php
-                            $now = \Carbon\Carbon::now();
-                            $start = \Carbon\Carbon::parse($auction->starting_date);
-                            $end = \Carbon\Carbon::parse($auction->ending_date);
-                            //print_r($start);
-                             ?>
-
-                            <span id="txtTimer">
-                            @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
-                                Termina
-                            @else
-                                Empieza 
-                            @endif
-                            </span>
-                            {{__('In')}}
-                        </div>
-                        <!-- End: header -->
-                        <!-- Start: countdown -->
-                        <div class="count-down">
-                            <div class="timer d-inline-block">
-                                <Timer
-                                    starttime="{{$start}}"
-                                    endtime="{{$end}}"
-                                    type='auction'
-                                    trans='{
-                                                "day":"D",
-                                                "hours":"H",
-                                                "minutes":"M",
-                                                "seconds":"S",
-                                                "expired":"Este evento a expirado.",
-                                                "running":"Este evento esta en progreso.",
-                                                "upcoming":"Este evento aun no a empezado.",
-                                                "status": {
-                                                        "expired":"Expirado",
-                                                        "running":"En Progreso",
-                                                        "upcoming":"Ya Viene"
-                                                    }
-                                                }'
-                                ></Timer>
+                                <span id="txtTimer">
+                                @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
+                                    Termina
+                                @else
+                                    Empieza 
+                                @endif
+                                </span>
+                                {{__('In')}}
                             </div>
+                            <!-- End: header -->
+                            <!-- Start: countdown -->
+                            <div class="count-down">
+                                <div class="timer d-inline-block">
+                                    <Timer
+                                        starttime="{{$start}}"
+                                        endtime="{{$end}}"
+                                        type='auction'
+                                        trans='{
+                                                    "day":"D",
+                                                    "hours":"H",
+                                                    "minutes":"M",
+                                                    "seconds":"S",
+                                                    "expired":"Este evento a expirado.",
+                                                    "running":"Este evento esta en progreso.",
+                                                    "upcoming":"Este evento aun no a empezado.",
+                                                    "status": {
+                                                            "expired":"Expirado",
+                                                            "running":"En Progreso",
+                                                            "upcoming":"Ya Viene"
+                                                        }
+                                                    }'
+                                    ></Timer>
+                                </div>
+                            </div>
+                            <!-- End: countdown -->
                         </div>
-                        <!-- End: countdown -->
-                    </div>
 
-
-                    <div class="s-box">
-                    @auth()
-                        @if($auction->status == AUCTION_STATUS_RUNNING)
-                        @include('layouts.includes.bidding_list')
-                        <div id="div_wait" style="height: 400px; display:none;">
-                            <center><label>Procesando</label>
-                            <label>Espere un momento</label></center>
-                            <img />
+                        <div class="s-box">
+                            @auth()
+                                @if($auction->status == AUCTION_STATUS_RUNNING)
+                                @include('layouts.includes.bidding_list')
+                                <div id="div_wait" style="height: 400px; display:none;">
+                                    <center><label>Procesando</label>
+                                    <label>Espere un momento</label></center>
+                                    <img />
+                                </div>
+                                @else
+                                <div style="height:400px;">
+                                    <center>
+                                    <img src="{{asset('public/icons/has-ofertado-blanco.svg')}}"><br>
+                                        <label style="color:white;font-size:25px;">
+                                            @if($isWinner->user_id == auth()->id())
+                                                Estimado {{$isWinner->user->username}} eres el
+                                            @else
+                                                El usuario {{$isWinner->user->username}} fue el
+                                            @endif
+                                            <br><strong>mejor postor de la subasta</strong><br>con una oferta de<br><strong>{{!is_null($auction->currency) ? $auction->currency->symbol : ''}} {{$isWinner->amount}}</strong>
+                                            <br>
+                                            @if(!$price_reserve)
+                                                    Precio Reserva:
+                                                <strong> no alcanzado</strong>
+                                            @endif
+                                        <label>
+                                    </center>
+                                    
+                                </div>
+                                @endif
+                            @endauth
                         </div>
-                        @else
-                        <div style="height:400px;">
-                            <center>
-                            <img src="{{asset('public/icons/has-ofertado-blanco.svg')}}"><br>
-                                <label style="color:white;font-size:25px;">
-                                    @if($isWinner->user_id == auth()->id())
-                                        Estimado {{$isWinner->user->username}} eres el
-                                    @else
-                                        El usuario {{$isWinner->user->username}} fue el
-                                    @endif
-                                    <br><strong>mejor postor de la subasta</strong><br>con una oferta de<br><strong>{{!is_null($auction->currency) ? $auction->currency->symbol : ''}} {{$isWinner->amount}}</strong>
-                                <label>
-                            </center>
-                            
-                        </div>
-                        @endif
-                    @endauth
-                    </div>
                     @else
-
-                    <div class="s-box">
-                        <div id="div_wait" style="height: 400px;">
-                            <center>
-                                <label>¡Bienvenido al proceso en vivo!</label>
-                                <br>
-                                <label>Recibiendo<br>participantes</label>
-                                <br>
-                                <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
-                                
-                                <div class="s-box-header">
-                                
-                                    <?php
-                                    $now = \Carbon\Carbon::now();
-                                    $start = \Carbon\Carbon::parse($auction->starting_date);
-                                    $end = \Carbon\Carbon::parse($auction->ending_date)->addHours(10);
-                                    //print_r($start);
-                                    ?>
-                                    @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
-                                        <span> Termina </span>
-                                    @else
-                                        <span> Inicia </span>
-                                    @endif
-                                    {{__('In')}}
-                                </div>
-                                <!-- End: header -->
-                                <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
-                                <!-- Start: countdown -->
-                                <div class="count-down">
-                                    <div class="timer d-inline-block">
-                                        <Timer
-                                            starttime="{{$start}}"
-                                            endtime="{{$end}}"
-                                            type='auction'
-                                            trans='{
-                                                        "day":"D",
-                                                        "hours":"H",
-                                                        "minutes":"M",
-                                                        "seconds":"S",
-                                                        "expired":"Este evento a expirado.",
-                                                        "running":"Este evento esta en progreso.",
-                                                        "upcoming":"Este evento aun no a empezado.",
-                                                        "status": {
-                                                                "expired":"Expirado",
-                                                                "running":"En Progreso",
-                                                                "upcoming":"Ya Viene"
-                                                            }
-                                                        }'
-                                        ></Timer>
-                                    </div>
-                                </div>
-                            </center>
-                            <img />
-                        </div>  
-                    </div>
-
+                    
+                        @if(is_null($auction->warranty->where('user_id', auth()->id())->first()))
+                            <div class="s-box">
+                                <div id="div_wait" style="height: 400px;">
+                                    <center>
+                                        <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
+                                        <label>Oferta en vivo</label>
+                                        <br>
+                                        <label>Mínimo 2 participantes</label>
+                                        <br>
+                                        <label>PRECIO RESERVA</label>
+                                        <br>
+                                        
+                                        
+                                        <div class="count-down">
+                                            <a href="#" data-id="{{ $auction->id }}" id="btnWarranty_{{ $auction->id }}">
+                                                <div class="color-999 d-inline-block fz-12">Deseo Participar</div>
+                                            </a>
+                                        </div>
+                                    
+                                       
+                                    </center>
+                                    <img />
+                                </div>  
+                            </div>
+                        @else
+                            <div class="s-box">
+                                <div id="div_wait" style="height: 400px;">
+                                    <center>
+                                        <label>¡Bienvenido al proceso en vivo!</label>
+                                        <br>
+                                        <label>Recibiendo<br>participantes</label>
+                                        <br>
+                                        <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
+                                        
+                                        <div class="s-box-header">
+                                        
+                                            <?php
+                                            $now = \Carbon\Carbon::now();
+                                            $start = \Carbon\Carbon::parse($auction->starting_date);
+                                            $end = \Carbon\Carbon::parse($auction->ending_date);
+                                            ?>
+                                            @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
+                                                <span> Termina </span>
+                                            @else
+                                                <span> Inicia </span>
+                                            @endif
+                                            {{__('In')}}
+                                        </div>
+                                        <!-- End: header -->
+                                        <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
+                                        <!-- Start: countdown -->
+                                        <div class="count-down">
+                                            <div class="timer d-inline-block">
+                                                <Timer
+                                                    starttime="{{$start}}"
+                                                    endtime="{{$end}}"
+                                                    type='auction'
+                                                    trans='{
+                                                                "day":"D",
+                                                                "hours":"H",
+                                                                "minutes":"M",
+                                                                "seconds":"S",
+                                                                "expired":"Este evento a expirado.",
+                                                                "running":"Este evento esta en progreso.",
+                                                                "upcoming":"Este evento aun no a empezado.",
+                                                                "status": {
+                                                                        "expired":"Expirado",
+                                                                        "running":"En Progreso",
+                                                                        "upcoming":"Ya Viene"
+                                                                    }
+                                                                }'
+                                                ></Timer>
+                                            </div>
+                                        </div>
+                                    </center>
+                                    <img />
+                                </div>  
+                            </div>
+                        @endif
                     @endif
 
                     
@@ -858,6 +885,37 @@
     <script type="text/javascript">
         var timerInter  = null;
         $(document).ready(function () {
+            idAuctionW = 0;
+            indPayWarranty = false;
+            function pagoGarantia(e){
+                e.preventDefault();
+
+                @if (Auth::check())
+                    idAuctionW = $(this).data("id");
+                    $("#confirmBid").css("display","none");
+                    $("#confirmBidWarranty").css("display","initial");
+                    $('#confirmBidModal').modal("toggle");
+                @else
+                    $('#loginModal').modal("toggle");
+                @endif
+            }
+
+            $('#confirmBidWarranty').on('click', function() {
+                $.ajax({
+                    type: "POST",
+                    asyn: true,
+                    url:  '{{ route('auction.pay_warranty') }}',
+                    data: { id: idAuctionW, _token: $('meta[name="csrf-token"]').attr("content") },
+                    success: function(response)
+                    {
+                        window.location.reload();
+                    }
+                });
+            })
+
+            $("a[id*='btnWarranty']").off('click');
+            $("a[id*='btnWarranty']").on('click', pagoGarantia);
+
             var last_amount = '{{(!is_null($lastBid) ? $lastBid->amount : $auction->bid_initial_price)}}';
             $("input[name='bid_increment'").on('click', function(){
                 var currency = '{{!is_null($auction->currency) ? $auction->currency->symbol : ''}}';
@@ -877,10 +935,20 @@
 
             $('#confirmBid').on('click', function() {
                 $('#bidForm').submit();
+                indPayWarranty = true;
             })
 
             $('#offer').on('click',function(){
-                $('#confirmBidModal').modal("toggle");
+                @if(is_null($auction->warranty->where('user_id', auth()->id())->first()))
+                
+                if(!indPayWarranty)
+                    $('#confirmBidModal').modal("toggle");
+                else
+                    $('#bidForm').submit();
+
+                @else
+                $('#bidForm').submit();
+                @endif
             })
 
             var sync1 = $("#sync1");
@@ -977,6 +1045,10 @@
                 .listen('BroadcastAuctionBid', (response) => {
                     if (response) {
 
+                        cntInter = 0;
+                        clearInterval(timer_glob);
+                        clearInterval(timerInter);
+
                         $("#lblLastBid").html('Precio Base :');
                         $("#timerCrono").css("display", "initial");
                         $("#divListBids").load('{{ $url }}');   
@@ -997,20 +1069,29 @@
                             
                         @endif
 
-                        row = row + '<span class="usuario-batalla">' + response.username + '</span>';
-                        let myBidHtml = '';
+                        //let myBidHtml = '';
                         if (user.id == response.user_id) {
-                            myBidHtml = '<span class="badge-success py-1 px-2 badge-pill fz-10 mr-2">' + "{{ __('My Bid') }}" +'</span>';
+                            //myBidHtml = '<span class="badge-success py-1 px-2 badge-pill fz-10 mr-2">' + "{{ __('My Bid') }}" +'</span>';
+                            
+                            row = row +
+                                //myBidHtml +
+                                '<img src="{{asset('images/has-ofertado-naranja.svg')}}" alt="">'+
+                                '<strong>' + response.username + '</strong>'+
+                                '<span class="gris-color"> has ofertado </span>'+
+                                '<span class="color-default fz-16">' + response.amount + ' </span>' +
+                                '<span class="fz-12">' + response.currency + ' </span>' +
+                                '</li>';
+                        }else{
+
+                            row = row +
+                                //myBidHtml +
+                                '<span class="usuario-batalla">' + response.username + '</span>'+
+                                '<span class="gris-color"> ha ofertado por </span>'+
+                                '<span class="color-default fz-16">' + response.amount + ' </span>' +
+                                '<span class="fz-12">' + response.currency + ' </span>' +
+                                '<img src="{{asset('images/has-ofertado-naranja.svg')}}" alt="">'+
+                                '</li>';
                         }
-
-                        row = row +
-                            //myBidHtml +
-                            '<span class="gris-color"> ha ofertado por </span>'+
-                            '<span class="color-default fz-16">' + response.amount + ' </span>' +
-                            '<span class="fz-12">' + response.currency + ' </span>' +
-                            '<img src="{{asset('images/has-ofertado-naranja.svg')}}" alt="">'+
-                            '</li>';
-
                         $('#ul_bid').append(row);
 
                         $('#count-bid').html(response.bid_count);
@@ -1031,51 +1112,38 @@
 
                         timerInter = setInterval(function(){
                             cntInter++;
+                        
+                            $(".imgCont").removeClass("show");
+                            $(".imgCont").addClass("hide");
+                            switch(cntInter){
+                                case 1:
+                                    $("#img_1").removeClass("hide");
+                                    $("#img_1").addClass("show");
+                                    break;
+                                case 2:
+                                    $("#img_2").removeClass("hide");
+                                    $("#img_2").addClass("show");
+                                    break;
+                                case 3:
+                                    $("#img_3").removeClass("hide");
+                                    $("#img_3").addClass("show");
+                                    break;
+                            }
+
+                            let row = '<li class="li-blue respuesta-blue">' +
+                                '<img src="{{asset('public/icons/conteo-logo.svg')}}" width="100px">'+
+                                '<span class="color-default fz-16">Se lo llevan por ' + response.amount + '</span>' +
+                                '<span class="fz-12"></span>' +
+                                '</li>';
+                            $('#ul_bid').append(row);
                             
-                            // if(cntInter == 3){
-                            //     cntInter = 0;
-
-                            //     $("#div_bidding_list").css("display","none");
-                            //     $("#div_form_bid").css("display","none");
-                            //     $("#div_info_bid").css("display","block");
-                            //     $("#div_wait").css("display","block");
-                                
-                            //     clearInterval(timerInter);
-                            //     setTimeout(function(){
-                            //         window.location.reload();
-                            //     }, 2000);
-                            // }else{
-                                $(".imgCont").removeClass("show");
-                                $(".imgCont").addClass("hide");
-                                switch(cntInter){
-                                    case 1:
-                                        $("#img_1").removeClass("hide");
-                                        $("#img_1").addClass("show");
-                                        break;
-                                    case 2:
-                                        $("#img_2").removeClass("hide");
-                                        $("#img_2").addClass("show");
-                                        break;
-                                    case 3:
-                                        $("#img_3").removeClass("hide");
-                                        $("#img_3").addClass("show");
-                                        break;
-                                }
-
-                                let row = '<li class="li-blue respuesta-blue">' +
-                                    '<img src="{{asset('public/icons/conteo-logo.svg')}}" width="100px">'+
-                                    '<span class="color-default fz-16">Se lo llevan por ' + response.amount + '</span>' +
-                                    '<span class="fz-12"></span>' +
-                                    '</li>';
-                                $('#ul_bid').append(row);
-                                
-                                let row_msj = '<li class="li-orange respuesta-orange">' +
-                                    '<img src="{{asset('public/icons/conteo-logo.svg')}}" width="100px">'+
-                                    '<span class="color-default fz-16">' + strInterval[cntInter - 1] + '</span>' +
-                                    '<span class="fz-12"></span>' +
-                                    '</li>';
-                                $('#ul_bid').append(row_msj);
-                            //}
+                            let row_msj = '<li class="li-orange respuesta-orange">' +
+                                '<img src="{{asset('public/icons/conteo-logo.svg')}}" width="100px">'+
+                                '<span class="color-default fz-16">' + strInterval[cntInter - 1] + '</span>' +
+                                '<span class="fz-12"></span>' +
+                                '</li>';
+                            $('#ul_bid').append(row_msj);
+                            
 
                             
                             if(cntInter == 3){
@@ -1101,8 +1169,10 @@
                 
 
             $("#bidForm").submit(function(e) {
+                e.preventDefault();
 
-                e.preventDefault(); // avoid to execute the actual submit of the form.
+                clearInterval(timer_glob);
+                clearInterval(timerInter);
 
                 var form = $(this);
                 var url = form.attr('action');
@@ -1111,126 +1181,10 @@
                     type: "POST",
                     asyn: true,
                     url: url,
-                    data: form.serialize(), // serializes the form's elements.
+                    data: form.serialize(),
                     success: function(response)
                     {
                         $('#confirmBidModal').modal("hide");
-                        // if (response) {
-
-                        //     $("#lblLastBid").html('Precio Base :');
-                        //     $("#timerCrono").css("display", "initial");
-                        //     $("#divListBids").load('{{ $url }}');   
-                        //     $(".imgCont").removeClass("show");
-                        //     $(".imgCont").addClass("hide");
-                        //     $("#img_inicio").removeClass("hide");
-                        //     $("#img_inicio").addClass("show");
-
-                        //     clearInterval(timer_glob);
-
-                        //     let row = '<li>';
-                        //     last_amount = response.amount;
-                        //     row = row + '<strong>' + response.username + '</strong>';
-                        //     // let myBidHtml = '';
-                        //     // if (user.id == response.user_id) {
-                        //     //     myBidHtml = '<span class="badge-success py-1 px-2 badge-pill fz-10 mr-2">' + "{{ __('My Bid') }}" +'</span>';
-                        //     // }
-
-                        //     row = row +
-                        //         //myBidHtml +
-                        //         '<span class="gris-color"> ha ofertado por </span>'+
-                        //         '<span class="color-default fz-16">' + response.amount + ' </span>' +
-                        //         '<span class="fz-12">' + response.currency + ' </span>' +
-                        //         //'<img src="{{asset('images/has-ofertado-naranja.svg')}}" alt="">'+
-                        //         '</li>';
-
-                        //     $('#ul_bid').append(row);
-
-                        //     $('#count-bid').html(response.bid_count);
-
-                        //     $('#max-bid').html(`<span class="font-weight-normal"> {{$auction->currency->symbol}}</span> ${response.bigger_bid} </span>`);
-
-                        //     $('#spn_last_bid').html('<span class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span>' + response.bigger_bid);
-                        //     var currency = '{{!is_null($auction->currency) ? $auction->currency->symbol : ''}}';
-                        //     aa = (parseInt(response.bigger_bid) + parseInt('{{$auction->bid_increment_dif}}'))
-                        //     $("#cost").html(currency + ' ' + aa);
-                        //     $("#{{ fake_field('amount') }}").val(aa);
-
-
-                        //     let minimumBid = response.bigger_bid + response.bid_increment_dif;
-
-                        //     $('#minimum-bid').html(`<span class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> ${minimumBid}</span>`);
-
-
-                        //     timerInter = setInterval(function(){
-                        //         cntInter++;
-                                
-                        //         // if(cntInter == 3){
-                        //         //     cntInter = 0;
-
-                        //         //     $("#div_bidding_list").css("display","none");
-                        //         //     $("#div_form_bid").css("display","none");
-                        //         //     $("#div_info_bid").css("display","block");
-                        //         //     $("#div_wait").css("display","block");
-                                    
-                        //         //     clearInterval(timerInter);
-                        //         //     setTimeout(function(){
-                        //         //         window.location.reload();
-                        //         //     }, 2000);
-                        //         // }else{
-                        //             $(".imgCont").removeClass("show");
-                        //             $(".imgCont").addClass("hide");
-                        //             switch(cntInter){
-                        //                 case 1:
-                        //                     $("#img_1").removeClass("hide");
-                        //                     $("#img_1").addClass("show");
-                        //                     break;
-                        //                 case 2:
-                        //                     $("#img_2").removeClass("hide");
-                        //                     $("#img_2").addClass("show");
-                        //                     break;
-                        //                 case 3:
-                        //                     $("#img_3").removeClass("hide");
-                        //                     $("#img_3").addClass("show");
-                        //                     break;
-                        //             }
-
-                        //             let row = '<li class="li-blue respuesta-blue">' +
-                        //                 '<img src="{{asset('public/icons/conteo-logo.svg')}}" width="100px">'+
-                        //                 '<span class="color-default fz-16">Se lo llevan por ' + response.amount + '</span>' +
-                        //                 '<span class="fz-12"></span>' +
-                        //                 '</li>';
-                        //             $('#ul_bid').append(row);
-                                    
-                        //             let row_msj = '<li class="li-orange respuesta-orange">' +
-                        //                 '<img src="{{asset('public/icons/conteo-logo.svg')}}" width="100px">'+
-                        //                 '<span class="color-default fz-16">' + strInterval[cntInter - 1] + '</span>' +
-                        //                 '<span class="fz-12"></span>' +
-                        //                 '</li>';
-                        //             $('#ul_bid').append(row_msj);
-                        //         //}
-
-                                
-                        //         if(cntInter == 3){
-                        //             cntInter = 0;
-
-                        //             clearInterval(timer_glob);
-                        //             clearInterval(timerInter);
-                        //             setTimeout(function(){
-                        //                 $("#div_bidding_list").css("display","none");
-                        //                 $("#div_form_bid").css("display","none");
-                        //                 $("#div_info_bid").css("display","block");
-                        //                 $("#div_wait").css("display","block");
-
-                        //                 setTimeout(function(){
-                        //                     window.location.reload();
-                        //                 }, 5000);
-                        //             }, 5000);
-                        //         }
-
-                        //     }, {{TIME_INTERVAL_AUCTION}});
-                        // }
-
-
                     }
                 });
             });

@@ -7,6 +7,7 @@ use App\Http\Requests\User\AuctionRequest;
 use App\Http\Requests\User\ShippingDescriptionRequest;
 use App\Jobs\AuctionMoneyRelease;
 use App\Models\User\User;
+use App\Models\User\WarrantyUserAuction;
 use App\Repositories\Admin\Interfaces\CategoryInterface;
 use App\Repositories\Admin\Interfaces\CurrencyInterface;
 use App\Repositories\Core\Interfaces\CountryInterface;
@@ -22,6 +23,12 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+
+use Illuminate\Support\Facades\DB;
+use App\Repositories\User\Interfaces\WalletInterface;
+use App\Repositories\User\Interfaces\TransactionInterface;
+use App\Http\Requests\User\BidRequest;
+use App\Services\User\BidService;
 
 class AuctionController extends Controller
 {
@@ -58,9 +65,9 @@ class AuctionController extends Controller
             return redirect()->back()->with(SERVICE_RESPONSE_ERROR, __('Access Denied'));
         }
 
-        $parameters = $request->only('title', 'address_id', 'auction_type', 'category_id', 'currency_id', 'product_description', 'starting_date', 'ending_date', 'bid_initial_price', 'bid_increment_dif', 'is_shippable', 'shipping_type', 'terms_description', 'is_multiple_bid_allowed');
+        $parameters = $request->only('title', 'address_id', 'auction_type', 'category_id', 'currency_id', 'product_description', 'starting_date', 'ending_date', 'bid_initial_price', 'bid_increment_dif', 'is_shippable', 'shipping_type', 'terms_description', 'is_multiple_bid_allowed', 'reserve_price');
         $parameters['ref_id'] = Str::uuid();
-        $parameters['ending_date'] = Carbon::parse($parameters['starting_date'])->addSeconds(120);
+        $parameters['ending_date'] = Carbon::parse($parameters['starting_date'])->addSeconds(7200);
         $parameters['seller_id'] = Auth::user()->seller->id;
 
         $new_name = 0;
@@ -87,7 +94,8 @@ class AuctionController extends Controller
     public function show($id)
     {
         $auction_ = app(AuctionService::class)->auctionDetails($id);
-
+        //dd($auction_['auction']->warranty->where('user_id', 2)->first());
+        $lst = false;
         if ($auction_['auction']->status == AUCTION_STATUS_RUNNING) {
             $last_bid = app(BidInterface::class)->getFirstByConditions(['auction_id' => $id], null, ['id' =>'desc']);
             if (!is_null($last_bid)) {
@@ -95,6 +103,7 @@ class AuctionController extends Controller
                             ->addSeconds(((TIME_INTERVAL_AUCTION / 1000)) * 3)
                             ->format('H:i:s');
                 if ($time_ < now()->format('H:i:s')) {
+                    $lst = ($last_bid->amount < $auction_['auction']->reserve_price) ? false : true;
                     $parameter['is_winner'] = AUCTION_WINNER_STATUS_WIN;
                     $changeAuctionStatus['status'] = AUCTION_STATUS_COMPLETED;
                     $changeAuctionStatus['ending_date'] = \Carbon\Carbon::now()->addMinutes(-3);
@@ -102,7 +111,7 @@ class AuctionController extends Controller
                     $updateAsWinner = app(BidInterface::class)->update($parameter, $last_bid->id);
                     $completeAuction = app(AuctionInterface::class)->update($changeAuctionStatus, $id);
 
-                    if ($updateAsWinner && $completeAuction) {
+                    if ($updateAsWinner && $completeAuction && $last_bid->user_id == auth()->user()->id) {
                         $date = now();
                         $route = route('shipping-description.create', ['id' => $id]);
                         $notificationAttributes = [
@@ -120,6 +129,8 @@ class AuctionController extends Controller
         }
         //dd($auction_['isWinner']->user);
         $details = app(AuctionService::class)->auctionDetails($id);
+        $details['price_reserve'] = $lst;
+        //dd($details);
         return view('frontend.user_access.auction.show', $details);
     }
 
@@ -284,4 +295,141 @@ class AuctionController extends Controller
         return view('frontend.user_access.auction.lists_bid', $data);
     }
     
+    public function pay_warranty(Request $request){
+        
+        $warranty = WarrantyUserAuction::where('user_id', Auth::user()->id)
+                            ->where('auction_id', $request['id'])->count();
+        //dd($warranty);
+        if ($warranty == 0) {
+            $conditions = [
+                'id' => $request['id']
+            ];
+
+            $auction = $this->auction->getFirstByConditions($conditions);
+            $onBiddingUserWallet = app(WalletInterface::class)->getFirstByConditions(['user_id' => auth()->id(), 'currency_id' => $auction->currency_id], 'currency');
+        
+            $highestBidderBiddingFee = settings('bidding_fee_on_highest_bidder_auction');
+            $vickreyBidderBiddingFee = settings('bidding_fee_on_vickrey_bidder_auction');
+
+            if ($auction->auction_type == AUCTION_TYPE_HIGHEST_BIDDER) {
+                $biddingFee = $highestBidderBiddingFee;
+            } else {
+                $biddingFee = $vickreyBidderBiddingFee;
+            }
+
+            $bidInsurance = bcadd($auction->bid_initial_price * 0.10, $biddingFee);
+            $highestBid = $auction->bids()->orderBy('amount', 'desc')->first();
+
+        
+            $walletAttributes = [
+                [
+                    'conditions' => ['user_id' => $onBiddingUserWallet->user_id, 'currency_id' => $auction->currency_id],
+                    'fields' => [
+                        'on_order' => ['increment', '10'],
+                        'balance' => ['decrement', $bidInsurance],
+                    ]
+                ],
+                [
+                    'conditions' => ['user_id' => FIXED_USER_SUPER_ADMIN, 'currency_id' => $auction->currency_id],
+                    'fields' => [
+                        'balance' => ['increment', $biddingFee],
+                    ]
+                ],
+            ];
+            //dd($walletAttributes);
+            DB::beginTransaction();
+            if (!app(WalletInterface::class)->bulkUpdate($walletAttributes)) {
+                throw new Exception('Failed to bid please try again later');
+            }
+
+        
+            $date = now();
+            $refId = Str::uuid();
+            $transactionAttributes = $this->bidHighTransaction($onBiddingUserWallet, $refId, $bidInsurance, $biddingFee, $date);
+
+            if (count($auction->bids) > 0 && $auction->auction_type == AUCTION_TYPE_HIGHEST_BIDDER) {
+                if (!$this->bidReversalTransaction($auction, $highestBid, $refId, $date, $transactionAttributes, $bidInsurance)) {
+                    throw new Exception('Failed to bid please try again later');
+                }
+            }
+
+            $parameters['ending_date'] = \Carbon\Carbon::now()->addSeconds((TIME_INTERVAL_AUCTION / 1000) * 3);
+            $timeUpdate = app(AuctionInterface::class)->update($parameters, $auction->id);
+        
+            app(TransactionInterface::class)->insert($transactionAttributes);
+
+            DB::commit();
+
+            $paramWarranty['user_id'] = Auth::user()->id;
+            $paramWarranty['auction_id'] = $request['id'];
+            $paramWarranty['amount'] = $bidInsurance;
+            WarrantyUserAuction::create($paramWarranty);
+        }
+        return json_encode(true);
+    }
+
+    
+    public function bidHighTransaction($onBiddingUserWallet, $refId, $amount, $biddingFee, $date)
+    {
+        if ($biddingFee > 0)
+        {
+            $bidTransaction = [
+                [
+                    'user_id' => $onBiddingUserWallet->user_id,
+                    'ref_id' => $refId,
+                    'wallet_id' => $onBiddingUserWallet->id,
+                    'model_id' => $onBiddingUserWallet->id,
+                    'model' => get_class($onBiddingUserWallet),
+                    'amount' => bcmul($biddingFee, "-1"),
+                    'journal_type' => JOURNAL_TYPE_DEBIT,
+                    'journal' => INCREASED_TO_SYSTEM_WALLET_AS_AUCTION_FEES,
+                    'updated_at' => $date,
+                    'created_at' => $date,
+                ],
+
+                [
+                    'user_id' => $onBiddingUserWallet->user_id,
+                    'ref_id' => $refId,
+                    'wallet_id' => $onBiddingUserWallet->id,
+                    'model_id' => $onBiddingUserWallet->id,
+                    'model' => get_class($onBiddingUserWallet),
+                    'amount' => bcmul($biddingFee, "1"),
+                    'journal_type' => JOURNAL_TYPE_CREDIT,
+                    'journal' => DECREASED_FROM_USER_WALLET_AS_AUCTION_FEES,
+                    'updated_at' => $date,
+                    'created_at' => $date,
+                ],
+            ];
+        }
+
+        $bidTransaction[] =
+            [
+                'user_id' => $onBiddingUserWallet->user_id,
+                'ref_id' => $refId,
+                'wallet_id' => $onBiddingUserWallet->id,
+                'model_id' => $onBiddingUserWallet->id,
+                'model' => get_class($onBiddingUserWallet),
+                'amount' => bcmul($amount, "-1"),
+                'journal_type' => JOURNAL_TYPE_DEBIT,
+                'journal' => INCREASED_TO_ESCROW_ON_BIDDING_FROM_USER_WALLET,
+                'updated_at' => $date,
+                'created_at' => $date,
+            ];
+
+        $bidTransaction[] =
+            [
+                'user_id' => $onBiddingUserWallet->user_id,
+                'ref_id' => $refId,
+                'wallet_id' => $onBiddingUserWallet->id,
+                'model_id' => $onBiddingUserWallet->id,
+                'model' => get_class($onBiddingUserWallet),
+                'amount' => bcmul($amount, "1"),
+                'journal_type' => JOURNAL_TYPE_CREDIT,
+                'journal' => DECREASED_FROM_USER_WALLET_TO_ESCROW_ON_BIDDING,
+                'updated_at' => $date,
+                'created_at' => $date,
+            ];
+
+        return $bidTransaction;
+    }
 }

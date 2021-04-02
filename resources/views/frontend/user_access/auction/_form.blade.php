@@ -67,6 +67,14 @@
                             </div>
                             <!-- End: bid increment difference -->
 
+                            <!-- Start: precio reserva -->
+                            <div class="col-6">
+                                {{ Form::text(fake_field('reserve_price'), old('reserve_price'), ['class'=> 'form-control', 'id' => fake_field('reserve_price'),'data-cval-name' => 'The reserve_price field','data-cval-rules' => 'required|decimal', 'placeholder' => __('Reserve Price')]) }}
+                                <span class="invalid-feedback cval-error" data-cval-error="{{ fake_field('reserve_price') }}">{{ $errors->first('reserve_price') }}</span>
+                            </div>
+                            <!-- End: precio reserva -->
+
+
                         </div>
                         <!-- End: bid initial price and bid increment difference -->
 

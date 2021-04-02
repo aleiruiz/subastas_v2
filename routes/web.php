@@ -12,6 +12,7 @@ Route::get('/auction-rules', 'AuctionRulesController@index')->name('auction-rule
 Route::get('/auctions/search', 'AuctionSearchController@index')->name('auction-search.index');
 
 Route::get('auction/{id}', 'User\AuctionController@show')->name('auction.show');
+Route::post('auction-pay-warranty', 'User\AuctionController@pay_warranty')->name('auction.pay_warranty');
 
 //Test
 Route::get('test', 'TestController@test')->name('test');

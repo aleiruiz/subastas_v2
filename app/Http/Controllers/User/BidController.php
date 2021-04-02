@@ -79,7 +79,7 @@ class BidController extends Controller
             //return redirect()->back()->with($response[SERVICE_RESPONSE_STATUS], $response[SERVICE_RESPONSE_MESSAGE]);
             
             if(isset($bid['status'])){
-                return false;
+                return json_encode(false);
             }else{
                 return [
                     'user_id' => $bid->user_id,

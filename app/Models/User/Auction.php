@@ -30,7 +30,8 @@ class Auction extends Model
         'status',
         'product_claim_status',
         'is_multiple_bid_allowed',
-        'countvisits'
+        'countvisits',
+        'reserve_price'
     ];
 
     protected $fakeFields = [
@@ -55,7 +56,8 @@ class Auction extends Model
         'status',
         'product_claim_status',
         'is_multiple_bid_allowed',
-        'countvisits'
+        'countvisits',
+        'reserve_price'
     ];
 
     public function seller()
@@ -81,6 +83,11 @@ class Auction extends Model
     public function bids()
     {
         return $this->hasMany(Bid::class);
+    }
+
+    public function warranty()
+    {
+        return $this->hasMany(WarrantyUserAuction::class);
     }
 
     public function currency()

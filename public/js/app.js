@@ -55788,8 +55788,10 @@ Vue.component("Timer", {
         clearInterval(this.interval);
       } else if (distance < 0 && passTime > 0) {
         if(indChangeEst){
-          indChangeEst=false;
-          window.location.reload();
+          	indChangeEst=false;
+		  	setTimeout(function(){
+	          	window.location.reload();
+			}, 1500);
         }
         this.calcTime(passTime);
         this.message = this.wordString.running;

@@ -5,6 +5,7 @@ namespace App\Services\User;
 use App\Repositories\User\Interfaces\BidInterface;
 use App\Repositories\User\Interfaces\NotificationInterface;
 use App\Repositories\User\Interfaces\AuctionInterface;
+use App\Models\User\WarrantyUserAuction;
 use App\Repositories\User\Interfaces\TransactionInterface;
 use App\Repositories\User\Interfaces\WalletInterface;
 use Exception;
@@ -23,7 +24,11 @@ class BidService
 
     public function highestBidder($auction, $parameters, $onBiddingUserWallet)
     {
-
+        $warranty = WarrantyUserAuction::where('user_id', auth()->id())
+                            ->where('auction_id', $auction->id)->count();
+        //dd($warranty);
+        
+        //start
         $highestBidderBiddingFee = settings('bidding_fee_on_highest_bidder_auction');
         $vickreyBidderBiddingFee = settings('bidding_fee_on_vickrey_bidder_auction');
 
@@ -36,6 +41,7 @@ class BidService
 
         $bidInsurance = bcadd($auction->bid_initial_price * 0.10, $biddingFee);
         $highestBid = $auction->bids()->orderBy('amount', 'desc')->first();
+        //end
 
         if (count($auction->bids) > 0 && $auction->auction_type == AUCTION_TYPE_HIGHEST_BIDDER) {
 
@@ -75,25 +81,33 @@ class BidService
 
             DB::beginTransaction();
 
-            if (!app(WalletInterface::class)->bulkUpdate($walletAttributes)) {
-                throw new Exception('Failed to bid please try again later');
-            }
-
-            $date = now();
-            $refId = Str::uuid();
-            $transactionAttributes = $this->bidHighTransaction($onBiddingUserWallet, $refId, $bidInsurance, $biddingFee, $date);
-
-            if (count($auction->bids) > 0 && $auction->auction_type == AUCTION_TYPE_HIGHEST_BIDDER) {
-                if (!$this->bidReversalTransaction($auction, $highestBid, $refId, $date, $transactionAttributes, $bidInsurance)) {
+            if ($warranty == 0) {
+                if (!app(WalletInterface::class)->bulkUpdate($walletAttributes)) {
                     throw new Exception('Failed to bid please try again later');
                 }
+
+                $date = now();
+                $refId = Str::uuid();
+                $transactionAttributes = $this->bidHighTransaction($onBiddingUserWallet, $refId, $bidInsurance, $biddingFee, $date);
+
+                if (count($auction->bids) > 0 && $auction->auction_type == AUCTION_TYPE_HIGHEST_BIDDER) {
+                    if (!$this->bidReversalTransaction($auction, $highestBid, $refId, $date, $transactionAttributes, $bidInsurance)) {
+                        throw new Exception('Failed to bid please try again later');
+                    }
+                }
+
+                $paramWarranty['user_id'] = auth()->id();
+                $paramWarranty['auction_id'] = $auction->id;
+                $paramWarranty['amount'] = $bidInsurance;
+                WarrantyUserAuction::create($paramWarranty);
+            
+                app(TransactionInterface::class)->insert($transactionAttributes);
             }
 
-            app(TransactionInterface::class)->insert($transactionAttributes);
+            $parameters['ending_date'] = \Carbon\Carbon::now()->addSeconds((TIME_INTERVAL_AUCTION / 1000) * 3);
+            $timeUpdate = app(AuctionInterface::class)->update($parameters, $auction->id);
             $bid = $this->bid->create($parameters);
 
-            $parameters['ending_date'] = \Carbon\Carbon::now()->addMinutes(3);
-            $timeUpdate = app(AuctionInterface::class)->update($parameters, $auction->id);
             if (empty($timeUpdate)) {
                 throw new Exception('Failed to update auction please try again later');
             }
