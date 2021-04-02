@@ -118,37 +118,79 @@
                     <!-- End: property title -->
                 </div>
 
-                <div class="col-md-12 col-lg -5">
-
-                    <div class="s-box" style="height: 100%;">
-                         
-                        <ul class="list-group mt-3">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span>
-                                    <img src="{{asset('public/icons/has-ofertado-blanco.svg')}}" width="60px">
-                                    <label id="lblLastBid">{{ (!is_null($lastBid)) ? __('Last Bid :') : 'Precio Base :' }}</label>
-                                </span>
-                                <span class="badge border color-666 badge-pill" id="spn_last_bid">
-                                    <span class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> 
-                                    {{ (!is_null($lastBid)) ? $lastBid->amount : $auction->bid_initial_price }}
-                                </span>
-                            </li>
-                        </ul>
-                        
-                         <!-- @auth()
-                             @if(!is_null($userLastBid))
-                                 <ul class="list-group mt-3">
-                                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                                         <span>
-                                             {{__('Your Last Bid :')}}
-                                         </span>
-                                         <span class="badge border color-666 badge-pill"> <span
-                                                 class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> {{$userLastBid->amount}}</span>
-                                     </li>
-                                 </ul>
-                             @endif
-                         @endauth -->
-                     </div>
+                <div class="col-md-12 col-lg-5">
+                    @if(is_null($auction->warranty->where('user_id', auth()->id())->first()) && !\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
+                        <div class="row">
+                            <div class="col-9">
+                                <label>Inicia</label>
+                                <br>
+                                <?php
+                                    $daysSpanish = [
+                                        0 => 'Lunes',
+                                        1 => 'Martes',
+                                        2 => 'Miércoles',
+                                        3 => 'Jueves',
+                                        4 => 'Viernes',
+                                        5 => 'Sábado',
+                                        6 => 'Domingo',
+                                    ];
+                                    $monthsSpanish = [
+                                        0 => 'Ene.',
+                                        1 => 'Feb.',
+                                        2 => 'Mar.',
+                                        3 => 'Abr.',
+                                        4 => 'May.',
+                                        5 => 'Jun.',
+                                        6 => 'Jul.',
+                                        7 => 'Ago.',
+                                        8 => 'Sep.',
+                                        9 => 'Oct.',
+                                        10 => 'Nov.',
+                                        11 => 'Dic.',
+                                    ];
+                                    $start = \Carbon\Carbon::parse($auction->starting_date);
+                                    echo $daysSpanish[$start->dayOfWeek] . ' ' . $start->month . ' de ' . $monthsSpanish[$start->month] . ' | ' . $start->format('h.i A');;
+                                ?>
+                                <br>
+                                <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
+                                <label>Abierto para ofertas</label>
+                                <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
+                                <label>{{ $auction->countvisits }}</label>
+                            </div>
+                            <div class="col-3">
+                                <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
+                            </div>
+                        </div>
+                    @else
+                        <div class="s-box" style="height: 100%;">
+                            <ul class="list-group mt-3">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>
+                                        <img src="{{asset('public/icons/has-ofertado-blanco.svg')}}" width="60px">
+                                        <label id="lblLastBid">{{ (!is_null($lastBid)) ? __('Last Bid :') : 'Precio Base :' }}</label>
+                                    </span>
+                                    <span class="badge border color-666 badge-pill" id="spn_last_bid">
+                                        <span class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> 
+                                        {{ (!is_null($lastBid)) ? $lastBid->amount : $auction->bid_initial_price }}
+                                    </span>
+                                </li>
+                            </ul>
+                            
+                            <!-- @auth()
+                                @if(!is_null($userLastBid))
+                                    <ul class="list-group mt-3">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span>
+                                                {{__('Your Last Bid :')}}
+                                            </span>
+                                            <span class="badge border color-666 badge-pill"> <span
+                                                    class="mr-1 font-weight-normal">{{$auction->currency->symbol}}</span> {{$userLastBid->amount}}</span>
+                                        </li>
+                                    </ul>
+                                @endif
+                            @endauth -->
+                        </div>
+                     @endif
                 </div>
 
                 <!-- Start: blog grid -->
