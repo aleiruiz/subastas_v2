@@ -352,9 +352,6 @@ class AuctionController extends Controller
                     throw new Exception('Failed to bid please try again later');
                 }
             }
-
-            $parameters['ending_date'] = \Carbon\Carbon::now()->addSeconds((TIME_INTERVAL_AUCTION / 1000) * 3);
-            $timeUpdate = app(AuctionInterface::class)->update($parameters, $auction->id);
         
             app(TransactionInterface::class)->insert($transactionAttributes);
 
