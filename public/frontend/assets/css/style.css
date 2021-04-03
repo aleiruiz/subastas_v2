@@ -1,5 +1,107 @@
 /* Personal Style By Leo */
 
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(3){
+    background: #f1f1f1;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(4) > div > ul > li{
+    border: none !important;
+}
+
+#lblLastBid{
+    color: #fff;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(4) > div > ul > li{
+    background: none !important;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(4){
+    background: #FB4A0B;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(4) > div{
+    background: none !important;
+}
+
+.boton-deseo-participar{
+    background: rgb(249,113,16);
+    background: linear-gradient(180deg, rgba(249,113,16,1) 0%, rgba(255,0,0,1) 100%);
+    padding: 20px 40px;
+    border-radius: 50px;
+    color: #fff !important;
+    font-weight: 800;
+    font-size: 14px !important;
+}
+
+.boton-deseo-participar > div{
+    color: #fff !important;
+}
+
+#div_wait > center > label:nth-child(4){
+    color: #043c78;
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#div_wait > center > label:nth-child(5){
+    color: #043c78;
+    font-weight: 600;
+}
+
+.oferta-en-vivo{
+    color:#ddd !important;
+    text-transform: uppercase;
+    font-size: 11px !important;
+    margin-top: 0px !important;
+}
+
+#div_wait > center > label:nth-child(6){
+    font-weight: 700;
+    color: #5c5c5c;
+    margin-bottom: 30px;
+}
+
+.row .fecha-de-inicio{
+    background: #fb4a0b !important;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(4) > div > div{
+    background: #fff;
+    margin: auto;
+    margin-top: 13px;
+    margin-bottom: 13px;
+    border-radius: 12px;
+    padding: 10px 30px;
+}
+
+.ofertayvisita{
+    border: 1px solid #ddd;
+    box-shadow: none !important;
+    margin-top: 15px;
+    padding: 10px 20px;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(4) > div > div > div > label:nth-child(2){
+    font-size: 12px;
+    margin-right: 20px;
+    color: #fb4a0b;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(4) > div > div > label{
+    color: #0b64b7;
+}
+
+#app > div.p-b-100.p-t-80 > div > div > div:nth-child(4) > div > div > div > label:nth-child(4){
+    color: #fb4a0b;
+}
+
+
+
+
+
+
 #app > div.p-b-100.p-t-80 > div > div > div:nth-child(7) > div > div.s-box-header{
     display: none;
 }
@@ -808,7 +910,7 @@ body > div.main-sidenav.showbar > div.nav-card > div{
     border-radius: 25px;
 }
 #app > div > div > div.row > div > div.row{
-    background: #fff !important;
+    background: #fff;
 }
 
 #app > div > div > div.row > div > div:nth-child(3){

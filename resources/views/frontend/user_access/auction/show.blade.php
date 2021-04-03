@@ -120,7 +120,7 @@
 
                 <div class="col-md-12 col-lg-5">
                     @if(is_null($auction->warranty->where('user_id', auth()->id())->first()) && !\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
-                        <div class="row">
+                        <div class="row fecha-de-inicio">
                             <div class="col-9">
                                 <label>Inicia</label>
                                 <br>
@@ -152,13 +152,12 @@
                                     echo $daysSpanish[$start->dayOfWeek] . ' ' . $start->month . ' de ' . $monthsSpanish[$start->month] . ' | ' . $start->format('h.i A');;
                                 ?>
                                 <br>
-                                <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
+                                <div class="ofertayvisita">
+                                <img src="{{asset('public/icons/martillo-naranja.svg')}}" width="30px">
                                 <label>Abierto para ofertas</label>
-                                <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
+                                <img src="{{asset('public/icons/visitas.svg')}}" width="30px">
                                 <label>{{ $auction->countvisits }}</label>
-                            </div>
-                            <div class="col-3">
-                                <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
+                                </div>
                             </div>
                         </div>
                     @else
@@ -328,17 +327,18 @@
                             <div class="s-box">
                                 <div id="div_wait" style="height: 400px;">
                                     <center>
-                                        <img src="{{asset('public/icons/cronometro.svg')}}" width="30px">
-                                        <label>Oferta en vivo</label>
+                                        <img src="{{asset('public/icons/cronometro2.svg')}}" width="60px;" style="margin-top:50px;">
                                         <br>
-                                        <label>Mínimo 2 participantes</label>
+                                        <label class="oferta-en-vivo">Oferta en vivo</label>
                                         <br>
-                                        <label>PRECIO RESERVA</label>
+                                        <label><img src="{{asset('public/icons/minimo-persona.svg')}}" width="30px" style="margin-right:10px;">Mínimo 2 participantes</label>
+                                        <br>
+                                        <label>PRECIO DE RESERVA</label>
                                         <br>
                                         
                                         
                                         <div class="count-down">
-                                            <a href="#" data-id="{{ $auction->id }}" id="btnWarranty_{{ $auction->id }}">
+                                            <a href="#" data-id="{{ $auction->id }}" class="boton-deseo-participar" id="btnWarranty_{{ $auction->id }}">
                                                 <div class="color-999 d-inline-block fz-12">Deseo Participar</div>
                                             </a>
                                         </div>
