@@ -122,9 +122,9 @@
                     @if(is_null($auction->warranty->where('user_id', auth()->id())->first()) && !\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
                         <div class="row fecha-de-inicio">
                             <div class="col-9">
-                                <label>Inicia</label>
+                                <label style="color: #00417d;font-size: 1.5em;">Inicia</label>
                                 <br>
-                                <?php
+                                <label style="color: #00417d;font-size: 1.5em;"><strong><?php
                                     $daysSpanish = [
                                         0 => 'Lunes',
                                         1 => 'Martes',
@@ -150,7 +150,7 @@
                                     ];
                                     $start = \Carbon\Carbon::parse($auction->starting_date);
                                     echo $daysSpanish[$start->dayOfWeek] . ' ' . $start->month . ' de ' . $monthsSpanish[$start->month] . ' | ' . $start->format('h.i A');;
-                                ?>
+                                ?></strong></label>
                                 <br>
                                 <div class="ofertayvisita">
                                 <img src="{{asset('public/icons/martillo-naranja.svg')}}" width="30px">
@@ -238,8 +238,12 @@
                 </div>
                 <!-- End: blog grid -->
 
+                <?php $css = 'ss'; ?>
+                @if(is_null($auction->warranty->where('user_id', auth()->id())->first()) && !\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
+                    <?php $css = 'style="background-color:white !important;"'; ?>
+                @endif
                 <!-- Start: bidding section -->
-                <div class="col-md-12 col-lg-5 order-lg-0">
+                <div class="col-md-12 col-lg-5 order-lg-0" <?php echo $css; ?>>
                     @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($auction->starting_date)))
                         <div class="s-box mb-3">
                             <!-- Start: header -->
@@ -324,7 +328,7 @@
                     @else
                     
                         @if(is_null($auction->warranty->where('user_id', auth()->id())->first()))
-                            <div class="s-box">
+                            <div class="s-box"  <?php echo $css; ?>>
                                 <div id="div_wait" style="height: 400px;">
                                     <center>
                                         <img src="{{asset('public/icons/cronometro2.svg')}}" width="60px;" style="margin-top:50px;">
